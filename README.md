@@ -16,6 +16,6 @@ Backend za studentski projekat na RAFu, na predmetu "Skript jezici".
 ### Installing python virtual enviroment
 
 ```bash
-
+./devscripts/installenv.sh
 ```
 
