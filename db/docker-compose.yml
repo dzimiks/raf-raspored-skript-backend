@@ -1,0 +1,18 @@
+version: '2'
+services:
+  skript-mysql:
+    image: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - ./data:/var/lib/mysql
+    expose:
+      - 3000
+    restart: always
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
