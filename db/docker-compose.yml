@@ -3,11 +3,11 @@ services:
   skript-mysql:
     image: mariadb
     environment:
-      - MYSQL_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: "example"
     volumes:
       - ./data:/var/lib/mysql
-    expose:
-      - 3000
+    ports:
+      - 127.0.0.1:3603:3603
     restart: always
 
   adminer:
