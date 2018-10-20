@@ -13,6 +13,9 @@ services:
   adminer:
     image: adminer
     restart: always
+    environment:
+      ADMINER_DESIGN: "nette"
+      ADMINER_PLUGINS: "edit-calendar"
     ports:
       - 127.0.0.1:8080:8080
 
