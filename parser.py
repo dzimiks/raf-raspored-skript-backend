@@ -7,7 +7,7 @@ import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
 django.setup()
 
-from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet
+from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet,Nalog,Semestar
 
 
 def import_timetable_from_csv(file_path):
@@ -16,6 +16,13 @@ def import_timetable_from_csv(file_path):
     header = []
     grupe = []
     predmet1=Predmet()
+
+    # Termin.objects.all().delete()
+    # Predmet.objects.all().delete()
+    # Nastavnik.objects.all().delete()
+    # Grupa.objects.all().delete()
+    # Nalog.objects.all().delete()
+
     with open(file_path, encoding='utf-8') as csvfile:
         raspored_csv = csv.reader(csvfile, delimiter=';')
 
@@ -84,7 +91,7 @@ def import_timetable_from_csv(file_path):
                     t = Termin()
                     t.predmet = predmet1
 
-                    if(key == "Vebze"):
+                    if(key == "Vezbe"):
                         t.tip_nastave = predmet[key]
                     if(key == "Predavanja"):
                         t.tip_nastave = predmet[key]
@@ -93,25 +100,23 @@ def import_timetable_from_csv(file_path):
                             t.oznaka_ucionice =predmet[key][k]
                         if(k == "Dan"):
                             t.dan == predmet[key][k]
-                        # if(k == "Nastavnik(ci)"):
+                        if(k == "Nastavnik(ci)"):
+                            ime = predmet[key][k].split(" ")[1]
+                            prezime = predmet[key][k].split(" ")[0]
+                            username1 = (ime[0]).lower()+prezime.lower()
+                            # nal = Nalog()
+                            # nal.username = username
+                            # nal.lozinka = 'admin'
+                            # nal.save()
+                            # print(Nalog.objects.get(username = username1))
 
                             # nas = Nastavnik()
-                            # nas.prezime = predmet[key][k].split(" ")[0]
-                            # nas.ime = predmet[key][k].split(" ")[1]
-                            # ime i prezime je odvojeno,problem je kod dodeljivanja
-                            # predmet1 novonastalom nastavniku
+                            # nas.prezime = prezime
+                            # nas.ime = ime
+                            # print("ASDA")
+                            # nas.nalog = Nalog.objects.get(username=nal.username)
                             # nas.save()
-                            # nas.predmet.set(predmet1)
 
-                            # if(Nastavnik.objects.get(prezime = nas.prezime,ime = nas.ime,predmet=predmet1)):
-                            #     t.nastavnik == nas
-                            # else:
-                            #     t.nastavnik = nas
-                            # nas.save()
-                            # dodajem istog nastavnika za razlicite predmete
-
-                            # moze ovde i nalog da se pravi na osnovu imena i prezimena
-                            # nastavnika
                         if(k == "Èas"):
                             t.pocetak = predmet[key][k].split("-")[0]
                             t.zavrsetak = predmet[key][k].split("-")[1]+":00"
@@ -121,17 +126,14 @@ def import_timetable_from_csv(file_path):
                             for i in range(gcount):
                                 g = Grupa()
                                 g.oznaka_grupe = gru[i].strip()
-                                print(g.oznaka_grupe)
-                            #     g.save()
-                            # grupe su dobro odvojene, ali je problem
-                            # kad se proverava da li novi objekat postoji u bazi
+                                # print(g.oznaka_grupe)
+                                # g.save()
+                            # grupe su dobro odvojene, ali ima neki problem
+
 
 
                     # t.save()
-                    # Termin.objects.all().delete()
-                    # Predmet.objects.all().delete()
-                    # Nastavnik.objects.all().delete()
-                    # Grupa.objects.all().delete()
+
 
                 # ostao  je jos raspored koji ne znam kako da odradim
 
