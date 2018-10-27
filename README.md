@@ -2,6 +2,10 @@
 
 Backend za studentski projekat na RAFu, na predmetu "Skript jezici".
 
+## Production enviroment
+
+We have this app deployed on [our own server](https://skript-api.nemanja.top/). 
+
 ## TOC
 
 <!-- vim-markdown-toc GFM -->
