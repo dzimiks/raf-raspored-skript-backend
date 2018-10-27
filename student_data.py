@@ -19,11 +19,7 @@ nalog_dzimiks.lozinka = "admir"
 nalog_dzimiks.uloga = "student"
 nalog_dzimiks.save()
 
-grupa_dzimiks = Grupa()
-grupa_dzimiks.oznaka_grupe = "301"
-grupa_dzimiks.smer = "RN"
-grupa_dzimiks.semestar = semestar
-grupa_dzimiks.save()
+grupa_dzimiks = Grupa.objects.get(oznaka_grupe = "301")
 
 dzimiks = Student()
 dzimiks.ime = "Vanja"
@@ -42,11 +38,7 @@ nalog_tkemi.lozinka = "admir"
 nalog_tkemi.uloga = "student"
 nalog_tkemi.save()
 
-grupa_tkemi = Grupa()
-grupa_tkemi.oznaka_grupe = "301"
-grupa_tkemi.smer = "RN"
-grupa_tkemi.semestar = semestar
-grupa_tkemi.save()
+grupa_tkemi = Grupa.objects.get(oznaka_grupe = "301")
 
 tkemi = Student()
 tkemi.ime = "Milan"
@@ -65,11 +57,7 @@ nalog_nemanjan00.lozinka = "admir"
 nalog_nemanjan00.uloga = "student"
 nalog_nemanjan00.save()
 
-grupa_nemanjan00 = Grupa()
-grupa_nemanjan00.oznaka_grupe = "302"
-grupa_nemanjan00.smer = "RN"
-grupa_nemanjan00.semestar = semestar
-grupa_nemanjan00.save()
+grupa_nemanjan00 = Grupa.objects.get(oznaka_grupe = "302")
 
 nemanjan00 = Student()
 nemanjan00.ime = "Nemanja"
