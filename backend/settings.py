@@ -14,6 +14,7 @@ import os
 import django_heroku
 
 import environ
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, True),
@@ -125,6 +126,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+if "DATABASE_URL" in os.environ:
+    del os.environ["DATABASE_URL"]
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
