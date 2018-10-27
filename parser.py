@@ -125,8 +125,8 @@ def import_timetable_from_csv(file_path):
                         nastavnik.zvanje = "mr"
                         nastavnik.nalog = nalog
                         nastavnik.save()
-                        nastavnik.predmet.add(predmet_object)
 
+                    nastavnik.predmet.add(predmet_object)
                     termin.nastavnik = nastavnik
                     termin.save()
 
