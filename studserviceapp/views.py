@@ -29,9 +29,14 @@ def timetableforuser(request, username):
         termini = Termin.objects.filter(nastavnik__id=nastavnik.id)
 
         for termin in termini:
-            resp += '<p>'
-            resp += termin.predmet.naziv
-            resp += '</p>'
+            resp += "<p>"
+            resp += termin.dan + " "
+            resp += termin.pocetak.strftime("%H:%M") + " "
+            resp += termin.zavrsetak.strftime("%H:%M") + " "
+            resp += termin.predmet.naziv + " "
+            resp += "<span style=\"float:right\">" + termin.nastavnik.ime + " " + termin.nastavnik.prezime + "</span>"
+            resp += termin.tip_nastave + " "
+            resp += "</p>"
     else:
         resp += '<p>No result</p>'
 
