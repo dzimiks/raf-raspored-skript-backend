@@ -130,16 +130,9 @@ def import_timetable_from_csv(file_path):
                                 # g.save()
                             # grupe su dobro odvojene, ali ima neki problem
 
-
-
                     # t.save()
-
 
                 # ostao  je jos raspored koji ne znam kako da odradim
 
-
-
-
-
-
 import_timetable_from_csv("./testData/rasporedCSV.csv")
+
