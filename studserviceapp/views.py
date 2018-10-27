@@ -1,18 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet,Nalog,Semestar,Student
-
+from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet, Nalog, Semestar, Student
 import time
 
 
-def timetableforuser(request,username):
+def timetableforuser(request, username):
     nalog = Nalog.objects.get(username=username)
     student = Student.objects.get(nalog=nalog)
 
-    grupa = Grupa.objects.filter(student__id = student.id)
+    grupa = Grupa.objects.filter(student__id=student.id)
 
     termini = []
-    termini = Termin.objects.filter(grupe__id = grupa[0].id)
+    termini = Termin.objects.filter(grupe__id=grupa[0].id)
 
     resp = "<html><head><meta charset=\"UTF-8\"></head><body>"
 
@@ -28,5 +27,4 @@ def timetableforuser(request,username):
 
     resp += "</body></html>"
 
-    return HttpResponse(resp) 
-
+    return HttpResponse(resp)
