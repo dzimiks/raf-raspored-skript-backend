@@ -3,19 +3,33 @@
 import csv
 import os
 import django
+import datetime
+from django.utils import timezone
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
 django.setup()
 
-from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet,Nalog,Semestar
-
+from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet, Nalog, Semestar
 
 # def clean_db():
-    # Termin.objects.all().delete()
-    # Predmet.objects.all().delete()
-    # Nastavnik.objects.all().delete()
-    # Grupa.objects.all().delete()
-    # Nalog.objects.all().delete()
+# Termin.objects.all().delete()
+# Predmet.objects.all().delete()
+# Nastavnik.objects.all().delete()
+# Grupa.objects.all().delete()
+# Nalog.objects.all().delete()
+
+# timezone.now()
+
+semestar = Semestar()
+semestar.vrsta = "parni"
+semestar.skolska_godina_kraj = 2019
+semestar.skolska_godina_pocetak = 2018
+semestar.save()
+
+raspored = RasporedNastave()
+raspored.datum_unosa = datetime.datetime.now(tz=timezone.utc)
+raspored.semestar = semestar
+raspored.save()
 
 
 def import_timetable_from_csv(file_path):
@@ -23,7 +37,7 @@ def import_timetable_from_csv(file_path):
     state = -2
     header = []
     grupe = []
-    predmet1 = None
+    predmetObject = None
 
     with open(file_path, encoding='utf-8') as csvfile:
         raspored_csv = csv.reader(csvfile, delimiter=';')
@@ -53,10 +67,9 @@ def import_timetable_from_csv(file_path):
                 continue
 
             if state == 0:
-                p = Predmet()
-                p.naziv=red[0]
-                p.save()
-                predmet1=p
+                predmetObject = Predmet()
+                predmetObject.naziv = red[0]
+                predmetObject.save()
 
                 # Novi predmet
 
@@ -91,50 +104,64 @@ def import_timetable_from_csv(file_path):
 
                 for key in predmet:
                     t = Termin()
-                    t.predmet = predmet1
+                    t.predmet = predmetObject
+                    t.tip_nastave = key
+                    t.oznaka_ucionice = predmet[key]["Uèionica"]
+                    t.dan = predmet[key]["Dan"]
+                    t.pocetak = predmet[key]["Èas"].split("-")[0]
+                    t.zavrsetak = predmet[key]["Èas"].split("-")[1] + ":00"
 
-                    if(key == "Vezbe"):
-                        t.tip_nastave = predmet[key]
-                    if(key == "Predavanja"):
-                        t.tip_nastave = predmet[key]
-                    for k in predmet[key]:
-                        if(k == "Uèionica"):
-                            t.oznaka_ucionice =predmet[key][k]
-                        if(k == "Dan"):
-                            t.dan == predmet[key][k]
-                        if(k == "Nastavnik(ci)"):
-                            ime = predmet[key][k].split(" ")[1]
-                            prezime = predmet[key][k].split(" ")[0]
-                            username = (ime[0]).lower()+prezime.lower()
-                            nal = Nalog()
-                            nal.username = username
-                            nal.lozinka = 'admin'
-                            nal.save()
-                            print(Nalog.objects.get(username = username1))
+                    ime = predmet[key]["Nastavnik(ci)"].split(" ")[1]
+                    prezime = predmet[key]["Nastavnik(ci)"].split(" ")[0]
 
-                            # nas = Nastavnik()
-                            # nas.prezime = prezime
-                            # nas.ime = ime
-                            # print("ASDA")
-                            # nas.nalog = Nalog.objects.get(username=nal.username)
-                            # nas.save()
+                    # Bug sa mjovanovic
+                    if ime == "Miljana" and prezime == "Jovanovic":
+                        username = (ime[0]).lower() + "i" + prezime.lower()
+                    else:
+                        username = (ime[0]).lower() + prezime.lower()
 
-                        if(k == "Èas"):
-                            t.pocetak = predmet[key][k].split("-")[0]
-                            t.zavrsetak = predmet[key][k].split("-")[1]+":00"
-                        if(k == "Odeljenje"):
-                            gru = predmet[key][k].split(",")
-                            gcount = len(gru)
-                            for i in range(gcount):
-                                g = Grupa()
-                                g.oznaka_grupe = gru[i].strip()
-                                # print(g.oznaka_grupe)
-                                # g.save()
-                            # grupe su dobro odvojene, ali ima neki problem
+                    print(ime + " " + prezime + " " + username)
+                    # nastavnik = None
 
-                    # t.save()
+                    if Nalog.objects.filter(username=username).count() > 0:
+                        nastavnik = Nastavnik.objects.get(ime=ime, prezime=prezime)
+                    else:
+                        nal = Nalog()
+                        nal.username = username
+                        nal.lozinka = 'admin'
+                        nal.save()
 
-                    # ostao  je jos raspored koji ne znam kako da odradim
+                        nastavnik = Nastavnik()
+                        nastavnik.ime = ime
+                        nastavnik.prezime = prezime
+                        nastavnik.titula = "dr"
+                        nastavnik.zvanje = "mr"
+                        nastavnik.nalog = nal
+
+                        nastavnik.save()
+                        nastavnik.predmet.add(predmetObject)
+
+                    t.nastavnik = nastavnik
+                    t.raspored = raspored
+
+                    t.save()
+
+                    gru = predmet[key]["Odeljenje"].split(",")
+
+                    for i in gru:
+                        i = i.strip()
+
+                        if Grupa.objects.filter(oznaka_grupe=i).count() > 0:
+                            g = Grupa.objects.get(oznaka_grupe=i)
+                        else:
+                            g = Grupa()
+                            g.oznaka_grupe = i
+                            g.semestar = semestar
+                            g.save()
+
+                        t.grupe.add(g)
+
+                # ostao  je jos raspored koji ne znam kako da odradim
+
 
 import_timetable_from_csv("./testData/rasporedCSV.csv")
-

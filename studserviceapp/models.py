@@ -60,7 +60,7 @@ class Termin(models.Model):
     pocetak = models.TimeField()
     zavrsetak = models.TimeField()
     dan = models.CharField(max_length=15)
-    tip_nastave = models.CharField(max_length=15)  # predavanja, vezbe, praktikum
+    tip_nastave = models.CharField(max_length=30)  # predavanja, vezbe, praktikum
     nastavnik = models.ForeignKey(Nastavnik, on_delete=models.DO_NOTHING)
     predmet = models.ForeignKey(Predmet, on_delete=models.DO_NOTHING)
     grupe = models.ManyToManyField(Grupa)
