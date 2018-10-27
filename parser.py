@@ -10,18 +10,20 @@ django.setup()
 from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet,Nalog,Semestar
 
 
-def import_timetable_from_csv(file_path):
-    """Parser za raspored časova, koji unosi podatke u bazu."""
-    state = -2
-    header = []
-    grupe = []
-    predmet1=Predmet()
-
+# def clean_db():
     # Termin.objects.all().delete()
     # Predmet.objects.all().delete()
     # Nastavnik.objects.all().delete()
     # Grupa.objects.all().delete()
     # Nalog.objects.all().delete()
+
+
+def import_timetable_from_csv(file_path):
+    """Parser za raspored časova, koji unosi podatke u bazu."""
+    state = -2
+    header = []
+    grupe = []
+    predmet1 = None
 
     with open(file_path, encoding='utf-8') as csvfile:
         raspored_csv = csv.reader(csvfile, delimiter=';')
@@ -103,12 +105,12 @@ def import_timetable_from_csv(file_path):
                         if(k == "Nastavnik(ci)"):
                             ime = predmet[key][k].split(" ")[1]
                             prezime = predmet[key][k].split(" ")[0]
-                            username1 = (ime[0]).lower()+prezime.lower()
-                            # nal = Nalog()
-                            # nal.username = username
-                            # nal.lozinka = 'admin'
-                            # nal.save()
-                            # print(Nalog.objects.get(username = username1))
+                            username = (ime[0]).lower()+prezime.lower()
+                            nal = Nalog()
+                            nal.username = username
+                            nal.lozinka = 'admin'
+                            nal.save()
+                            print(Nalog.objects.get(username = username1))
 
                             # nas = Nastavnik()
                             # nas.prezime = prezime
@@ -132,7 +134,7 @@ def import_timetable_from_csv(file_path):
 
                     # t.save()
 
-                # ostao  je jos raspored koji ne znam kako da odradim
+                    # ostao  je jos raspored koji ne znam kako da odradim
 
 import_timetable_from_csv("./testData/rasporedCSV.csv")
 
