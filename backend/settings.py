@@ -16,7 +16,9 @@ import django_heroku
 import environ
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, True)
+    DEBUG=(bool, True),
+    PORT=(int, 8080),
+    DATABASE_URL=(str, "mysql://root:example@127.0.0.1:3306/studservice")
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -82,14 +84,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'studservice',
-        'USER': 'root',
-        'PASSWORD': 'example',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    }
+    'default': env.db()
 }
 
 
