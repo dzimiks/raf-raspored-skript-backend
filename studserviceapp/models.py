@@ -31,6 +31,7 @@ class Student(models.Model):
     def __str__(self):
         return self.ime + " " + self.prezime
 
+
 class Predmet(models.Model):
     naziv = models.CharField(max_length=200)
     espb = models.IntegerField(null=True)
@@ -44,10 +45,8 @@ class Nastavnik(models.Model):
     prezime = models.CharField(max_length=200)
     titula = models.CharField(max_length=20, null=True)
     zvanje = models.CharField(max_length=40, null=True)
-    nalog = models.ForeignKey(Nalog, on_delete = models.CASCADE)
+    nalog = models.ForeignKey(Nalog, on_delete=models.CASCADE)
     predmet = models.ManyToManyField(Predmet)
-
-
 
 
 class RasporedNastave(models.Model):
@@ -65,8 +64,6 @@ class Termin(models.Model):
     predmet = models.ForeignKey(Predmet, on_delete=models.DO_NOTHING)
     grupe = models.ManyToManyField(Grupa)
     raspored = models.ForeignKey(RasporedNastave, on_delete=models.CASCADE)
-
-
 
 
 class RasporedPolaganja(models.Model):
@@ -102,22 +99,23 @@ class IzborGrupe(models.Model):
     prvi_put_upisuje_semestar = models.BooleanField()
     nacin_placanja = models.CharField(max_length=30)
     nepolozeni_predmeti = models.ManyToManyField(Predmet)
-    student = models.ForeignKey(Student,on_delete=models.DO_NOTHING)
+    student = models.ForeignKey(Student, on_delete=models.DO_NOTHING)
     upisan = models.BooleanField()
 
 
 class VazniDatumi(models.Model):
-    kategorija = models.CharField(max_length=200) # kolokvijumske nedelje, ispitni rokovi, placanje skolarine na rate,...
-    oznaka = models.CharField(max_length=200) # I, Jan, Feb. I rata, RAF Hackaton,...
+    kategorija = models.CharField(
+        max_length=200)  # kolokvijumske nedelje, ispitni rokovi, placanje skolarine na rate,...
+    oznaka = models.CharField(max_length=200)  # I, Jan, Feb. I rata, RAF Hackaton,...
     datum_od = models.DateField(null=True)
     datum_do = models.DateField(null=True)
-    okvirno = models.CharField(max_length=200,null=True)
-    skolska_godina = models.CharField(max_length=15)   # 2018/2019
+    okvirno = models.CharField(max_length=200, null=True)
+    skolska_godina = models.CharField(max_length=15)  # 2018/2019
 
 
 class Konsultacije(models.Model):
     nastavnik = models.ForeignKey(Nastavnik, on_delete=models.CASCADE)
-    predmet = models.ForeignKey(Predmet, on_delete=models.CASCADE,null=True)
+    predmet = models.ForeignKey(Predmet, on_delete=models.CASCADE, null=True)
     mesto = models.CharField(max_length=50)
     vreme_od = models.TimeField()
     vreme_do = models.TimeField()
@@ -129,5 +127,3 @@ class Obavestenje(models.Model):
     datum_postavljanja = models.DateTimeField()
     tekst = models.CharField(max_length=1000)
     fajl = models.FileField()
-
-
