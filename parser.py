@@ -11,19 +11,10 @@ django.setup()
 
 from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet, Nalog, Semestar
 
-# def clean_db():
-# Termin.objects.all().delete()
-# Predmet.objects.all().delete()
-# Nastavnik.objects.all().delete()
-# Grupa.objects.all().delete()
-# Nalog.objects.all().delete()
-
-# timezone.now()
-
 semestar = Semestar()
-semestar.vrsta = "parni"
-semestar.skolska_godina_kraj = 2019
+semestar.vrsta = "neparni"
 semestar.skolska_godina_pocetak = 2018
+semestar.skolska_godina_kraj = 2019
 semestar.save()
 
 raspored = RasporedNastave()
@@ -37,59 +28,46 @@ def import_timetable_from_csv(file_path):
     state = -2
     header = []
     grupe = []
-    predmetObject = None
+    predmet_object = None
 
     with open(file_path, encoding='utf-8') as csvfile:
         raspored_csv = csv.reader(csvfile, delimiter=';')
 
         for red in raspored_csv:
-
+            # Naslov rasporeda
             if state == -2:
                 state = -1
-
-                # Naslov rasporeda
-
                 continue
 
+            # Header za predavanje/praktikum/vezbe
             if state == -1:
                 state = 0
-
                 grupe = red
-
-                # Header za predavanje/praktikum/vezbe
-
                 continue
+
+            # Ako je linija prazna, ocekuje header u sledecoj liniji
             if not red:
                 state = 0
-
-                # Ako je linija prazna, ocekuje header u sledecoj liniji
-
                 continue
 
+            # Novi predmet
             if state == 0:
-                predmetObject = Predmet()
-                predmetObject.naziv = red[0]
-                predmetObject.save()
-
-                # Novi predmet
+                predmet_object = Predmet()
+                predmet_object.naziv = red[0]
+                predmet_object.save()
 
                 state = 1
-
                 continue
 
+            # Header za predmete
             if state == 1:
                 header = red
-
-                # Header za predmete
-
                 state = 2
-
                 continue
+
+            # Novi predmet i njegov praktikum/vezba/predavanje
             if state == 2:
                 predmet = {}
-
-                # Novi predmet i njegov praktikum/vezba/predavanje
-
                 grupa = ""
 
                 for key, column in enumerate(red):
@@ -103,13 +81,14 @@ def import_timetable_from_csv(file_path):
                         predmet[grupa][header[key]] = column
 
                 for key in predmet:
-                    t = Termin()
-                    t.predmet = predmetObject
-                    t.tip_nastave = key
-                    t.oznaka_ucionice = predmet[key]["Uèionica"]
-                    t.dan = predmet[key]["Dan"]
-                    t.pocetak = predmet[key]["Èas"].split("-")[0]
-                    t.zavrsetak = predmet[key]["Èas"].split("-")[1] + ":00"
+                    termin = Termin()
+                    termin.predmet = predmet_object
+                    termin.tip_nastave = key
+                    termin.oznaka_ucionice = predmet[key]["Uèionica"]
+                    termin.dan = predmet[key]["Dan"]
+                    termin.pocetak = predmet[key]["Èas"].split("-")[0]
+                    termin.zavrsetak = predmet[key]["Èas"].split("-")[1] + ":00"
+                    termin.raspored = raspored
 
                     ime = predmet[key]["Nastavnik(ci)"].split(" ")[1]
                     prezime = predmet[key]["Nastavnik(ci)"].split(" ")[0]
@@ -120,48 +99,51 @@ def import_timetable_from_csv(file_path):
                     else:
                         username = (ime[0]).lower() + prezime.lower()
 
-                    print(ime + " " + prezime + " " + username)
-                    # nastavnik = None
+                    # Bug sa Surlom jer je razmak u prezimenu
+                    if ime == "Surla" and prezime == "Dimic":
+                        username = "bdimicsurla"
+
+                    # Bug sa Verom jer ima crticu u prezimenu
+                    if prezime == "Vrbica-Matejic":
+                        username = "vvrbicamatejic"
+
+                    print(ime + " " + prezime + " -> " + username)
 
                     if Nalog.objects.filter(username=username).count() > 0:
                         nastavnik = Nastavnik.objects.get(ime=ime, prezime=prezime)
                     else:
-                        nal = Nalog()
-                        nal.username = username
-                        nal.lozinka = 'admin'
-                        nal.save()
+                        nalog = Nalog()
+                        nalog.username = username
+                        nalog.lozinka = 'admin'
+                        nalog.uloga = 'nastavnik'  # za sada su svi nastavnici
+                        nalog.save()
 
                         nastavnik = Nastavnik()
                         nastavnik.ime = ime
                         nastavnik.prezime = prezime
                         nastavnik.titula = "dr"
                         nastavnik.zvanje = "mr"
-                        nastavnik.nalog = nal
-
+                        nastavnik.nalog = nalog
                         nastavnik.save()
-                        nastavnik.predmet.add(predmetObject)
+                        nastavnik.predmet.add(predmet_object)
 
-                    t.nastavnik = nastavnik
-                    t.raspored = raspored
+                    termin.nastavnik = nastavnik
+                    termin.save()
 
-                    t.save()
+                    group_row = predmet[key]["Odeljenje"].split(",")
 
-                    gru = predmet[key]["Odeljenje"].split(",")
-
-                    for i in gru:
+                    for i in group_row:
                         i = i.strip()
 
                         if Grupa.objects.filter(oznaka_grupe=i).count() > 0:
-                            g = Grupa.objects.get(oznaka_grupe=i)
+                            group = Grupa.objects.get(oznaka_grupe=i)
                         else:
-                            g = Grupa()
-                            g.oznaka_grupe = i
-                            g.semestar = semestar
-                            g.save()
+                            group = Grupa()
+                            group.oznaka_grupe = i
+                            group.semestar = semestar
+                            group.save()
 
-                        t.grupe.add(g)
-
-
+                        termin.grupe.add(group)
 
 
 import_timetable_from_csv("./testData/rasporedCSV.csv")
