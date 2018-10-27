@@ -8,11 +8,8 @@ services:
       - ./data:/var/lib/mysql
     ports:
       - 127.0.0.1:3306:3306
-    restart: always
-
   adminer:
     image: adminer
-    restart: always
     environment:
       ADMINER_DESIGN: "nette"
       ADMINER_PLUGINS: "edit-calendar"
