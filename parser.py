@@ -161,7 +161,7 @@ def import_timetable_from_csv(file_path):
 
                         t.grupe.add(g)
 
-                # ostao  je jos raspored koji ne znam kako da odradim
+
 
 
 import_timetable_from_csv("./testData/rasporedCSV.csv")
