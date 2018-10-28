@@ -1,0 +1,2124 @@
+{
+  "Administracija i odrzavanje sistema 1": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Seslija Ognjen",
+        "\u0160ifra": "/",
+        "Odeljenje": "1s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "17:15-20"
+      },
+      {
+        "Nastavnik(ci)": "Lale Sinisa",
+        "\u0160ifra": "n012",
+        "Odeljenje": "1s1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "12:15-15"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Seslija Ognjen",
+        "\u0160ifra": "/",
+        "Odeljenje": "1s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "17:15-20"
+      },
+      {
+        "Nastavnik(ci)": "Lale Sinisa",
+        "\u0160ifra": "n012",
+        "Odeljenje": "1s1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "9:15-12"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Algebra": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Jovanovic Jelena",
+        "\u0160ifra": "/",
+        "Odeljenje": "203, 204, 205",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "13:15-15"
+      },
+      {
+        "Nastavnik(ci)": "Jovanovic Jelena",
+        "\u0160ifra": "/",
+        "Odeljenje": "201, 202",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "13:15-15"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Jerotijevic Marija",
+        "\u0160ifra": "n009",
+        "Odeljenje": "203, 204, 205",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "11:15-13"
+      },
+      {
+        "Nastavnik(ci)": "Jerotijevic Marija",
+        "\u0160ifra": "n009",
+        "Odeljenje": "201, 202",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "19:15-21"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Algoritmi i strukture podataka": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Urosevic Dragan",
+        "\u0160ifra": "n029",
+        "Odeljenje": "201, 202, 203, 204, 205",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "9:15-12"
+      },
+      {
+        "Nastavnik(ci)": "Lutovac Maja",
+        "\u0160ifra": "/",
+        "Odeljenje": "210, 211",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "9:15-12"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Stojanovic Vukoman",
+        "\u0160ifra": "/",
+        "Odeljenje": "204",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "11:15-13"
+      },
+      {
+        "Nastavnik(ci)": "Burgic Stefan",
+        "\u0160ifra": "/",
+        "Odeljenje": "210",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "19:15-21"
+      },
+      {
+        "Nastavnik(ci)": "Bakarec Bogdan",
+        "\u0160ifra": "/",
+        "Odeljenje": "203",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "9:15-11"
+      },
+      {
+        "Nastavnik(ci)": "Stojanovic Vukoman",
+        "\u0160ifra": "/",
+        "Odeljenje": "205",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "19:15-21"
+      },
+      {
+        "Nastavnik(ci)": "Bakarec Bogdan",
+        "\u0160ifra": "/",
+        "Odeljenje": "202",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "15:15-17"
+      },
+      {
+        "Nastavnik(ci)": "Burgic Stefan",
+        "\u0160ifra": "/",
+        "Odeljenje": "201",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "17:15-19"
+      },
+      {
+        "Nastavnik(ci)": "Bakarec Bogdan",
+        "\u0160ifra": "/",
+        "Odeljenje": "211",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "13:15-15"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Arhitektura racunara": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Jovanovic Milos",
+        "\u0160ifra": "n011",
+        "Odeljenje": "210, 211",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "17:15-19"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Stambolovic Bogdana",
+        "\u0160ifra": "/",
+        "Odeljenje": "211",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "9:15-11"
+      },
+      {
+        "Nastavnik(ci)": "Stambolovic Bogdana",
+        "\u0160ifra": "/",
+        "Odeljenje": "210",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "15:15-17"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Bezicne i mobilne komunikacije": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Vucic Desimir",
+        "\u0160ifra": "n033",
+        "Odeljenje": "411, 414",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "11:15-14"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Vukotic Selena",
+        "\u0160ifra": "n035",
+        "Odeljenje": "411, 414",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "18:15-21"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "C# programiranje": {
+    "Predavanja": [],
+    "Praktikum": [],
+    "Vezbe": [],
+    "Predavanja i vezbe": [
+      {
+        "Nastavnik(ci)": "Milosavljevic Milos",
+        "\u0160ifra": "/",
+        "Odeljenje": "3s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "11:15-14"
+      },
+      {
+        "Nastavnik(ci)": "Milosavljevic Milos",
+        "\u0160ifra": "/",
+        "Odeljenje": "3s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "14:15-17"
+      }
+    ]
+  },
+  "Crtanje i slikanje": {
+    "Predavanja": [],
+    "Praktikum": [],
+    "Vezbe": [],
+    "Predavanja i vezbe": [
+      {
+        "Nastavnik(ci)": "Prusevic Mersiha",
+        "\u0160ifra": "/",
+        "Odeljenje": "1d1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "10:15-13"
+      },
+      {
+        "Nastavnik(ci)": "Prusevic Mersiha",
+        "\u0160ifra": "/",
+        "Odeljenje": "1d1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "10:15-13"
+      },
+      {
+        "Nastavnik(ci)": "Prusevic Mersiha",
+        "\u0160ifra": "/",
+        "Odeljenje": "1d2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "13:15-16"
+      },
+      {
+        "Nastavnik(ci)": "Prusevic Mersiha",
+        "\u0160ifra": "/",
+        "Odeljenje": "1d2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "13:15-16"
+      }
+    ]
+  },
+  "Dizajn i razvoj WEB strana": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Popovic Snezana",
+        "\u0160ifra": "n023",
+        "Odeljenje": "2s1, 2s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "15:15-17"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Radosavljevic Nemanja",
+        "\u0160ifra": "n025",
+        "Odeljenje": "2s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "9:15-12"
+      },
+      {
+        "Nastavnik(ci)": "Radosavljevic Nemanja",
+        "\u0160ifra": "n025",
+        "Odeljenje": "2s1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "11:15-14"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Dizajn softvera": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Perisic Branko",
+        "\u0160ifra": "n022",
+        "Odeljenje": "203, 204, 205",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "12:15-15"
+      },
+      {
+        "Nastavnik(ci)": "Perisic Branko",
+        "\u0160ifra": "n022",
+        "Odeljenje": "201, 202",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "9:15-12"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Markovic Ana",
+        "\u0160ifra": "/",
+        "Odeljenje": "204",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "13:15-15"
+      },
+      {
+        "Nastavnik(ci)": "Markovic Ana",
+        "\u0160ifra": "/",
+        "Odeljenje": "203",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "11:15-13"
+      },
+      {
+        "Nastavnik(ci)": "Markovic Ana",
+        "\u0160ifra": "/",
+        "Odeljenje": "201",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "15:15-17"
+      },
+      {
+        "Nastavnik(ci)": "Markovic Ana",
+        "\u0160ifra": "/",
+        "Odeljenje": "205",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "9:15-11"
+      },
+      {
+        "Nastavnik(ci)": "Markovic Ana",
+        "\u0160ifra": "/",
+        "Odeljenje": "202",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "15:15-17"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Engleski 1": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Cuk Bojana",
+        "\u0160ifra": "/",
+        "Odeljenje": "107, 108, 110, 109, 111",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "17:15-19"
+      },
+      {
+        "Nastavnik(ci)": "Cuk Bojana",
+        "\u0160ifra": "/",
+        "Odeljenje": "105, 106",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "9:15-11"
+      },
+      {
+        "Nastavnik(ci)": "Cuk Bojana",
+        "\u0160ifra": "/",
+        "Odeljenje": "101, 103, 102, 104",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "12:15-14"
+      },
+      {
+        "Nastavnik(ci)": "Cuk Bojana",
+        "\u0160ifra": "/",
+        "Odeljenje": "1d1, 1d2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "15:15-17"
+      },
+      {
+        "Nastavnik(ci)": "Vrbica-Matejic Vera",
+        "\u0160ifra": "n032",
+        "Odeljenje": "1s1, 1s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "15:15-17"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [],
+    "Predavanja i vezbe": []
+  },
+  "Engleski 3": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Cuk Bojana",
+        "\u0160ifra": "/",
+        "Odeljenje": "2d1, 2d2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "13:15-15"
+      },
+      {
+        "Nastavnik(ci)": "Vrbica-Matejic Vera",
+        "\u0160ifra": "n032",
+        "Odeljenje": "2s1, 2s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "15:15-17"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Vrbica-Matejic Vera",
+        "\u0160ifra": "n032",
+        "Odeljenje": "2s1, 2s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "9:15-11"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Fotografija": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Malesevic Nenad",
+        "\u0160ifra": "/",
+        "Odeljenje": "2d1, 2d2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "16:15-19"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Malesevic Nenad",
+        "\u0160ifra": "/",
+        "Odeljenje": "2d1, 2d2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "13:15-16"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Geometrijski algoritmi": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Urosevic Dragan",
+        "\u0160ifra": "n029",
+        "Odeljenje": "301, 316",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "13:15-15"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Jovanovic Nikola",
+        "\u0160ifra": "/",
+        "Odeljenje": "301, 316",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "14:15-16"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Informacioni sistemi": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Zahorjanski Miroljub",
+        "\u0160ifra": "n036",
+        "Odeljenje": "2s1, 2s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "14:15-17"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Radosavljevic Nemanja",
+        "\u0160ifra": "n025",
+        "Odeljenje": "2s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "14:15-17"
+      },
+      {
+        "Nastavnik(ci)": "Radosavljevic Nemanja",
+        "\u0160ifra": "n025",
+        "Odeljenje": "2s1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "9:15-12"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Inteligentni sistemi": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Vasiljevic Jelena",
+        "\u0160ifra": "/",
+        "Odeljenje": "201, 202",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "18:15-21"
+      },
+      {
+        "Nastavnik(ci)": "Ilic Nemanja",
+        "\u0160ifra": "/",
+        "Odeljenje": "203, 204, 205",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "18:15-21"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Milunovic Milos",
+        "\u0160ifra": "/",
+        "Odeljenje": "201",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "15:15-17"
+      },
+      {
+        "Nastavnik(ci)": "Milunovic Milos",
+        "\u0160ifra": "/",
+        "Odeljenje": "205",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "17:15-19"
+      },
+      {
+        "Nastavnik(ci)": "Milunovic Milos",
+        "\u0160ifra": "/",
+        "Odeljenje": "203",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "9:15-11"
+      },
+      {
+        "Nastavnik(ci)": "Milunovic Milos",
+        "\u0160ifra": "/",
+        "Odeljenje": "204",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "15:15-17"
+      },
+      {
+        "Nastavnik(ci)": "Milunovic Milos",
+        "\u0160ifra": "/",
+        "Odeljenje": "202",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "12:15-14"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "IT servis menadzment": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Zahorjanski Miroljub",
+        "\u0160ifra": "n036",
+        "Odeljenje": "3s1, 3s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "9:15-11"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Zahorjanski Miroljub",
+        "\u0160ifra": "n036",
+        "Odeljenje": "3s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "11:15-12"
+      },
+      {
+        "Nastavnik(ci)": "Zahorjanski Miroljub",
+        "\u0160ifra": "n036",
+        "Odeljenje": "3s1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "12:15-13"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Kombinatorika i teorija grafova": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Jovanovic Irena",
+        "\u0160ifra": "n010",
+        "Odeljenje": "401, 402, 403, 407, 408",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "9:15-11"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Jovanovic Irena",
+        "\u0160ifra": "n010",
+        "Odeljenje": "401, 402, 403, 407, 408",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "9:15-11"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Konfiguracija i odrzavanje IP mreza": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Bojovic Petar",
+        "\u0160ifra": "n003",
+        "Odeljenje": "3s1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "12:15-15"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Jankovski Ivan",
+        "\u0160ifra": "/",
+        "Odeljenje": "3s1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "13:15-16"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Kriptografija": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Urosevic Dragan",
+        "\u0160ifra": "n029",
+        "Odeljenje": "302, 303, 314, 315, 316",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "9:15-11"
+      },
+      {
+        "Nastavnik(ci)": "Urosevic Dragan",
+        "\u0160ifra": "n029",
+        "Odeljenje": "301",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "11:15-13"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Draskic Radojica",
+        "\u0160ifra": "/",
+        "Odeljenje": "301",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "19:15-21"
+      },
+      {
+        "Nastavnik(ci)": "Draskic Radojica",
+        "\u0160ifra": "/",
+        "Odeljenje": "302, 303, 314, 315, 316",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "16:15-18"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Linearna algebra i analiticka geometrija": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Jovanovic Jelena",
+        "\u0160ifra": "/",
+        "Odeljenje": "101, 103, 104, 102",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "13:15-15"
+      },
+      {
+        "Nastavnik(ci)": "Filipovic Milanka",
+        "\u0160ifra": "n006",
+        "Odeljenje": "105, 106",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "17:15-19"
+      },
+      {
+        "Nastavnik(ci)": "Filipovic Milanka",
+        "\u0160ifra": "n006",
+        "Odeljenje": "107, 108, 109, 110, 111",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "9:15-11"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Jovanovic Jelena",
+        "\u0160ifra": "/",
+        "Odeljenje": "101, 103, 102, 104",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "12:15-15"
+      },
+      {
+        "Nastavnik(ci)": "Filipovic Milanka",
+        "\u0160ifra": "n006",
+        "Odeljenje": "107, 108, 109, 110, 111",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "11:15-14"
+      },
+      {
+        "Nastavnik(ci)": "Filipovic Milanka",
+        "\u0160ifra": "n006",
+        "Odeljenje": "105, 106",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "14:15-17"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Mreze za udaljeni pristup": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Bojovic Petar",
+        "\u0160ifra": "n003",
+        "Odeljenje": "411",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "16:15-18"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Majstorovic Dunja",
+        "\u0160ifra": "n013",
+        "Odeljenje": "411",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SUB",
+        "\u00c8as": "13:15-15"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Multimedijalni  informacioni sistemi": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Vujosevic Dusan",
+        "\u0160ifra": "n034",
+        "Odeljenje": "402, 408",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "14:15-16"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Tomic Milan",
+        "\u0160ifra": "n028",
+        "Odeljenje": "402, 408",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "17:15-19"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Napredno Java programiranje": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Vidakovic MIlan",
+        "\u0160ifra": "n030",
+        "Odeljenje": "402, 403, 414, 408",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "13:15-15"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Pluskoski Aleksandar",
+        "\u0160ifra": "/",
+        "Odeljenje": "403",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "19:15-21"
+      },
+      {
+        "Nastavnik(ci)": "Pluskoski Aleksandar",
+        "\u0160ifra": "/",
+        "Odeljenje": "402, 408, 414",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "19:15-21"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Organizacija racunara": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Babovic Ivan",
+        "\u0160ifra": "n002",
+        "Odeljenje": "1s1, 1s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "11:15-14"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Stambolovic Bogdana",
+        "\u0160ifra": "/",
+        "Odeljenje": "1s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "14:15-17"
+      },
+      {
+        "Nastavnik(ci)": "Stambolovic Bogdana",
+        "\u0160ifra": "/",
+        "Odeljenje": "1s1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "11:15-14"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Osnovi elektronike": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Fidanovski Zoran",
+        "\u0160ifra": "/",
+        "Odeljenje": "210, 211",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "13:15-15"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Stambolovic Bogdana",
+        "\u0160ifra": "/",
+        "Odeljenje": "210, 211",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "11:15-13"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Osnovi oblikovanja": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Malesevic Nenad",
+        "\u0160ifra": "/",
+        "Odeljenje": "1d1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "13:15-16"
+      },
+      {
+        "Nastavnik(ci)": "Malesevic Nenad",
+        "\u0160ifra": "/",
+        "Odeljenje": "1d2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "16:15-19"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Prodanovic Ana",
+        "\u0160ifra": "/",
+        "Odeljenje": "1d1, 1d2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "9:15-12"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Osnovi programiranja": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Veniger Marko",
+        "\u0160ifra": "/",
+        "Odeljenje": "1s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "19:15-21"
+      },
+      {
+        "Nastavnik(ci)": "Veniger Marko",
+        "\u0160ifra": "/",
+        "Odeljenje": "1s1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "17:15-19"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Sijacic  ",
+        "\u0160ifra": "/",
+        "Odeljenje": "1s1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "14:15-17"
+      },
+      {
+        "Nastavnik(ci)": "Paunovic Vanja",
+        "\u0160ifra": "/",
+        "Odeljenje": "1s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "9:15-12"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Osnovi projektovanja": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Telarovic Rosana",
+        "\u0160ifra": "/",
+        "Odeljenje": "1d1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "10:15-13"
+      },
+      {
+        "Nastavnik(ci)": "Telarovic Rosana",
+        "\u0160ifra": "/",
+        "Odeljenje": "1d2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "13:15-16"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Telarovic Rosana",
+        "\u0160ifra": "/",
+        "Odeljenje": "1d1, 1d2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "12:15-15"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Osnovi racunarskih sistema": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Vukotic Selena",
+        "\u0160ifra": "n035",
+        "Odeljenje": "101, 103, 102, 104",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "9:15-12"
+      },
+      {
+        "Nastavnik(ci)": "Jovanovic Milos",
+        "\u0160ifra": "n011",
+        "Odeljenje": "107, 108, 109",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "15:15-18"
+      },
+      {
+        "Nastavnik(ci)": "Bozic Jovana",
+        "\u0160ifra": "/",
+        "Odeljenje": "105, 106, 110, 111",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "18:15-21"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Vukotic Selena",
+        "\u0160ifra": "n035",
+        "Odeljenje": "103, 104",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "14:15-16"
+      },
+      {
+        "Nastavnik(ci)": "Vukotic Selena",
+        "\u0160ifra": "n035",
+        "Odeljenje": "101, 102",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "9:15-11"
+      },
+      {
+        "Nastavnik(ci)": "Todorovic Aleksandar",
+        "\u0160ifra": "/",
+        "Odeljenje": "106",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "19:15-21"
+      },
+      {
+        "Nastavnik(ci)": "Todorovic Aleksandar",
+        "\u0160ifra": "/",
+        "Odeljenje": "111, 110",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "15:15-17"
+      },
+      {
+        "Nastavnik(ci)": "Todorovic Aleksandar",
+        "\u0160ifra": "/",
+        "Odeljenje": "105",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "11:15-13"
+      },
+      {
+        "Nastavnik(ci)": "Obradovic Dusan",
+        "\u0160ifra": "/",
+        "Odeljenje": "107",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "19:15-21"
+      },
+      {
+        "Nastavnik(ci)": "Obradovic Dusan",
+        "\u0160ifra": "/",
+        "Odeljenje": "108, 109",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "9:15-11"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Pismo i tipografija": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Prodanovic Ana",
+        "\u0160ifra": "/",
+        "Odeljenje": "2d1, 2d2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "9:15-12"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Prodanovic Ana",
+        "\u0160ifra": "/",
+        "Odeljenje": "2d1, 2d2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "10:15-13"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Poslovne aplikacije": {
+    "Predavanja": [],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Mijatovic Igor",
+        "\u0160ifra": "n016",
+        "Odeljenje": "108",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "13:15-15"
+      },
+      {
+        "Nastavnik(ci)": "Mijatovic Igor",
+        "\u0160ifra": "n016",
+        "Odeljenje": "107",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "13:15-15"
+      },
+      {
+        "Nastavnik(ci)": "Mijatovic Igor",
+        "\u0160ifra": "n016",
+        "Odeljenje": "106",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "11:15-13"
+      },
+      {
+        "Nastavnik(ci)": "Mijatovic Igor",
+        "\u0160ifra": "n016",
+        "Odeljenje": "103",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "9:15-11"
+      },
+      {
+        "Nastavnik(ci)": "Mijatovic Igor",
+        "\u0160ifra": "n016",
+        "Odeljenje": "101",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "11:15-13"
+      },
+      {
+        "Nastavnik(ci)": "Mijatovic Igor",
+        "\u0160ifra": "n016",
+        "Odeljenje": "102, 104, 109, 111",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "11:15-13"
+      },
+      {
+        "Nastavnik(ci)": "Mijatovic Igor",
+        "\u0160ifra": "n016",
+        "Odeljenje": "110",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "13:15-15"
+      },
+      {
+        "Nastavnik(ci)": "Mijatovic Igor",
+        "\u0160ifra": "n016",
+        "Odeljenje": "105",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "15:15-17"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Prakticne tehnike rutiranja": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Bojovic Petar",
+        "\u0160ifra": "n003",
+        "Odeljenje": "312, 314, 313",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "9:15-11"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Majstorovic Dunja",
+        "\u0160ifra": "n013",
+        "Odeljenje": "312, 314, 313",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "19:15-21"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Praktikum iz arhitekture racunara i operativnih sistema": {
+    "Predavanja": [],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Stambolovic Bogdana",
+        "\u0160ifra": "/",
+        "Odeljenje": "1s1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "9:15-11"
+      },
+      {
+        "Nastavnik(ci)": "Stambolovic Bogdana",
+        "\u0160ifra": "/",
+        "Odeljenje": "1s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "12:15-14"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Projektovanje racunarskih sistema": {
+    "Predavanja": [],
+    "Praktikum": [],
+    "Vezbe": [],
+    "Predavanja i vezbe": [
+      {
+        "Nastavnik(ci)": "Radivojevic Mirjana",
+        "\u0160ifra": "/",
+        "Odeljenje": "312, 313, 314",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "11:15-15"
+      },
+      {
+        "Nastavnik(ci)": "Radivojevic Mirjana",
+        "\u0160ifra": "/",
+        "Odeljenje": "312, 313, 314",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "15:15-19"
+      },
+      {
+        "Nastavnik(ci)": "Radivojevic Mirjana",
+        "\u0160ifra": "/",
+        "Odeljenje": "312, 313, 314",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "11:15-15"
+      },
+      {
+        "Nastavnik(ci)": "Radivojevic Mirjana",
+        "\u0160ifra": "/",
+        "Odeljenje": "312, 313, 314",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "17:15-20"
+      },
+      {
+        "Nastavnik(ci)": "Radivojevic Mirjana",
+        "\u0160ifra": "/",
+        "Odeljenje": "312, 313, 314",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "14:15-17"
+      }
+    ]
+  },
+  "Racunarska grafika": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Jokanovic Dusan",
+        "\u0160ifra": "/",
+        "Odeljenje": "301",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "17:15-19"
+      },
+      {
+        "Nastavnik(ci)": "Jokanovic Dusan",
+        "\u0160ifra": "/",
+        "Odeljenje": "302, 303",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "17:15-19"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Stancic Aleksandar",
+        "\u0160ifra": "n027",
+        "Odeljenje": "302",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "19:15-21"
+      },
+      {
+        "Nastavnik(ci)": "Stancic Aleksandar",
+        "\u0160ifra": "n027",
+        "Odeljenje": "303",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "17:15-19"
+      },
+      {
+        "Nastavnik(ci)": "Stancic Aleksandar",
+        "\u0160ifra": "n027",
+        "Odeljenje": "301",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "17:15-19"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Racunarska podrska u dizajnu": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Djuric Milan",
+        "\u0160ifra": "/",
+        "Odeljenje": "2d1, 2d2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "12:15-15"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Djuric Milan",
+        "\u0160ifra": "/",
+        "Odeljenje": "2d1, 2d2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "10:15-13"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Signali i sistemi": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Babic Djorde",
+        "\u0160ifra": "n001",
+        "Odeljenje": "210, 211",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "15:15-18"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Jovanovic Miljana",
+        "\u0160ifra": "/",
+        "Odeljenje": "211",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "12:15-14"
+      },
+      {
+        "Nastavnik(ci)": "Jovanovic Miljana",
+        "\u0160ifra": "/",
+        "Odeljenje": "210",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "9:15-11"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Sistemi u realnom vremenu": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Milinkovic Stevan",
+        "\u0160ifra": "n018",
+        "Odeljenje": "302, 303, 315",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "11:15-13"
+      },
+      {
+        "Nastavnik(ci)": "Milinkovic Stevan",
+        "\u0160ifra": "n018",
+        "Odeljenje": "312, 313, 314, 316",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "15:15-17"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Milojkovic Branislav",
+        "\u0160ifra": "n019",
+        "Odeljenje": "312",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "17:15-19"
+      },
+      {
+        "Nastavnik(ci)": "Milojkovic Branislav",
+        "\u0160ifra": "n019",
+        "Odeljenje": "303, 315",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "15:15-17"
+      },
+      {
+        "Nastavnik(ci)": "Todorovic Aleksandar",
+        "\u0160ifra": "/",
+        "Odeljenje": "302, 314, 313, 316",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "17:15-19"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Skalabilne racunarske mreze": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Bojovic Petar",
+        "\u0160ifra": "n003",
+        "Odeljenje": "411",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "15:15-17"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Majstorovic Dunja",
+        "\u0160ifra": "n013",
+        "Odeljenje": "411",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SUB",
+        "\u00c8as": "11:15-13"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Skladista podataka": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Popovic Snezana",
+        "\u0160ifra": "n023",
+        "Odeljenje": "401, 403, 414",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "11:15-13"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Radenkovic Milos",
+        "\u0160ifra": "/",
+        "Odeljenje": "403",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "17:15-19"
+      },
+      {
+        "Nastavnik(ci)": "Radenkovic Milos",
+        "\u0160ifra": "/",
+        "Odeljenje": "401, 414",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "17:15-19"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Skript jezici": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Dimic Surla Bojana",
+        "\u0160ifra": "n005",
+        "Odeljenje": "302, 303, 316",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "15:15-17"
+      },
+      {
+        "Nastavnik(ci)": "Dimic Surla Bojana",
+        "\u0160ifra": "n005",
+        "Odeljenje": "301, 315, 312",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "17:15-19"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Tomic Milan",
+        "\u0160ifra": "n028",
+        "Odeljenje": "302, 316",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "13:15-15"
+      },
+      {
+        "Nastavnik(ci)": "Tomic Milan",
+        "\u0160ifra": "n028",
+        "Odeljenje": "301",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "19:15-21"
+      },
+      {
+        "Nastavnik(ci)": "Tomic Milan",
+        "\u0160ifra": "n028",
+        "Odeljenje": "312, 315",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "13:15-15"
+      },
+      {
+        "Nastavnik(ci)": "Tomic Milan",
+        "\u0160ifra": "n028",
+        "Odeljenje": "303",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "13:15-15"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "SQL programiranje": {
+    "Predavanja": [],
+    "Praktikum": [],
+    "Vezbe": [],
+    "Predavanja i vezbe": [
+      {
+        "Nastavnik(ci)": "Popovic Snezana",
+        "\u0160ifra": "n023",
+        "Odeljenje": "3s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "14:15-17"
+      },
+      {
+        "Nastavnik(ci)": "Popovic Snezana",
+        "\u0160ifra": "n023",
+        "Odeljenje": "3s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "12:15-15"
+      }
+    ]
+  },
+  "Testiranje softvera": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Milojkovic Branislav",
+        "\u0160ifra": "n019",
+        "Odeljenje": "402, 407",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "15:15-17"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Gavrilovic Vuk",
+        "\u0160ifra": "/",
+        "Odeljenje": "402, 407",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "17:15-19"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Upravljanje projektima": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Vujosevic Dusan",
+        "\u0160ifra": "n034",
+        "Odeljenje": "411, 414, 407, 408, 401, 402, 403",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "12:15-14"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Radosavljevic Nemanja",
+        "\u0160ifra": "n025",
+        "Odeljenje": "403, 414",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "15:15-17"
+      },
+      {
+        "Nastavnik(ci)": "Radosavljevic Nemanja",
+        "\u0160ifra": "n025",
+        "Odeljenje": "401, 408",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "15:15-17"
+      },
+      {
+        "Nastavnik(ci)": "Radosavljevic Nemanja",
+        "\u0160ifra": "n025",
+        "Odeljenje": "411, 402, 407",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "13:15-15"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Uvod u administraciju IP mreza": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Bojovic Petar",
+        "\u0160ifra": "n003",
+        "Odeljenje": "3s1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "9:15-12"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Jankovski Ivan",
+        "\u0160ifra": "/",
+        "Odeljenje": "3s1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "16:15-19"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Uvod u programiranje": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Dimic Surla Bojana",
+        "\u0160ifra": "n005",
+        "Odeljenje": "107, 108, 110, 109, 111",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "9:15-11"
+      },
+      {
+        "Nastavnik(ci)": "Urosevic Dragan",
+        "\u0160ifra": "n029",
+        "Odeljenje": "101, 103, 102, 104",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "15:15-17"
+      },
+      {
+        "Nastavnik(ci)": "Dimic Surla Bojana",
+        "\u0160ifra": "n005",
+        "Odeljenje": "105, 106",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "14:15-16"
+      }
+    ],
+    "Praktikum": [
+      {
+        "Nastavnik(ci)": "Rodic Strahinja",
+        "\u0160ifra": "/",
+        "Odeljenje": "108, 109",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "15:15-17"
+      },
+      {
+        "Nastavnik(ci)": "Ciric Bogdan",
+        "\u0160ifra": "/",
+        "Odeljenje": "107",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "13:15-15"
+      },
+      {
+        "Nastavnik(ci)": "Burgic Stefan",
+        "\u0160ifra": "/",
+        "Odeljenje": "103, 104",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "11:15-13"
+      },
+      {
+        "Nastavnik(ci)": "Burgic Stefan",
+        "\u0160ifra": "/",
+        "Odeljenje": "101, 102",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "10:15-12"
+      },
+      {
+        "Nastavnik(ci)": "Dresevic Nevena",
+        "\u0160ifra": "/",
+        "Odeljenje": "110, 111",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "9:15-11"
+      },
+      {
+        "Nastavnik(ci)": "Dresevic Nevena",
+        "\u0160ifra": "/",
+        "Odeljenje": "105",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "9:15-11"
+      },
+      {
+        "Nastavnik(ci)": "Rodic Strahinja",
+        "\u0160ifra": "/",
+        "Odeljenje": "106",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "17:15-19"
+      }
+    ],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Tomic Milan",
+        "\u0160ifra": "n028",
+        "Odeljenje": "103, 104",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "19:15-21"
+      },
+      {
+        "Nastavnik(ci)": "Tomic Milan",
+        "\u0160ifra": "n028",
+        "Odeljenje": "101, 102",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "17:15-19"
+      },
+      {
+        "Nastavnik(ci)": "Vignjevic Mihailo",
+        "\u0160ifra": "/",
+        "Odeljenje": "105",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "11:15-13"
+      },
+      {
+        "Nastavnik(ci)": "Tomic Milan",
+        "\u0160ifra": "n028",
+        "Odeljenje": "108, 109",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "19:15-21"
+      },
+      {
+        "Nastavnik(ci)": "Zirojevic Nemanja",
+        "\u0160ifra": "/",
+        "Odeljenje": "110, 111",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "19:15-21"
+      },
+      {
+        "Nastavnik(ci)": "Tomic Milan",
+        "\u0160ifra": "n028",
+        "Odeljenje": "107",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "11:15-13"
+      },
+      {
+        "Nastavnik(ci)": "Vignjevic Mihailo",
+        "\u0160ifra": "/",
+        "Odeljenje": "106",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "15:15-17"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Uvod u softversko inzenjerstvo": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Fidanovski Zoran",
+        "\u0160ifra": "/",
+        "Odeljenje": "3s1, 3s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "9:15-11"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Markovic Ana",
+        "\u0160ifra": "/",
+        "Odeljenje": "3s1, 3s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "19:15-21"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Veliki podaci": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Vujosevic Dusan",
+        "\u0160ifra": "n034",
+        "Odeljenje": "414, 408, 401",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "13:15-15"
+      },
+      {
+        "Nastavnik(ci)": "Vujosevic Dusan",
+        "\u0160ifra": "n034",
+        "Odeljenje": "403, 407",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "19:15-21"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Miletic Misa",
+        "\u0160ifra": "/",
+        "Odeljenje": "401, 407, 408",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "17:15-19"
+      },
+      {
+        "Nastavnik(ci)": "Miletic Misa",
+        "\u0160ifra": "/",
+        "Odeljenje": "403, 414",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "17:15-19"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Viseslojne komutirane racunarske mreze": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Bojovic Petar",
+        "\u0160ifra": "n003",
+        "Odeljenje": "411",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "17:15-19"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Majstorovic Dunja",
+        "\u0160ifra": "n013",
+        "Odeljenje": "411",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SUB",
+        "\u00c8as": "9:15-11"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Web sistemi i tehnologije": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Radosavljevic Nemanja",
+        "\u0160ifra": "n025",
+        "Odeljenje": "2s1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "11:15-14"
+      },
+      {
+        "Nastavnik(ci)": "Radosavljevic Nemanja",
+        "\u0160ifra": "n025",
+        "Odeljenje": "2s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "12:15-15"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Veniger Marko",
+        "\u0160ifra": "/",
+        "Odeljenje": "2s2",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "17:15-19"
+      },
+      {
+        "Nastavnik(ci)": "Veniger Marko",
+        "\u0160ifra": "/",
+        "Odeljenje": "2s1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "17:15-19"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Uvod u interaktivni dizajn": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Djuric Milan",
+        "\u0160ifra": "/",
+        "Odeljenje": "3d1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "13:15-16"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Djuric Milan",
+        "\u0160ifra": "/",
+        "Odeljenje": "3d1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "10:15-13"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "3D modelovanje i animacija": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Komad Miljana",
+        "\u0160ifra": "/",
+        "Odeljenje": "3d1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SRE",
+        "\u00c8as": "16:15-19"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Komad Miljana",
+        "\u0160ifra": "/",
+        "Odeljenje": "3d1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "16:15-19"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "FIlmska produkcija": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Stetin Darko",
+        "\u0160ifra": "/",
+        "Odeljenje": "3d1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SUB",
+        "\u00c8as": "14:15-16"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Stetin Darko",
+        "\u0160ifra": "/",
+        "Odeljenje": "3d1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "SUB",
+        "\u00c8as": "16:15-18"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Graficko oglasavanje": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Prodanovic Ana",
+        "\u0160ifra": "/",
+        "Odeljenje": "3d1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "15:15-17"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Prodanovic Ana",
+        "\u0160ifra": "/",
+        "Odeljenje": "3d1",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "13:15-15"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Integrisani informacioni sistemi": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Vujosevic Dusan",
+        "\u0160ifra": "n034",
+        "Odeljenje": "401, 407",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "15:15-17"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Mijailovic Tina",
+        "\u0160ifra": "/",
+        "Odeljenje": "401, 407",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "19:15-21"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Sistemsko programiranje": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Jovanovic Milos",
+        "\u0160ifra": "n011",
+        "Odeljenje": "315, 313",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "\u00c8ET",
+        "\u00c8as": "15:15-17"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Obradovic Dusan",
+        "\u0160ifra": "/",
+        "Odeljenje": "315, 313",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "17:15-19"
+      }
+    ],
+    "Predavanja i vezbe": []
+  },
+  "Verovatnoca i statistika": {
+    "Predavanja": [
+      {
+        "Nastavnik(ci)": "Jovanovic Jelena",
+        "\u0160ifra": "/",
+        "Odeljenje": "301, 312",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "19:15-21"
+      },
+      {
+        "Nastavnik(ci)": "Jovanovic Jelena",
+        "\u0160ifra": "/",
+        "Odeljenje": "302, 303, 314, 315, 316, 313",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "UTO",
+        "\u00c8as": "19:15-21"
+      }
+    ],
+    "Praktikum": [],
+    "Vezbe": [
+      {
+        "Nastavnik(ci)": "Jerotijevic Marija",
+        "\u0160ifra": "n009",
+        "Odeljenje": "302, 303, 313, 314, 315, 316",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PET",
+        "\u00c8as": "11:15-13"
+      },
+      {
+        "Nastavnik(ci)": "Jerotijevic Marija",
+        "\u0160ifra": "n009",
+        "Odeljenje": "301, 312",
+        "Nedelja(e)": "1. nedelja",
+        "Dan": "PON",
+        "\u00c8as": "17:15-19"
+      }
+    ],
+    "Predavanja i vezbe": []
+  }
+}
