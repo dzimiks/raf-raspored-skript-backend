@@ -101,6 +101,8 @@ def import_timetable_from_csv(file_path):
 
                     # Bug sa Surlom jer je razmak u prezimenu
                     if ime == "Surla" and prezime == "Dimic":
+                        ime = "Bojana"
+                        prezime = "Dimic Surla"
                         username = "bdimicsurla"
 
                     # Bug sa Verom jer ima crticu u prezimenu

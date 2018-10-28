@@ -12,8 +12,9 @@ def timetableforuser(request, username):
 
     if nalog.uloga == 'student':
         student = Student.objects.get(nalog=nalog)
-        grupa = Grupa.objects.filter(student__id=student.id)
+        grupa = Grupa.objects.filter(student__id = student.id)
         termini = Termin.objects.filter(grupe__id=grupa[0].id)
+
 
         for termin in termini:
             resp += "<p>"
