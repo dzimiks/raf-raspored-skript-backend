@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet, Nalog, Semestar, Student
-import time
+from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet, Nalog, Semestar, Student,Obavestenje
+import datetime
+
 
 
 def timetableforuser(request, username):
@@ -9,6 +10,7 @@ def timetableforuser(request, username):
     resp = "<html><head><meta charset=\"UTF-8\"></head><body>"
 
     print(nalog.username + ' ' + nalog.uloga)
+
 
     if nalog.uloga == 'student':
         student = Student.objects.get(nalog=nalog)
@@ -44,3 +46,25 @@ def timetableforuser(request, username):
     resp += "</body></html>"
 
     return HttpResponse(resp)
+
+def nastavnici_template(request):
+    qs = Nastavnik.objects.all()
+    context = {'nastavnici': qs }
+    return render(request,'studserviceapp/nastavnici.html', context)
+
+def unos_obavestenja_form(request,user):
+    try:
+        n = Nalog.objects.get(username = user)
+        if n.uloga=='sekretar' or n.uloga=='administrator':
+            context = {'nalog':n}
+            return render(request, 'studserviceapp/unosobavestenja.html',context)
+        else:
+            return HttpResponse('<h1>Korisnik mora biti sekretar ili administrator</h1>')
+    except Nalog.DoesNotExist:
+        return HttpResponse('<h1>Username '+ user+' not found</h1>')
+
+def save_obavestenje(request):
+    tekst = request.POST['tekst']
+    postavio = Nalog.objects.get(username=request.POST['postavio'])
+    obavestenje = Obavestenje(tekst=tekst,postavio=postavio,datum_postavljanja=datetime.datetime.now())
+    obavestenje.save()

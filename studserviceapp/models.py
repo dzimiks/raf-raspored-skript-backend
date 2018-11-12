@@ -104,8 +104,7 @@ class IzborGrupe(models.Model):
 
 
 class VazniDatumi(models.Model):
-    kategorija = models.CharField(
-        max_length=200)  # kolokvijumske nedelje, ispitni rokovi, placanje skolarine na rate,...
+    kategorija = models.CharField(max_length=200)  # kolokvijumske nedelje, ispitni rokovi, placanje skolarine na rate,...
     oznaka = models.CharField(max_length=200)  # I, Jan, Feb. I rata, RAF Hackaton,...
     datum_od = models.DateField(null=True)
     datum_do = models.DateField(null=True)
