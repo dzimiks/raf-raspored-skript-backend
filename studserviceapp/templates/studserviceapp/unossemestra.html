@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unos semestra</title>
+</head>
+<body>
+    <form action="{% url 'savesemestra' %}" method = "post">
+        {% csrf_token %}
+        <label>Oznaka grupe</label>
+        <textarea rows = "1" col = "20" name = "oznaka_grupe"></textarea>
+        <label>Oznaka semestra</label>
+        <textarea rows = "1" col = "20" name = "oznaka_semestra"></textarea>
+        <label>Kapacitet</label>
+        <textarea rows = "1" col = "20" name = "kapacitet"></textarea>
+        <label>Smer</label>
+        <textarea rows = "1" col = "20" name = "smer"></textarea>
+        <input type="submit" value="Snimi">
+    </form>
+</body>
+</html>

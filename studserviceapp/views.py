@@ -55,16 +55,31 @@ def nastavnici_template(request):
 def unos_obavestenja_form(request,user):
     try:
         n = Nalog.objects.get(username = user)
-        if n.uloga=='sekretar' or n.uloga=='administrator':
-            context = {'nalog':n}
-            return render(request, 'studserviceapp/unosobavestenja.html',context)
-        else:
-            return HttpResponse('<h1>Korisnik mora biti sekretar ili administrator</h1>')
+        # if n.uloga=='sekretar' or n.uloga=='administrator':
+        context = {'nalog':n}
+        return render(request, 'studserviceapp/unosobavestenja.html',context)
+        # else:
+        #     return HttpResponse('<h1>Korisnik mora biti sekretar ili administrator</h1>')
     except Nalog.DoesNotExist:
         return HttpResponse('<h1>Username '+ user+' not found</h1>')
 
 def save_obavestenje(request):
-    tekst = request.POST['tekst']
-    postavio = Nalog.objects.get(username=request.POST['postavio'])
-    obavestenje = Obavestenje(tekst=tekst,postavio=postavio,datum_postavljanja=datetime.datetime.now())
-    obavestenje.save()
+    # tekst = request.POST['tekst']
+    # postavio = Nalog.objects.get(username=request.POST['postavio'])
+    # obavestenje = Obavestenje(tekst=tekst,postavio=postavio,datum_postavljanja=datetime.datetime.now())
+    # obavestenje.save()
+    return HttpResponse("<h1>Uspesno savcuvano obavestenje</h1>")
+
+def unos_semestra_form(request,user):
+    try:
+        n = Nalog.objects.get(username = user)
+        p = Predmet.objects.all()
+        context = {'predmeti':p}
+        return render(request, 'studserviceapp/unossemestra.html', context)
+    except Predmet.DoesNotExist:
+        return HttpResponse("<h1> Nema predmeta u bazi</h1>")
+
+def save_semestra(request):
+    return HttpResponse("<h1>Uspesno savcuvan semestar</h1>")
+
+
