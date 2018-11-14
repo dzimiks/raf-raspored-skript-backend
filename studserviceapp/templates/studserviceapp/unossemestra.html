@@ -5,17 +5,72 @@
     <title>Unos semestra</title>
 </head>
 <body>
-    <form action="{% url 'savesemestra' %}" method = "post">
-        {% csrf_token %}
-        <label>Oznaka grupe</label>
-        <textarea rows = "1" col = "20" name = "oznaka_grupe"></textarea>
-        <label>Oznaka semestra</label>
-        <textarea rows = "1" col = "20" name = "oznaka_semestra"></textarea>
-        <label>Kapacitet</label>
-        <textarea rows = "1" col = "20" name = "kapacitet"></textarea>
-        <label>Smer</label>
-        <textarea rows = "1" col = "20" name = "smer"></textarea>
-        <input type="submit" value="Snimi">
-    </form>
+    {% if predmeti %}
+        <form action="{% url 'savesemestra' %}" method = "post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <th>Semestar</th>
+                    <td><textarea rows = "1" name = "skolska_godina_pocetak"></textarea></td>
+                    <td><label>/</label></td>
+                    <td><textarea rows = "1" name = "skolska_godina_kraj"></textarea></td>
+                </tr>
+                 <tr>
+                    <th>Vrsta semestra</th>
+                    <td>
+                        <select name="vrsta_semestra" size="2">
+                            <option name="parni_semestar">parni</option>
+                            <option name="neparni_semestar">neparni</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Oznaka grupe</th>
+                    <td><textarea rows = "1" name = "oznaka_grupe"></textarea></td>
+                </tr>
+                <tr>
+                    <th >Oznaka semestra</th>
+                    <td><textarea rows = "1" name = "oznaka_semestra"></textarea></td>
+                </tr>
+                <tr>
+                    <th>Kapacitet</th>
+                    <td><textarea rows = "1" name = "kapacitet"></textarea></td>
+                </tr>
+                 <tr>
+                    <th>Smer</th>
+                    <td>
+                        <select name = "smer" size="4">
+                            <option>RN</option>
+                            <option>RM</option>
+                            <option>RD</option>
+                            <option>ST</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Aktivnost grupe</th>
+                    <td>
+                        <input type="radio" name = "aktivnost" value="aktivna">aktivna
+                        <input type="radio" name = "aktivnost" value="neaktivna">neaktivna
+                    </td>
+                </tr>
+                <tr>
+                    <th>Predmeti</th>
+                    <td>
+                    <select multiple name="predmeti" size="5">
+                        {% for p in predmeti %}
+                        <option value ={{ p }}>{{ p.naziv }}</option>
+                        {% endfor %}
+                    </select>
+                    </td>
+                </tr>
+            </table>
+
+            <input type="submit" value="Snimi">
+        </form>
+    {% else %}
+        <p>Nema predmeta u bazi</p>
+    {% endif %}
+
 </body>
 </html>

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet, Nalog, Semestar, Student,Obavestenje
+from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet, Nalog, Semestar, Student,Obavestenje,IzborGrupe,IzbornaGrupa
 import datetime
 
 
@@ -68,7 +68,7 @@ def save_obavestenje(request):
     # postavio = Nalog.objects.get(username=request.POST['postavio'])
     # obavestenje = Obavestenje(tekst=tekst,postavio=postavio,datum_postavljanja=datetime.datetime.now())
     # obavestenje.save()
-    return HttpResponse("<h1>Uspesno savcuvano obavestenje</h1>")
+    return HttpResponse("<h1>Uspesno sacuvano obavestenje</h1>")
 
 def unos_semestra_form(request,user):
     try:
@@ -81,5 +81,37 @@ def unos_semestra_form(request,user):
 
 def save_semestra(request):
     return HttpResponse("<h1>Uspesno savcuvan semestar</h1>")
+
+def izmena_izborne_grupa_form(request,oznakaGrupe):
+    # try:
+    #     grupa = IzbornaGrupa.objects.get(oznaka_grupe=oznakaGrupe)
+    #     predmeti = Predmet.objects.all()
+    #     context = {
+    #         'grupa':grupa,
+    #         'predmeti':predmeti
+    #     }
+    #     return render(request,'studserviceapp/izmenaIzborneGrupe.html',context)
+    # except IzbornaGrupa.DoesNotExist:
+    #     return HttpResponse('<h1>Ne postoji trazena izborna grupa')
+    print("to do")
+
+def save_izmene_izborne_grupe(request):
+    return HttpResponse("<h1>Uspesno sacuvane izmene izborne grupe</h1>")
+
+
+def izbor_grupe_form(request,username):
+    print("to do")
+
+def save_izbor_grupe(request):
+    print("to do")
+
+
+def pregled_izabranih_grupa_form(request):
+    return HttpResponse("<h1>To do:</h1>")
+
+
+
+
+
 
 
