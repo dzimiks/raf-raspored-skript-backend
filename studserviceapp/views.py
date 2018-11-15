@@ -130,9 +130,6 @@ def save_semestra(request):
 def izmena_izborne_grupa_form(request,oznakaGrupe,vrstaSemestra):
     try:
         grupa = IzbornaGrupa.objects.get(oznaka_grupe=oznakaGrupe,za_semestar__vrsta=vrstaSemestra)
-        # predmetiGrupe = grupa.predmeti.all()
-        # for p in predmetiGrupe:
-        #     print(p)
         predmeti = grupa.predmeti.all()
         context = {
             'grupa':grupa,
@@ -253,12 +250,19 @@ def save_izbor_grupe(request):
 
 
 def pregled_izabranih_grupa_form(request):
+    grupe = IzbornaGrupa.objects.all()
+    context = {
+        'grupe':grupe
+    }
+    return render(request,'studserviceapp/pregledIzabranihGrupa.html',context)
 
-    return HttpResponse("<h1>To do:</h1>")
-
-def pregled_studenata_u_izbornoj_grupi(request):
-    print("dsa")
-
+def pregled_studenata_u_izbornoj_grupi(request,grupa):
+    student = Student.objects.all()
+    studenti = student.filter(grupa__oznaka_grupe=grupa)
+    context = {
+        'studenti':studenti,
+    }
+    return render(request,"studserviceapp/pregledStudenataUIzbornojGrupi.html",context)
 
 
 

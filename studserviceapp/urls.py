@@ -15,6 +15,6 @@ urlpatterns = [
     path('izborGrupe/<str:username>',views.izbor_grupe_form, name = "izbor_grupe"),
     path('saveIzborGrupe',views.save_izbor_grupe, name = 'save_izbor_grupe'),
     path('pregledIzabranihGrupa',views.pregled_izabranih_grupa_form, name = "pregled_izabranih_grupa"),
-    path('pregledStudenataIzborneGrupa',views.pregled_studenata_u_izbornoj_grupi, name="pregled_studenata_u_izbornim_grupama")
+    path('pregledStudenataIzborneGrupa/<str:grupa>',views.pregled_studenata_u_izbornoj_grupi, name="pregled_studenata_u_izbornim_grupama")
     # url(r'^saveobavestenja/',views.save_obavestenje,name="saveobavestenje")
 ]

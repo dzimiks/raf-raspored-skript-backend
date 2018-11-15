@@ -17,9 +17,11 @@
         <tbody>
         {% for g in grupe %}
             <tr>
-                <td><a href="{% url 'pregled_studenata_u_izbornim_grupama' g.oznaka_grupe %}">{{ g.oznaka_grupe }}</a></td>
-                <td>{{ g.oznaka_semestra }}</td>
-                <td>{{ g.smer }}</td>
+                {% if g.aktivna == True %}
+                    <td><a href="{% url 'pregled_studenata_u_izbornim_grupama' g.oznaka_grupe %}">{{ g.oznaka_grupe }}</a></td>
+                    <td>{{ g.oznaka_semestra }}</td>
+                    <td>{{ g.smer }}</td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
