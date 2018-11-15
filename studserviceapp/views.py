@@ -80,34 +80,184 @@ def unos_semestra_form(request,user):
         return HttpResponse("<h1> Nema predmeta u bazi</h1>")
 
 def save_semestra(request):
+    skolska_godina_pocetak = request.POST['skolska_godina_pocetak']
+    skolska_godina_kraj = request.POST['skolska_godina_kraj']
+    vrsta_semestra = request.POST['vrsta_semestra']
+    oznaka_grupe = request.POST['oznaka_grupe']
+    oznaka_semestra = request.POST['oznaka_semestra']
+    kapacitet = request.POST['kapacitet']
+    smer = request.POST['smer']
+    if(request.POST['aktivnost'] == "aktivna"):
+        aktivnost = True
+    else:
+        if(request.POST['aktivnost'] == "neaktivna"):
+            aktivnost = False
+
+
+    # print(skolska_godina_pocetak,skolska_godina_kraj,vrsta_semestra,oznaka_grupe,
+    #       oznaka_semestra,kapacitet,smer,aktivnost)
+
+    if (Semestar.objects.filter(vrsta=vrsta_semestra,
+                                skolska_godina_pocetak=skolska_godina_pocetak,
+                                skolska_godina_kraj=skolska_godina_kraj)):
+        semestar = Semestar.objects.get(vrsta=vrsta_semestra,
+                                skolska_godina_pocetak=skolska_godina_pocetak,
+                                skolska_godina_kraj=skolska_godina_kraj)
+    else:
+        semestar = Semestar()
+        semestar.vrsta = vrsta_semestra
+        semestar.skolska_godina_pocetak = skolska_godina_pocetak
+        semestar.skolska_godina_kraj = skolska_godina_kraj
+        semestar.save()
+
+    izbornaGrupa = IzbornaGrupa()
+    izbornaGrupa.oznaka_grupe = oznaka_grupe
+    izbornaGrupa.oznaka_semestra = int(oznaka_semestra)
+    izbornaGrupa.kapacitet = int(kapacitet)
+    izbornaGrupa.smer = smer
+    izbornaGrupa.aktivna = aktivnost
+    izbornaGrupa.za_semestar = semestar
+    izbornaGrupa.save()
+
+    predmeti = request.POST.getlist('predmeti')
+
+    for p in predmeti:
+        predmet = Predmet.objects.get(naziv = p)
+        izbornaGrupa.predmeti.add(predmet)
+
     return HttpResponse("<h1>Uspesno savcuvan semestar</h1>")
 
-def izmena_izborne_grupa_form(request,oznakaGrupe):
-    # try:
-    #     grupa = IzbornaGrupa.objects.get(oznaka_grupe=oznakaGrupe)
-    #     predmeti = Predmet.objects.all()
-    #     context = {
-    #         'grupa':grupa,
-    #         'predmeti':predmeti
-    #     }
-    #     return render(request,'studserviceapp/izmenaIzborneGrupe.html',context)
-    # except IzbornaGrupa.DoesNotExist:
-    #     return HttpResponse('<h1>Ne postoji trazena izborna grupa')
-    print("to do")
+def izmena_izborne_grupa_form(request,oznakaGrupe,vrstaSemestra):
+    try:
+        grupa = IzbornaGrupa.objects.get(oznaka_grupe=oznakaGrupe,za_semestar__vrsta=vrstaSemestra)
+        # predmetiGrupe = grupa.predmeti.all()
+        # for p in predmetiGrupe:
+        #     print(p)
+        predmeti = grupa.predmeti.all()
+        context = {
+            'grupa':grupa,
+            'predmeti':predmeti
+        }
+        return render(request,'studserviceapp/izmenaIzborneGrupe.html',context)
+    except IzbornaGrupa.DoesNotExist:
+        return HttpResponse('<h1>Ne postoji trazena izborna grupa')
 
 def save_izmene_izborne_grupe(request):
+    # skolska_godina_pocetak = request.POST['skolska_godina_pocetak']
+    # skolska_godina_kraj = request.POST['skolska_godina_kraj']
+    # vrsta_semestra = request.POST['vrsta_semestra']
+    oznaka_grupe = request.POST['oznaka_grupe']
+    oznaka_semestra = request.POST['oznaka_semestra']
+    kapacitet = request.POST['kapacitet']
+    # smer = request.POST['smer']
+    if(request.POST['aktivnost'] == "aktivna"):
+        aktivnost = True
+    else:
+        if(request.POST['aktivnost'] == "neaktivna"):
+            aktivnost = False
+
+    # predmeti = request.POST.getlist('predmeti')
+
+    # print(skolska_godina_pocetak,skolska_godina_kraj,vrsta_semestra,oznaka_grupe,
+    #       oznaka_semestra,kapacitet,smer,aktivnost)
+
+    izbornaGrupa = IzbornaGrupa.objects.get(oznaka_grupe=oznaka_grupe,
+                                               oznaka_semestra = oznaka_semestra)
+
+    # izbornaGrupa.oznaka_grupe = oznaka_grupe
+    # izbornaGrupa.oznaka_semestra = int(oznaka_semestra)
+    izbornaGrupa.kapacitet = int(kapacitet)
+    # izbornaGrupa.smer = smer
+    izbornaGrupa.aktivna = aktivnost
+    # izbornaGrupa.za_semestar = semestar
+    izbornaGrupa.save()
+
+    # for p in predmeti:
+    #     predmet = Predmet.objects.get(naziv = p)
+    #     izbornaGrupa.predmeti.add(predmet)
+
+
     return HttpResponse("<h1>Uspesno sacuvane izmene izborne grupe</h1>")
 
 
 def izbor_grupe_form(request,username):
-    print("to do")
+    student = Student.objects.get(nalog__username=username)
+    izborneGrupe = IzbornaGrupa.objects.all()
+    semestar = Semestar.objects.last()
+    predmeti = Predmet.objects.all()
+
+    context = {
+        'student':student,
+        'izborneGrupe':izborneGrupe,
+        'semestar':semestar,
+        'predmeti':predmeti,
+    }
+    return render(request,"studserviceapp/IzborGrupe.html",context)
 
 def save_izbor_grupe(request):
-    print("to do")
+    ostvarenoESPB = request.POST['broj_ostvarenih_espb']
+    upisujeESPB = request.POST['student_upisuje_bodova']
+    broj_polizenih_ispita = request.POST['broj_polozenih_ispit']
+    upisuje_semestar = request.POST['vrsta_semestra']
+    prvi_put_upisuje_semestar = request.POST['upis_semestra']
+    nacin_placanja= request.POST['nacin_placanja']
+
+    username = request.POST['ime'][0].lower() +request.POST['prezime'].lower()+request.POST['godina_upisa'][-2:]
+    student = Student.objects.get(nalog__username=username)
+
+
+    if (prvi_put_upisuje_semestar == "da"):
+        prvi_put_upisuje_semestar = True
+    else:
+        if (prvi_put_upisuje_semestar == "ne"):
+            prvi_put_upisuje_semestar = False
+
+    if(request.POST['upisan'] == "da"):
+        upisan = True
+    else:
+        if(request.POST['upisan'] == "ne"):
+            upisan = False
+
+    izborGrupe = IzborGrupe()
+
+    izborGrupe.ostvarenoESPB = int(ostvarenoESPB)
+    izborGrupe.upisujeESPB = int(upisujeESPB)
+    izborGrupe.broj_polozenih_ispita = int(broj_polizenih_ispita)
+    izborGrupe.upisuje_semestar = int(upisuje_semestar)
+
+
+    izborGrupe.prvi_put_upisuje_semestar = prvi_put_upisuje_semestar
+    izborGrupe.nacin_placanja = nacin_placanja
+    izborGrupe.student = student
+    izborGrupe.upisan = upisan
+
+    # print(izborGrupe.ostvarenoESPB,
+    #       izborGrupe.upisujeESPB,
+    #       izborGrupe.broj_polozenih_ispita,
+    #       izborGrupe.upisuje_semestar,
+    #       izborGrupe.prvi_put_upisuje_semestar,
+    #       izborGrupe.nacin_placanja,
+    #       izborGrupe.student,
+    #       izborGrupe.upisan)
+
+    izborGrupe.save()
+
+    nepolozeni_predmeti = request.POST.getlist('nepolozeniPredmeti')
+
+    for p in nepolozeni_predmeti:
+        predmet = Predmet.objects.get(naziv = p)
+        izborGrupe.nepolozeni_predmeti.add(predmet)
+    #     moze u html da se stavi value= {{p}} i odmah da se ubaci u predmete,
+    #   ovako ima jedan vise pristup bazi
+    return HttpResponse("<h1>Uspesno izvrsen izbor grupe</h1>")
 
 
 def pregled_izabranih_grupa_form(request):
+
     return HttpResponse("<h1>To do:</h1>")
+
+def pregled_studenata_u_izbornoj_grupi(request):
+    print("dsa")
 
 
 

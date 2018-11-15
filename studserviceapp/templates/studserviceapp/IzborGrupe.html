@@ -2,9 +2,107 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Izbor grupe</title>
 </head>
 <body>
-
+    <form action="{% url 'save_izbor_grupe' %}" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Indeks</td>
+                <td>
+                    <input name="smer" value="{{ student.smer }}">
+                </td>
+                <td>
+                    <input name="broj_indeksa" value="{{ student.broj_indeksa }}">
+                    <label>/</label>
+                </td>
+                <td>
+                    <input name="godina_upisa" value="{{ student.godina_upisa }}">
+                </td>
+            </tr>
+            <tr>
+                <td>Ime</td>
+                <td><input name="ime" value="{{ student.ime }}"></td>
+            </tr>
+            <tr>
+                <td>Prezime</td>
+                <td><input name="prezime" value="{{ student.prezime }}"></td>
+            </tr>
+            <tr>
+                <td>Broj do sada ukupno ostvarenih ESPB</td>
+                <td><textarea rows="1" name="broj_ostvarenih_espb"></textarea></td>
+            </tr>
+            <tr>
+                <td>Skolske {{ semestar.skolska_godina_pocetak }}/{{ semestar.skolska_godina_kraj }} upisiujem ESPB</td>
+                <td><textarea rows="1" name="student_upisuje_bodova"></textarea></td>
+            </tr>
+            <tr>
+                <td>Broj do sada polozenih ispita</td>
+                <td><textarea rows="1" name="broj_polozenih_ispit" ></textarea></td>
+            </tr>
+            <tr>
+                <td>Semestra</td>
+                <td>
+                    {% if semestar.vrsta == "parni" %}
+                        <input type="radio" name="vrsta_semestra" value="2">2
+                        <input type="radio" name="vrsta_semestra" value="4">4
+                        <input type="radio" name="vrsta_semestra" value="6">6
+                        <input type="radio" name="vrsta_semestra" value="8">8
+                    {% else %}
+                        <input type="radio" name="vrsta_semestra" value="1">1
+                        <input type="radio" name="vrsta_semestra" value="3">3
+                        <input type="radio" name="vrsta_semestra" value="5">5
+                        <input type="radio" name="vrsta_semestra" value="7">7
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>Prvi put upisuje semestar</td>
+                <td>
+                    <input type="radio" name="upis_semestra" value="da" checked="checked">da
+                    <input type="radio" name="upis_semestra" value="ne">ne
+                </td>
+            </tr>
+            <tr>
+                <td>Grupa koju student bira</td>
+                <td>
+                    <select name="grupe" size="3">
+                        {% for g in izborneGrupe %}
+                        <option value="{{ g.oznaka_grupe }}">{{ g.oznaka_grupe }} {{ g.za_semestar.vrsta }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Nepolozeni predmeti iz prethodnih godina</td>
+                <td>
+                    <select multiple name="nepolozeniPredmeti" size="4">
+                        {% for p in predmeti %}
+                            <option value="{{ p.naziv }}">{{ p.naziv }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Nacin placanja</td>
+                <td>
+                    <input type="radio" name="nacin_placanja" value="odjednom">odjednom
+                    <input type="radio" name="nacin_placanja" value="na rate">na rate
+                    <input type="radio" name="nacin_placanja" value="stipendista">stipendista
+                </td>
+            </tr>
+            <tr>
+                <td>Upisan</td>
+                <td>
+                    <input type="radio" name="upisan" value="da" checked="checked">da
+                    <input type="radio" name="upisan" value="ne">ne
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Sacuvaj"> </td>
+            </tr>
+        </table>
+    </form>
 </body>
 </html>

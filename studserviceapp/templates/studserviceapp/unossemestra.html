@@ -59,7 +59,7 @@
                     <td>
                     <select multiple name="predmeti" size="5">
                         {% for p in predmeti %}
-                        <option value ={{ p }}>{{ p.naziv }}</option>
+                        <option value ="{{ p.naziv }}">{{ p.naziv }}</option>
                         {% endfor %}
                     </select>
                     </td>
