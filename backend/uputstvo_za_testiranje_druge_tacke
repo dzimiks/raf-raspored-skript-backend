@@ -1,0 +1,13 @@
+1. Kreiranje semestra(ukoliko ne postoji) i izborne grupe
+	http://127.0.0.1:8000/studserviceapp/unossemestra/mmitic16
+2. Izmena podataka izborne grupe
+	http://127.0.0.1:8000/studserviceapp/izmenaIzborneGrupe/301/parni
+	(u link je ubacena i parnost semestra, jer jedna izborna grupa moze da
+	postoji za neparni i parni deo semestra)
+3. Izbor grupe
+	http://127.0.0.1:8000/studserviceapp/izborGrupe/mmitic16
+4. a) Pregled izabranih grupa
+		http://127.0.0.1:8000/studserviceapp/pregledIzabranihGrupa
+   b) Pregled studenta po grupama
+		
+ 
