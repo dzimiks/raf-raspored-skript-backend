@@ -188,18 +188,8 @@ def save_izbor_grupe(request):
     username = request.POST['ime'][0].lower() +request.POST['prezime'].lower()+request.POST['godina_upisa'][-2:]
     student = Student.objects.get(nalog__username=username)
 
-    # studentiIzborneGrupe = IzborGrupe.student.objects.all()
-
-    # if(IzborGrupe.student.get(id= student.id)):
-    #     print("AA")
-
-    # if(Student.objects.get(izborgrupe__oznaka_grupe= grupa_koju_student_bira)):
-    #     print("SADAS")                                                                                                       ")
-
-    # for s in studentiIzborneGrupe:
-    #     if (s == student):
-    #         return HttpResponse("<h1>Student je vec izabrao grupu</h1>")
-
+    if(IzborGrupe.objects.filter(student__broj_indeksa=student.broj_indeksa)):
+        return HttpResponse("<h1> Student je vec izabrao grupu.</h1>")
 
     if (prvi_put_upisuje_semestar == "da"):
         prvi_put_upisuje_semestar = True
@@ -212,6 +202,12 @@ def save_izbor_grupe(request):
     else:
         if(request.POST['upisan'] == "ne"):
             upisan = False
+    #
+    # izbornaGrupa = IzbornaGrupa.objects.get(oznaka_semestra=grupa_koju_student_bira)
+    # if(izbornaGrupa.kapacitet==0):
+    #     return HttpResponse("<h1>Izborna grupa je popunjena, odaberite drugu grupu.</h1>")
+    # else:
+    #     izbornaGrupa.kapacitet -=1
 
     izborGrupe = IzborGrupe()
 
