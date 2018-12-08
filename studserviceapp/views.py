@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet, Nalog, Semestar, Student,Obavestenje,IzborGrupe,IzbornaGrupa
+from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet, Nalog, Semestar, Student, \
+    Obavestenje, IzborGrupe, IzbornaGrupa
 import datetime
-
 
 
 def timetableforuser(request, username):
@@ -11,12 +11,10 @@ def timetableforuser(request, username):
 
     print(nalog.username + ' ' + nalog.uloga)
 
-
     if nalog.uloga == 'student':
         student = Student.objects.get(nalog=nalog)
-        grupa = Grupa.objects.filter(student__id = student.id)
+        grupa = Grupa.objects.filter(student__id=student.id)
         termini = Termin.objects.filter(grupe__id=grupa[0].id)
-
 
         for termin in termini:
             resp += "<p>"
@@ -47,21 +45,24 @@ def timetableforuser(request, username):
 
     return HttpResponse(resp)
 
+
 def nastavnici_template(request):
     qs = Nastavnik.objects.all()
-    context = {'nastavnici': qs }
-    return render(request,'studserviceapp/nastavnici.html', context)
+    context = {'nastavnici': qs}
+    return render(request, 'studserviceapp/nastavnici.html', context)
 
-def unos_obavestenja_form(request,user):
+
+def unos_obavestenja_form(request, user):
     try:
-        n = Nalog.objects.get(username = user)
+        n = Nalog.objects.get(username=user)
         # if n.uloga=='sekretar' or n.uloga=='administrator':
-        context = {'nalog':n}
-        return render(request, 'studserviceapp/unosobavestenja.html',context)
+        context = {'nalog': n}
+        return render(request, 'studserviceapp/unosobavestenja.html', context)
         # else:
         #     return HttpResponse('<h1>Korisnik mora biti sekretar ili administrator</h1>')
     except Nalog.DoesNotExist:
-        return HttpResponse('<h1>Username '+ user+' not found</h1>')
+        return HttpResponse('<h1>Username ' + user + ' not found</h1>')
+
 
 def save_obavestenje(request):
     # tekst = request.POST['tekst']
@@ -70,14 +71,16 @@ def save_obavestenje(request):
     # obavestenje.save()
     return HttpResponse("<h1>Uspesno sacuvano obavestenje</h1>")
 
-def unos_semestra_form(request,user):
+
+def unos_semestra_form(request, user):
     try:
-        n = Nalog.objects.get(username = user)
+        n = Nalog.objects.get(username=user)
         p = Predmet.objects.all()
-        context = {'predmeti':p}
+        context = {'predmeti': p}
         return render(request, 'studserviceapp/unossemestra.html', context)
     except Predmet.DoesNotExist:
         return HttpResponse("<h1> Nema predmeta u bazi</h1>")
+
 
 def save_semestra(request):
     skolska_godina_pocetak = request.POST['skolska_godina_pocetak']
@@ -87,12 +90,11 @@ def save_semestra(request):
     oznaka_semestra = request.POST['oznaka_semestra']
     kapacitet = request.POST['kapacitet']
     smer = request.POST['smer']
-    if(request.POST['aktivnost'] == "aktivna"):
+    if (request.POST['aktivnost'] == "aktivna"):
         aktivnost = True
     else:
-        if(request.POST['aktivnost'] == "neaktivna"):
+        if (request.POST['aktivnost'] == "neaktivna"):
             aktivnost = False
-
 
     # print(skolska_godina_pocetak,skolska_godina_kraj,vrsta_semestra,oznaka_grupe,
     #       oznaka_semestra,kapacitet,smer,aktivnost)
@@ -101,8 +103,8 @@ def save_semestra(request):
                                 skolska_godina_pocetak=skolska_godina_pocetak,
                                 skolska_godina_kraj=skolska_godina_kraj)):
         semestar = Semestar.objects.get(vrsta=vrsta_semestra,
-                                skolska_godina_pocetak=skolska_godina_pocetak,
-                                skolska_godina_kraj=skolska_godina_kraj)
+                                        skolska_godina_pocetak=skolska_godina_pocetak,
+                                        skolska_godina_kraj=skolska_godina_kraj)
     else:
         semestar = Semestar()
         semestar.vrsta = vrsta_semestra
@@ -110,7 +112,7 @@ def save_semestra(request):
         semestar.skolska_godina_kraj = skolska_godina_kraj
         semestar.save()
 
-    if(IzbornaGrupa.objects.filter(oznaka_grupe=oznaka_grupe,oznaka_semestra=oznaka_semestra)):
+    if (IzbornaGrupa.objects.filter(oznaka_grupe=oznaka_grupe, oznaka_semestra=oznaka_semestra)):
         return HttpResponse("<h1>Izborna grupa vec postoji</h1>")
     else:
         izbornaGrupa = IzbornaGrupa()
@@ -125,57 +127,59 @@ def save_semestra(request):
     predmeti = request.POST.getlist('predmeti')
 
     for p in predmeti:
-        predmet = Predmet.objects.get(naziv = p)
+        predmet = Predmet.objects.get(naziv=p)
         izbornaGrupa.predmeti.add(predmet)
 
     return HttpResponse("<h1>Uspesno savcuvan semestar</h1>")
 
-def izmena_izborne_grupa_form(request,oznakaGrupe,vrstaSemestra):
+
+def izmena_izborne_grupa_form(request, oznakaGrupe, vrstaSemestra):
     try:
-        grupa = IzbornaGrupa.objects.get(oznaka_grupe=oznakaGrupe,za_semestar__vrsta=vrstaSemestra)
+        grupa = IzbornaGrupa.objects.get(oznaka_grupe=oznakaGrupe, za_semestar__vrsta=vrstaSemestra)
         predmeti = grupa.predmeti.all()
         context = {
-            'grupa':grupa,
-            'predmeti':predmeti
+            'grupa': grupa,
+            'predmeti': predmeti
         }
-        return render(request,'studserviceapp/izmenaIzborneGrupe.html',context)
+        return render(request, 'studserviceapp/izmenaIzborneGrupe.html', context)
     except IzbornaGrupa.DoesNotExist:
         return HttpResponse('<h1>Ne postoji trazena izborna grupa')
+
 
 def save_izmene_izborne_grupe(request):
     oznaka_grupe = request.POST['oznaka_grupe']
     oznaka_semestra = request.POST['oznaka_semestra']
     kapacitet = request.POST['kapacitet']
-    if(request.POST['aktivnost'] == "aktivna"):
+    if (request.POST['aktivnost'] == "aktivna"):
         aktivnost = True
     else:
-        if(request.POST['aktivnost'] == "neaktivna"):
+        if (request.POST['aktivnost'] == "neaktivna"):
             aktivnost = False
 
     izbornaGrupa = IzbornaGrupa.objects.get(oznaka_grupe=oznaka_grupe,
-                                               oznaka_semestra = oznaka_semestra)
+                                            oznaka_semestra=oznaka_semestra)
 
     izbornaGrupa.kapacitet = int(kapacitet)
     izbornaGrupa.aktivna = aktivnost
     izbornaGrupa.save()
 
-
     return HttpResponse("<h1>Uspesno sacuvane izmene izborne grupe</h1>")
 
 
-def izbor_grupe_form(request,username):
+def izbor_grupe_form(request, username):
     student = Student.objects.get(nalog__username=username)
     izborneGrupe = IzbornaGrupa.objects.all()
     semestar = Semestar.objects.last()
     predmeti = Predmet.objects.all()
 
     context = {
-        'student':student,
-        'izborneGrupe':izborneGrupe,
-        'semestar':semestar,
-        'predmeti':predmeti,
+        'student': student,
+        'izborneGrupe': izborneGrupe,
+        'semestar': semestar,
+        'predmeti': predmeti,
     }
-    return render(request,"studserviceapp/IzborGrupe.html",context)
+    return render(request, "studserviceapp/IzborGrupe.html", context)
+
 
 def save_izbor_grupe(request):
     ostvarenoESPB = request.POST['broj_ostvarenih_espb']
@@ -183,12 +187,12 @@ def save_izbor_grupe(request):
     broj_polizenih_ispita = request.POST['broj_polozenih_ispit']
     upisuje_semestar = request.POST['vrsta_semestra']
     prvi_put_upisuje_semestar = request.POST['upis_semestra']
-    nacin_placanja= request.POST['nacin_placanja']
+    nacin_placanja = request.POST['nacin_placanja']
     grupa_koju_student_bira = request.POST['grupe']
-    username = request.POST['ime'][0].lower() +request.POST['prezime'].lower()+request.POST['godina_upisa'][-2:]
+    username = request.POST['ime'][0].lower() + request.POST['prezime'].lower() + request.POST['godina_upisa'][-2:]
     student = Student.objects.get(nalog__username=username)
 
-    if(IzborGrupe.objects.filter(student__broj_indeksa=student.broj_indeksa)):
+    if (IzborGrupe.objects.filter(student__broj_indeksa=student.broj_indeksa)):
         return HttpResponse("<h1> Student je vec izabrao grupu.</h1>")
 
     if (prvi_put_upisuje_semestar == "da"):
@@ -197,10 +201,10 @@ def save_izbor_grupe(request):
         if (prvi_put_upisuje_semestar == "ne"):
             prvi_put_upisuje_semestar = False
 
-    if(request.POST['upisan'] == "da"):
+    if (request.POST['upisan'] == "da"):
         upisan = True
     else:
-        if(request.POST['upisan'] == "ne"):
+        if (request.POST['upisan'] == "ne"):
             upisan = False
     #
     # izbornaGrupa = IzbornaGrupa.objects.get(oznaka_semestra=grupa_koju_student_bira)
@@ -215,7 +219,6 @@ def save_izbor_grupe(request):
     izborGrupe.upisujeESPB = int(upisujeESPB)
     izborGrupe.broj_polozenih_ispita = int(broj_polizenih_ispita)
     izborGrupe.upisuje_semestar = int(upisuje_semestar)
-
 
     izborGrupe.prvi_put_upisuje_semestar = prvi_put_upisuje_semestar
     izborGrupe.nacin_placanja = nacin_placanja
@@ -236,7 +239,7 @@ def save_izbor_grupe(request):
     nepolozeni_predmeti = request.POST.getlist('nepolozeniPredmeti')
 
     for p in nepolozeni_predmeti:
-        predmet = Predmet.objects.get(naziv = p)
+        predmet = Predmet.objects.get(naziv=p)
         izborGrupe.nepolozeni_predmeti.add(predmet)
     #     moze u html da se stavi value= {{p}} i odmah da se ubaci u predmete,
     #   ovako ima jedan vise pristup bazi
@@ -246,20 +249,15 @@ def save_izbor_grupe(request):
 def pregled_izabranih_grupa_form(request):
     grupe = IzbornaGrupa.objects.all()
     context = {
-        'grupe':grupe
+        'grupe': grupe
     }
-    return render(request,'studserviceapp/pregledIzabranihGrupa.html',context)
+    return render(request, 'studserviceapp/pregledIzabranihGrupa.html', context)
 
-def pregled_studenata_u_izbornoj_grupi(request,grupa):
+
+def pregled_studenata_u_izbornoj_grupi(request, grupa):
     student = Student.objects.all()
     studenti = student.filter(grupa__oznaka_grupe=grupa)
     context = {
-        'studenti':studenti,
+        'studenti': studenti,
     }
-    return render(request,"studserviceapp/pregledStudenataUIzbornojGrupi.html",context)
-
-
-
-
-
-
+    return render(request, "studserviceapp/pregledStudenataUIzbornojGrupi.html", context)
