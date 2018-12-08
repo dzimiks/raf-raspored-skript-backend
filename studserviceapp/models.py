@@ -35,14 +35,6 @@ class Student(models.Model):
         return self.ime + " " + self.prezime
 
 
-class Nastavnik(models.Model):
-    ime = models.CharField(max_length=200)
-    prezime = models.CharField(max_length=200)
-    titula = models.CharField(max_length=20, null=True)
-    zvanje = models.CharField(max_length=40, null=True)
-    nalog = models.ForeignKey(Nalog, on_delete=models.CASCADE)
-
-
 class Predmet(models.Model):
     naziv = models.CharField(max_length=200)
     espb = models.IntegerField(null=True)
@@ -52,6 +44,15 @@ class Predmet(models.Model):
 
     def __str__(self):
         return self.naziv
+
+
+class Nastavnik(models.Model):
+    ime = models.CharField(max_length=200)
+    prezime = models.CharField(max_length=200)
+    titula = models.CharField(max_length=20, null=True)
+    zvanje = models.CharField(max_length=40, null=True)
+    nalog = models.ForeignKey(Nalog, on_delete=models.CASCADE)
+    predmet = models.ManyToManyField(Predmet)
 
 
 class RasporedNastave(models.Model):
@@ -64,7 +65,7 @@ class Termin(models.Model):
     pocetak = models.TimeField()
     zavrsetak = models.TimeField()
     dan = models.CharField(max_length=15)
-    tip_nastave = models.CharField(max_length=15)  # predavanja, vezbe, praktikum
+    tip_nastave = models.CharField(max_length=30)  # predavanja, vezbe, praktikum
     nastavnik = models.ForeignKey(Nastavnik, on_delete=models.DO_NOTHING)
     predmet = models.ForeignKey(Predmet, on_delete=models.DO_NOTHING)
     grupe = models.ManyToManyField(Grupa)
