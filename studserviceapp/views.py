@@ -261,3 +261,5 @@ def pregled_studenata_u_izbornoj_grupi(request, grupa):
         'studenti': studenti,
     }
     return render(request, "studserviceapp/pregledStudenataUIzbornojGrupi.html", context)
+def informacijeOStudentu(request,username):
+    return HttpResponse("AAA")
