@@ -5,13 +5,14 @@
     <title>Unos obavestenja</title>
 </head>
 <body>
-    <form action="{% url 'saveobavestenje' %}" method="post">
-        {% csrf_token %}
-        <label>Tekst obaveštenja</label><br>
-        <textarea rows="4" cols="50" name="tekst"></textarea><br><br>
-        <label>Obaveštenje postavio</label>
-        <input name="postavio" value="{{ nalog.username }}"readonly="readonly"/><br><br>
-        <input type="submit" value="Snimi">
-    </form>
+<form action="{% url 'saveobavestenje' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Tekst obaveštenja</label><br>
+    <textarea rows="4" cols="50" name="tekst"></textarea><br><br>
+    <label>Obaveštenje postavio</label>
+    <input name="postavio" value="{{ nalog.username }}" readonly="readonly"/><br><br>
+    <input name="fajl_obavestenje" type="file" id="fajl_obavestenje">
+    <input type="submit" value="Snimi">
+</form>
 </body>
 </html>

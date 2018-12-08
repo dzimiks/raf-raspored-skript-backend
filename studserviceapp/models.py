@@ -10,7 +10,7 @@ class Semestar(models.Model):
         return self.vrsta + " " + str(self.skolska_godina_pocetak) + "/" + str(self.skolska_godina_kraj)
 
 
-class Grupa(models.Model):  #
+class Grupa(models.Model):
     oznaka_grupe = models.CharField(max_length=10)
     smer = models.CharField(max_length=20, null=True)
     semestar = models.ForeignKey(Semestar, on_delete=models.DO_NOTHING)
@@ -133,4 +133,4 @@ class Obavestenje(models.Model):
     postavio = models.ForeignKey(Nalog, on_delete=models.DO_NOTHING)
     datum_postavljanja = models.DateTimeField()
     tekst = models.CharField(max_length=1000)
-    fajl = models.FileField()
+    fajl = models.FileField(upload_to='djangouploads')

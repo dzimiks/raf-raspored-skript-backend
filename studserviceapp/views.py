@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django import forms
 from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet, Nalog, Semestar, Student, \
     Obavestenje, IzborGrupe, IzbornaGrupa
 import datetime
+# TODO BUG ovde
+# from parser import import_timetable_from_csv
 
 
 def timetableforuser(request, username):
@@ -65,10 +68,12 @@ def unos_obavestenja_form(request, user):
 
 
 def save_obavestenje(request):
-    # tekst = request.POST['tekst']
-    # postavio = Nalog.objects.get(username=request.POST['postavio'])
-    # obavestenje = Obavestenje(tekst=tekst,postavio=postavio,datum_postavljanja=datetime.datetime.now())
-    # obavestenje.save()
+    tekst = request.POST['tekst']
+    postavio = Nalog.objects.get(username=request.POST['postavio'])
+    fajl_obavestenje = request.FILES('fajl_obavestenje')
+    obavestenje = Obavestenje(tekst=tekst, postavio=postavio, fajl=fajl_obavestenje,
+                              datum_postavljanja=datetime.datetime.now())
+    obavestenje.save()
     return HttpResponse("<h1>Uspesno sacuvano obavestenje</h1>")
 
 
@@ -130,7 +135,7 @@ def save_semestra(request):
         predmet = Predmet.objects.get(naziv=p)
         izbornaGrupa.predmeti.add(predmet)
 
-    return HttpResponse("<h1>Uspesno savcuvan semestar</h1>")
+    return HttpResponse("<h1>Uspesno sacuvan semestar</h1>")
 
 
 def izmena_izborne_grupa_form(request, oznakaGrupe, vrstaSemestra):
@@ -261,5 +266,32 @@ def pregled_studenata_u_izbornoj_grupi(request, grupa):
         'studenti': studenti,
     }
     return render(request, "studserviceapp/pregledStudenataUIzbornojGrupi.html", context)
-def informacijeOStudentu(request,username):
+
+
+def informacijeOStudentu(request, username):
     return HttpResponse("AAA")
+
+# class UploadRasporedaForm(forms.Form):
+#     semestar = forms.ChoiceField(label='Raspored za semestar', choices=[(s.id, str(s)) for s in Semestar.objects.all()])
+#     raspored_nastave = forms.FileField(label='Izaberite fajl')
+#
+#
+# def upload_raspored_nastave(request):
+#     if request.method == 'POST':
+#         form = UploadRasporedaForm(request.POST, request.FILES)
+#
+#         if form.is_valid():
+#             sem = Semestar.objects.get(id=request.POST['semestar'])
+#             # TODO
+#             raspored_file = request.FILES['rasporedCSV']
+#             # import_timetable_from_csv(raspored_file, sem)
+#             return HttpResponse('Uspesno ste uneli raspored')
+#     else:
+#         form = UploadRasporedaForm()
+#
+#     return render(request, 'studserviceapp/upload_form.html', {'form': form})
+#
+#
+# def prikaz_obavestenja(request):
+#     obavestenja = Obavestenje.objects.all()
+#     return render(request, 'studserviceapp/prikaz_obavestenja.html', {'obavestenja': obavestenja})

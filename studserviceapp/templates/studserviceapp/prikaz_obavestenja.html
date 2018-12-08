@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prikaz obavestenja</title>
+</head>
+<body>
+{% if obavestenja %}
+    <ul>
+        {% for o in obavestenja %}
+            <li>
+                {{ o.datum_postavljanja }} <br>
+                {{ o.tekst }} <br>
+                {% if o.fajl %}
+                    <a href="{{ o.fajl.url }}">Prikazi</a><br>
+                {% endif %}
+                Postavio: {{ o.postavio.username }}
+            </li>
+            <br><br>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+</body>
+</html>

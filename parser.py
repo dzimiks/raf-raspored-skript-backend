@@ -4,6 +4,8 @@ import csv
 import os
 import django
 import datetime
+import codecs
+
 from django.utils import timezone
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
@@ -23,7 +25,7 @@ raspored.semestar = semestar
 raspored.save()
 
 
-def import_timetable_from_csv(file_path):
+def import_timetable_from_csv(file_path, sem=None):
     """Parser za raspored časova, koji unosi podatke u bazu."""
     state = -2
     header = []
@@ -32,6 +34,7 @@ def import_timetable_from_csv(file_path):
 
     with open(file_path, encoding='utf-8') as csvfile:
         raspored_csv = csv.reader(csvfile, delimiter=';')
+        # raspored_csv = csv.reader(codecs.iterdecode(csvfile, 'utf-8'), delimiter=';')
 
         for red in raspored_csv:
             # Naslov rasporeda
@@ -142,10 +145,10 @@ def import_timetable_from_csv(file_path):
                         else:
                             group = Grupa()
                             group.oznaka_grupe = i
-                            group.semestar = semestar
+                            group.semestar = sem
                             group.save()
 
                         termin.grupe.add(group)
 
 
-import_timetable_from_csv("./testData/rasporedCSV.csv")
+import_timetable_from_csv("./testData/rasporedCSV.csv", semestar)

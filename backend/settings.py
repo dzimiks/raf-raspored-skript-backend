@@ -15,6 +15,9 @@ import django_heroku
 
 import environ
 
+MEDIA_ROOT = os.path.dirname(os.path.realpath(__file__))
+MEDIA_URL = '/media/'
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, True),
@@ -24,7 +27,6 @@ env = environ.Env(
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -36,7 +38,6 @@ SECRET_KEY = '4bqop$j$g+^x#1yb-rl25k_=+2vvepbkk=7k+m4gk3k)kfpj*d'
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -80,14 +81,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
     'default': env.db()
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -107,7 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -121,10 +119,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+STATIC_ROOT = os.path.dirname(os.path.realpath(__file__))
 STATIC_URL = '/static/'
 
 if "DATABASE_URL" in os.environ:
@@ -132,4 +130,3 @@ if "DATABASE_URL" in os.environ:
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
-

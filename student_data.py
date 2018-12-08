@@ -7,7 +7,7 @@ django.setup()
 from studserviceapp.models import Grupa, Nalog, Semestar, Student
 
 semestar = Semestar()
-semestar.vrsta = "neparni"
+semestar.vrsta = "parni"
 semestar.skolska_godina_pocetak = 2018
 semestar.skolska_godina_kraj = 2019
 semestar.save()
