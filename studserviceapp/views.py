@@ -267,10 +267,6 @@ def pregled_studenata_u_izbornoj_grupi(request, grupa):
     }
     return render(request, "studserviceapp/pregledStudenataUIzbornojGrupi.html", context)
 
-
-def informacijeOStudentu(request, username):
-    return HttpResponse("AAA")
-
 # class UploadRasporedaForm(forms.Form):
 #     semestar = forms.ChoiceField(label='Raspored za semestar', choices=[(s.id, str(s)) for s in Semestar.objects.all()])
 #     raspored_nastave = forms.FileField(label='Izaberite fajl')
@@ -295,3 +291,11 @@ def informacijeOStudentu(request, username):
 # def prikaz_obavestenja(request):
 #     obavestenja = Obavestenje.objects.all()
 #     return render(request, 'studserviceapp/prikaz_obavestenja.html', {'obavestenja': obavestenja})
+
+def informacijeOStudentu(request,username):
+    student = Student.objects.get(nalog__username=username)
+    context = {
+        'student':student,
+    }
+    return render(request,'studserviceapp/InformacijeOStudentu.html',context)
+
