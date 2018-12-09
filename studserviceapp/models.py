@@ -31,8 +31,6 @@ class Student(models.Model):
     nalog = models.ForeignKey(Nalog, on_delete=models.CASCADE)
     grupa = models.ManyToManyField(Grupa)
 
-
-
     def __str__(self):
         return self.ime + " " + self.prezime
 

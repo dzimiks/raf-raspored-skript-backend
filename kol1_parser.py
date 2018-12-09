@@ -1,5 +1,15 @@
-import csv
 import json
+import csv
+import os
+import django
+import datetime
+
+from django.utils import timezone
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
+django.setup()
+
+from studserviceapp.models import RasporedPolaganja, TerminPolaganja, Predmet, Nastavnik
 
 
 def parse(file_path):
@@ -16,11 +26,15 @@ def parse(file_path):
         days = list()
         dates = list()
         kol1 = dict()
-        element = dict()
         all = list()
 
         for row in k1_csv:
             row = list(filter(None, row))
+            nastavnik = Nastavnik()
+            predmet = Predmet()
+            raspored_polaganja = RasporedPolaganja()
+            termin_polaganja = TerminPolaganja()
+            element = dict()
 
             lesson = row[0]
             professor = row[1]
@@ -28,6 +42,8 @@ def parse(file_path):
             time = row[3]
             day = row[4]
             date = row[5]
+
+            print(professor)
 
             lessons.append(lesson)
             professors.append(professor)
