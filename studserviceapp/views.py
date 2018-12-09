@@ -4,6 +4,7 @@ from django import forms
 from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet, Nalog, Semestar, Student, \
     Obavestenje, IzborGrupe, IzbornaGrupa
 import datetime
+
 # TODO BUG ovde
 # from parser import import_timetable_from_csv
 
@@ -267,12 +268,13 @@ def pregled_studenata_u_izbornoj_grupi(request, grupa):
     }
     return render(request, "studserviceapp/pregledStudenataUIzbornojGrupi.html", context)
 
+
 # class UploadRasporedaForm(forms.Form):
 #     semestar = forms.ChoiceField(label='Raspored za semestar', choices=[(s.id, str(s)) for s in Semestar.objects.all()])
 #     raspored_nastave = forms.FileField(label='Izaberite fajl')
 #
 #
-# def upload_raspored_nastave(request):
+# def upload_raspored_nastave(request, username):
 #     if request.method == 'POST':
 #         form = UploadRasporedaForm(request.POST, request.FILES)
 #
@@ -286,16 +288,16 @@ def pregled_studenata_u_izbornoj_grupi(request, grupa):
 #         form = UploadRasporedaForm()
 #
 #     return render(request, 'studserviceapp/upload_form.html', {'form': form})
-#
-#
-# def prikaz_obavestenja(request):
-#     obavestenja = Obavestenje.objects.all()
-#     return render(request, 'studserviceapp/prikaz_obavestenja.html', {'obavestenja': obavestenja})
 
-def informacijeOStudentu(request,username):
+
+def prikaz_obavestenja(request):
+    obavestenja = Obavestenje.objects.all()
+    return render(request, 'studserviceapp/prikaz_obavestenja.html', {'obavestenja': obavestenja})
+
+
+def informacijeOStudentu(request, username):
     student = Student.objects.get(nalog__username=username)
     context = {
-        'student':student,
+        'student': student,
     }
-    return render(request,'studserviceapp/InformacijeOStudentu.html',context)
-
+    return render(request, 'studserviceapp/InformacijeOStudentu.html', context)

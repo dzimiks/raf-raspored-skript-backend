@@ -15,7 +15,7 @@ urlpatterns = [
     path('saveIzborGrupe',views.save_izbor_grupe, name = 'save_izbor_grupe'),
     path('pregledIzabranihGrupa',views.pregled_izabranih_grupa_form, name = "pregled_izabranih_grupa"),
     path('pregledStudenataIzborneGrupa/<str:grupa>',views.pregled_studenata_u_izbornoj_grupi, name="pregled_studenata_u_izbornim_grupama"),
-    path('informacijeOstudentu/<str:username>',views.informacijeOStudentu, name= "informacije_o_studentu")
-    # url(r'^saveobavestenja/',views.save_obavestenje,name="saveobavestenje")
-    # path('upload_form.html', views.upload_raspored_nastave, name='upload_form')
+    path('informacijeOstudentu/<str:username>',views.informacijeOStudentu, name= "informacije_o_studentu"),
+    url(r'^saveobavestenja/',views.save_obavestenje,name="saveobavestenje"),
+    # path('upload_form/<str:username>', views.upload_raspored_nastave, name='upload_form')
 ]
