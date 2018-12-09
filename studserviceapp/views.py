@@ -5,6 +5,7 @@ from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Pre
     Obavestenje, IzborGrupe, IzbornaGrupa
 import datetime
 
+
 # TODO BUG ovde
 # from parser import import_timetable_from_csv
 
@@ -269,25 +270,25 @@ def pregled_studenata_u_izbornoj_grupi(request, grupa):
     return render(request, "studserviceapp/pregledStudenataUIzbornojGrupi.html", context)
 
 
-# class UploadRasporedaForm(forms.Form):
-#     semestar = forms.ChoiceField(label='Raspored za semestar', choices=[(s.id, str(s)) for s in Semestar.objects.all()])
-#     raspored_nastave = forms.FileField(label='Izaberite fajl')
-#
-#
-# def upload_raspored_nastave(request, username):
-#     if request.method == 'POST':
-#         form = UploadRasporedaForm(request.POST, request.FILES)
-#
-#         if form.is_valid():
-#             sem = Semestar.objects.get(id=request.POST['semestar'])
-#             # TODO
-#             raspored_file = request.FILES['rasporedCSV']
-#             # import_timetable_from_csv(raspored_file, sem)
-#             return HttpResponse('Uspesno ste uneli raspored')
-#     else:
-#         form = UploadRasporedaForm()
-#
-#     return render(request, 'studserviceapp/upload_form.html', {'form': form})
+class UploadRasporedaForm(forms.Form):
+    semestar = forms.ChoiceField(label='Raspored za semestar', choices=[(s.id, str(s)) for s in Semestar.objects.all()])
+    raspored_nastave = forms.FileField(label='Izaberite fajl')
+
+
+def upload_raspored_nastave(request, username):
+    if request.method == 'POST':
+        form = UploadRasporedaForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            sem = Semestar.objects.get(id=request.POST['semestar'])
+            # TODO
+            raspored_file = request.FILES['rasporedCSV']
+            # import_timetable_from_csv(raspored_file, sem)
+            return HttpResponse('Uspesno ste uneli raspored')
+    else:
+        form = UploadRasporedaForm()
+
+    return render(request, 'studserviceapp/upload_form.html', {'form': form})
 
 
 def prikaz_obavestenja(request):
