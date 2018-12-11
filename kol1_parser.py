@@ -43,14 +43,46 @@ def parse(file_path):
             day = row[4]
             date = row[5]
 
-            print(professor)
-
             lessons.append(lesson)
             professors.append(professor)
             classrooms.append(classroom)
             times.append(time)
             days.append(day)
             dates.append(date)
+
+            print('Lesson:', lesson)
+            print('Professor:', professor)
+            print('Classroom:', classroom)
+            print('Time:', time)
+            print('Day:', day)
+            print('Date:', date)
+            print('Ime:', professor.split(',')[0].split(' ')[0])
+
+            if len(professor.split(',')[0].split(' ')[1:]) == 1:
+                print('Prezime:', professor.split(',')[0].split(' ')[1])
+            else:
+                print('BUG WITH LAST NAME')
+                print('Prezime:', professor.split(',')[0].split(' ')[1:])
+
+            print('Pre:', time.split('-')[0])
+            print('Posle:', time.split('-')[1])
+            print()
+
+            raspored_polaganja.ispitni_rok = 'None'
+            raspored_polaganja.kolokvijumska_nedelja = 'Prva'
+
+            predmet.naziv = lesson
+
+            nastavnik.ime = professor.split(',')[0].split(' ')[0]
+            nastavnik.prezime = professor.split(',')[0].split(' ')[1:]
+
+            termin_polaganja.ucionice = classroom
+            termin_polaganja.pocetak = time.split('-')[0]
+            termin_polaganja.zavrsetak = time.split('-')[1]
+            termin_polaganja.datum = date
+            termin_polaganja.raspored_polaganja = raspored_polaganja
+            termin_polaganja.predmet = predmet
+            termin_polaganja.nastavnik = nastavnik
 
             element[header[0]] = lesson
             element[header[1]] = professor
@@ -62,7 +94,7 @@ def parse(file_path):
             all.append(element)
 
         kol1['kol1'] = all
-        print(json.dumps(kol1, indent=4))
+        # print(json.dumps(kol1, indent=4))
 
 
 parse('./testData/kol1.csv')
