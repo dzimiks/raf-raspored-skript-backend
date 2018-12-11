@@ -97,6 +97,8 @@ def save_semestra(request):
     oznaka_semestra = request.POST['oznaka_semestra']
     kapacitet = request.POST['kapacitet']
     smer = request.POST['smer']
+    aktivnost = False
+
     if (request.POST['aktivnost'] == "aktivna"):
         aktivnost = True
     else:
@@ -157,6 +159,8 @@ def save_izmene_izborne_grupe(request):
     oznaka_grupe = request.POST['oznaka_grupe']
     oznaka_semestra = request.POST['oznaka_semestra']
     kapacitet = request.POST['kapacitet']
+    aktivnost = False
+
     if (request.POST['aktivnost'] == "aktivna"):
         aktivnost = True
     else:
@@ -268,6 +272,22 @@ def pregled_studenata_u_izbornoj_grupi(request, grupa):
         'studenti': studenti,
     }
     return render(request, "studserviceapp/pregledStudenataUIzbornojGrupi.html", context)
+
+
+def professor_grupe(request, username):
+    termin = Termin.objects.filter(nastavnik__nalog__username=username)
+    professor = Nastavnik.objects.filter(nalog__username=username)
+    termin = Termin.objects.all()
+
+    for t in termin:
+        print(t.grupe)
+
+    context = {
+        'professor': professor,
+        'termin': termin
+    }
+
+    return render(request, 'studserviceapp/professor_grupe.html', context)
 
 
 class UploadRasporedaForm(forms.Form):
