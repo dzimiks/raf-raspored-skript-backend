@@ -315,10 +315,22 @@ def prikaz_obavestenja(request):
     obavestenja = Obavestenje.objects.all()
     return render(request, 'studserviceapp/prikaz_obavestenja.html', {'obavestenja': obavestenja})
 
+class informacijeOStudentuForm(forms.Form):
+    slika = forms.ImageField(label='Izaberite sliku')
 
 def informacijeOStudentu(request, username):
     student = Student.objects.get(nalog__username=username)
+
+    if(request.method == 'POST'):
+        form = informacijeOStudentuForm(request.POST,request.FILES)
+        if(form.is_valid()):
+            student.slika = form.cleaned_data['slika']
+            student.save()
+            return HttpResponse("<h1>Uspesno sacuvana slika</h1>")
+    else:
+        form = informacijeOStudentuForm()
     context = {
         'student': student,
+        'form': form,
     }
-    return render(request, 'studserviceapp/InformacijeOStudentu.html', context)
+    return render(request, 'studserviceapp/informacije_o_studentu.html', context)

@@ -107,7 +107,7 @@ class IzborGrupe(models.Model):
     nacin_placanja = models.CharField(max_length=30)
     nepolozeni_predmeti = models.ManyToManyField(Predmet)
     student = models.ForeignKey(Student, on_delete=models.DO_NOTHING)
-    izabrana_grupa = models.ForeignKey(IzbornaGrupa, on_delete=models.CASCADE)
+    izabrana_grupa = models.ForeignKey(IzbornaGrupa, on_delete=models.CASCADE, default=None)
     upisan = models.BooleanField()  # na pocetku staviti false
 
 
