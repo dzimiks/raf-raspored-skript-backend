@@ -272,9 +272,11 @@
                                     <td>{{ t.nastavnik.nalog.username }}</td>
                                     <td>{{ t.tip_nastave }}</td>
                                     <td>
-                                        <a href="{% url 'spisak_po_grupi' t.grupe.all.0.oznaka_grupe %}">
-                                            {{ t.grupe.all.0.oznaka_grupe }}
-                                        </a>
+                                        {% for g in t.grupe.all %}
+                                            <a href="{% url 'spisak_po_grupi' g.oznaka_grupe %}">
+                                                {{ g.oznaka_grupe }}
+                                            </a>
+                                         {% endfor %}
                                     </td>
                                     <td>{{ t.dan }}</td>
                                     <td>{{ t.pocetak }}</td>

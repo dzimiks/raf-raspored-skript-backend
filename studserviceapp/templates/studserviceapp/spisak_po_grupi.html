@@ -225,12 +225,22 @@
                                     <td>{{ s.broj_indeksa }}</td>
                                     <td>{{ s.godina_upisa }}</td>
                                     <td>{{ s.smer }}</td>
-                                    <td>{{ s.nalog.username }}</td>
+                                    {% if s.slika %}
+                                        <td>
+                                            <a href="{% url 'slika_studenta' s.nalog.username %}">
+                                                {{ s.nalog.username }}
+                                            </a>
+                                        </td>
+                                    {% else %}
+                                        <td>{{ s.nalog.username }}</td>
+                                    {% endif %}
                                     <td>{{ s.grupa.all.0.oznaka_grupe }}</td>
                                     <td>{{ s.slika }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>
+                         {% else %}
+                            <p>Nema sudenata u grupi</p>
                         {% endif %}
                     </table>
                 </div>
