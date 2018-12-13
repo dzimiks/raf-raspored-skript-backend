@@ -21,14 +21,14 @@
         </thead>
         <tbody>
         <tr>
-            <td name="ime">{{ student.ime }}</td>
-            <td name="prezime">{{ student.prezime }}</td>
-            <td name="brojIndeksa">{{ student.broj_indeksa }}</td>
+            <td>{{ student.ime }}</td>
+            <td>{{ student.prezime }}</td>
+            <td>{{ student.broj_indeksa }}</td>
             <td>{{ student.godina_upisa }}</td>
             <td>{{ student.smer }}</td>
-            <td>{{ student.grupa }}</td>
+            <td>{{ student.grupa.all.0.oznaka_grupe }}</td>
             {% if student.slika %}
-                <td><img src={{ student.slika.url }}></td>
+                <td><img src="{{ student.slika.url }}" style="width: 300px;"></td>
             {% else %}
                 <td>{{ form }}</td>
             {% endif %}
