@@ -278,6 +278,10 @@ def professor_grupe(request, username):
     termin = Termin.objects.filter(nastavnik__nalog__username=username)
     professor = Nastavnik.objects.filter(nalog__username=username)
 
+    for t in termin:
+        t.pocetak = t.pocetak.strftime('%H:%M')
+        t.zavrsetak = t.zavrsetak.strftime('%H:%M')
+
     context = {
         'professor': professor,
         'termin': termin

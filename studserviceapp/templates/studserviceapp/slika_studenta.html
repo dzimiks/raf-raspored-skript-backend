@@ -12,6 +12,8 @@
     {% else %}
         <p>Nema slike studenta <strong>{{ student.all.0.ime }} {{ student.all.0.prezime }}</strong></p>
     {% endif %}
+{% else %}
+    <p>Nema podataka o studentu</p>
 {% endif %}
 </body>
 </html>
