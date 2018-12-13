@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'^saveobavestenja/', views.save_obavestenje, name="saveobavestenje"),
     path('prikaz_obavestenja', views.prikaz_obavestenja, name="prikaz_obavestenja"),
     path('upload_form/<str:username>', views.upload_raspored_nastave, name='upload_form'),
-    path('professor_grupe/<str:username>', views.professor_grupe, name='professor_grupe')
+    path('professor_grupe/<str:username>', views.professor_grupe, name='professor_grupe'),
+    path('spisak_po_grupi/<str:oznaka_grupe>', views.spisak_po_grupi, name='spisak_po_grupi')
 ]

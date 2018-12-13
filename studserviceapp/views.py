@@ -286,6 +286,11 @@ def professor_grupe(request, username):
     return render(request, 'studserviceapp/professor_grupe.html', context)
 
 
+def spisak_po_grupi(request, oznaka_grupe):
+    students = Student.objects.filter(grupa__oznaka_grupe=oznaka_grupe)
+    return render(request, 'studserviceapp/spisak_po_grupi.html', {'students': students})
+
+
 class UploadRasporedaForm(forms.Form):
     semestar = forms.ChoiceField(label='Raspored za semestar', choices=[(s.id, str(s)) for s in Semestar.objects.all()])
     raspored_nastave = forms.FileField(label='Izaberite fajl')
