@@ -29,5 +29,6 @@ urlpatterns = [
     path('prikaz_obavestenja', views.prikaz_obavestenja, name="prikaz_obavestenja"),
     path('upload_form/<str:username>', views.upload_raspored_nastave, name='upload_form'),
     path('professor_grupe/<str:username>', views.professor_grupe, name='professor_grupe'),
-    path('spisak_po_grupi/<str:oznaka_grupe>', views.spisak_po_grupi, name='spisak_po_grupi')
+    path('spisak_po_grupi/<str:oznaka_grupe>', views.spisak_po_grupi, name='spisak_po_grupi'),
+    path('slika_studenta/<str:username>', views.slika_studenta, name='slika_studenta')
 ]

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slika studenta</title>
+</head>
+<body>
+{% if student %}
+    {% if student.all.0.slika %}
+        <p>Slika studenta <strong>{{ student.all.0.ime }} {{ student.all.0.prezime }}</strong></p>
+        <img src="{{ student.all.0.slika.url }}" style="width: 300px; height: auto;">
+    {% else %}
+        <p>Nema slike studenta <strong>{{ student.all.0.ime }} {{ student.all.0.prezime }}</strong></p>
+    {% endif %}
+{% endif %}
+</body>
+</html>

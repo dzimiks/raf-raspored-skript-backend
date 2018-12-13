@@ -291,6 +291,11 @@ def spisak_po_grupi(request, oznaka_grupe):
     return render(request, 'studserviceapp/spisak_po_grupi.html', {'students': students})
 
 
+def slika_studenta(request, username):
+    student = Student.objects.filter(nalog__username=username)
+    return render(request, 'studserviceapp/slika_studenta.html', {'student': student})
+
+
 class UploadRasporedaForm(forms.Form):
     semestar = forms.ChoiceField(label='Raspored za semestar', choices=[(s.id, str(s)) for s in Semestar.objects.all()])
     raspored_nastave = forms.FileField(label='Izaberite fajl')
