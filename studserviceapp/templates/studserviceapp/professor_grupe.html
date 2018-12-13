@@ -245,40 +245,40 @@
                 <div class="card-content">
                     <table id="datatable" class="table table-striped table-bordered" style="width: 100%">
                         {% if termin %}
-                        <thead>
-                        <tr>
-                            <th>Ime</th>
-                            <th>Prezime</th>
-                            <!--<th>Zvanje</th>-->
-                            <th>Username</th>
-                            <th>Tip nastave</th>
-                            <!--<th>Grupa</th>-->
-                            <th>Dan</th>
-                            <th>Pocetak</th>
-                            <th>Kraj</th>
-                            <th>Predmet</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for n in termin %}
-                        <tr>
-                            <td>{{ n.nastavnik.ime }}</td>
-                            <td>
-                                <a href="{% url 'timetableforuser' n.nastavnik.nalog.username %}">
-                                    {{ n.nastavnik.prezime }}
-                                </a>
-                            </td>
-                            <!--<td>{{ n.nastavnik.zvanje }}</td>-->
-                            <td>{{ n.nastavnik.nalog.username }}</td>
-                            <td>{{ n.tip_nastave }}</td>
-                            <!--<td>{{ n.grupe }}</td>-->
-                            <td>{{ n.dan }}</td>
-                            <td>{{ n.pocetak }}</td>
-                            <td>{{ n.zavrsetak }}</td>
-                            <td>{{ n.predmet }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
+                            <thead>
+                            <tr>
+                                <th>Ime</th>
+                                <th>Prezime</th>
+                                <!--<th>Zvanje</th>-->
+                                <th>Username</th>
+                                <th>Tip nastave</th>
+                                <th>Grupa</th>
+                                <th>Dan</th>
+                                <th>Pocetak</th>
+                                <th>Kraj</th>
+                                <th>Predmet</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for n in termin %}
+                                <tr>
+                                    <td>{{ n.nastavnik.ime }}</td>
+                                    <td>
+                                        <a href="{% url 'timetableforuser' n.nastavnik.nalog.username %}">
+                                            {{ n.nastavnik.prezime }}
+                                        </a>
+                                    </td>
+                                    <!--<td>{{ n.nastavnik.zvanje }}</td>-->
+                                    <td>{{ n.nastavnik.nalog.username }}</td>
+                                    <td>{{ n.tip_nastave }}</td>
+                                    <td>{{ n.grupe.all.0.oznaka_grupe }}</td>
+                                    <td>{{ n.dan }}</td>
+                                    <td>{{ n.pocetak }}</td>
+                                    <td>{{ n.zavrsetak }}</td>
+                                    <td>{{ n.predmet }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
                         {% endif %}
                     </table>
                 </div>

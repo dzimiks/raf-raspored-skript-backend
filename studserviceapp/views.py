@@ -277,10 +277,6 @@ def pregled_studenata_u_izbornoj_grupi(request, grupa):
 def professor_grupe(request, username):
     termin = Termin.objects.filter(nastavnik__nalog__username=username)
     professor = Nastavnik.objects.filter(nalog__username=username)
-    termin = Termin.objects.all()
-
-    for t in termin:
-        print(t.grupe)
 
     context = {
         'professor': professor,
@@ -315,22 +311,27 @@ def prikaz_obavestenja(request):
     obavestenja = Obavestenje.objects.all()
     return render(request, 'studserviceapp/prikaz_obavestenja.html', {'obavestenja': obavestenja})
 
+
 class informacijeOStudentuForm(forms.Form):
     slika = forms.ImageField(label='Izaberite sliku')
+
 
 def informacijeOStudentu(request, username):
     student = Student.objects.get(nalog__username=username)
 
-    if(request.method == 'POST'):
-        form = informacijeOStudentuForm(request.POST,request.FILES)
-        if(form.is_valid()):
+    if (request.method == 'POST'):
+        form = informacijeOStudentuForm(request.POST, request.FILES)
+
+        if form.is_valid():
             student.slika = form.cleaned_data['slika']
             student.save()
             return HttpResponse("<h1>Uspesno sacuvana slika</h1>")
     else:
         form = informacijeOStudentuForm()
+
     context = {
         'student': student,
-        'form': form,
+        'form': form
     }
+
     return render(request, 'studserviceapp/informacije_o_studentu.html', context)

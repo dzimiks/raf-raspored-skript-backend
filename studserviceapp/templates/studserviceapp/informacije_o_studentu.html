@@ -5,38 +5,38 @@
     <title>Informacije o studentu</title>
 </head>
 <body>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Ime</th>
-                    <th>Prezime</th>
-                    <th>Broj indeksa</th>
-                    <th>Godina upisa</th>
-                    <th>Smer</th>
-                    <th>Grupa</th>
-                    <th>Slika</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td name="ime">{{ student.ime }}</td>
-                    <td name="prezime">{{ student.prezime }}</td>
-                    <td name="brojIndeksa">{{ student.broj_indeksa }}</td>
-                    <td>{{ student.godina_upisa }}</td>
-                    <td>{{ student.smer }}</td>
-                    <td>{{ student.grupa }}</td>
-                    {% if student.slika %}
-                        <td><img src={{ student.slika.url }} ></td>
-                    {% else %}
-                        <td>{{ form }}</td>
-                    {% endif %}
-                    <td><input type="submit" value="Unesi"/></td>
-                </tr>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        <thead>
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Broj indeksa</th>
+            <th>Godina upisa</th>
+            <th>Smer</th>
+            <th>Grupa</th>
+            <th>Slika</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td name="ime">{{ student.ime }}</td>
+            <td name="prezime">{{ student.prezime }}</td>
+            <td name="brojIndeksa">{{ student.broj_indeksa }}</td>
+            <td>{{ student.godina_upisa }}</td>
+            <td>{{ student.smer }}</td>
+            <td>{{ student.grupa }}</td>
+            {% if student.slika %}
+                <td><img src={{ student.slika.url }}></td>
+            {% else %}
+                <td>{{ form }}</td>
+            {% endif %}
+            <td><input type="submit" value="Unesi"/></td>
+        </tr>
 
-            </tbody>
-        </table>
-    </form>
+        </tbody>
+    </table>
+</form>
 </body>
 </html>
