@@ -4,6 +4,7 @@ from django import forms
 from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet, Nalog, Semestar, Student, \
     Obavestenje, IzborGrupe, IzbornaGrupa
 import datetime
+import kol1_parser
 
 
 # TODO BUG ovde
@@ -302,6 +303,7 @@ def slika_studenta(request, username):
 
 class UploadRasporedaForm(forms.Form):
     semestar = forms.ChoiceField(label='Raspored za semestar', choices=[(s.id, str(s)) for s in Semestar.objects.all()])
+    kolokvijumska_nedelja = forms.ChoiceField(label = "Kolokvijumska nedelja:",choices=(('1','prva'),('2','druga')))
     raspored_nastave = forms.FileField(label='Izaberite fajl')
 
 
@@ -311,14 +313,16 @@ def upload_raspored_nastave(request, username):
 
         if form.is_valid():
             sem = Semestar.objects.get(id=request.POST['semestar'])
+            kolokvijumska_nedelja = request.POST['kolokvijumska_nedelja']
             # TODO
-            raspored_file = request.FILES['rasporedCSV']
+            raspored_file = request.FILES['raspored_nastave']
+            kol1_parser.parse(raspored_file,sem,kolokvijumska_nedelja)
             # import_timetable_from_csv(raspored_file, sem)
             return HttpResponse('Uspesno ste uneli raspored')
     else:
         form = UploadRasporedaForm()
 
-    return render(request, 'studserviceapp/upload_form.html', {'form': form})
+    return render(request, 'studserviceapp/upload_rasporeda.html', {'form': form})
 
 
 def prikaz_obavestenja(request):
