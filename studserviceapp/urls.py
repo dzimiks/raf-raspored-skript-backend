@@ -30,5 +30,7 @@ urlpatterns = [
     path('upload_rasporeda/<str:username>', views.upload_raspored_nastave, name='upload_form'),
     path('professor_grupe/<str:username>', views.professor_grupe, name='professor_grupe'),
     path('spisak_po_grupi/<str:oznaka_grupe>', views.spisak_po_grupi, name='spisak_po_grupi'),
-    path('slika_studenta/<str:username>', views.slika_studenta, name='slika_studenta')
+    path('slika_studenta/<str:username>', views.slika_studenta, name='slika_studenta'),
+    path('slanjeMaila/<str:username>', views.slanjeMaila, name='slanje_maila'),
+    path('posaljiMail',views.posaljiMail, name='posalji_mail')
 ]

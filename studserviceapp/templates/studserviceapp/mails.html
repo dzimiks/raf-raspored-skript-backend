@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slanje e-maila</title>
+</head>
+<body>
+    <form action="{% url 'posalji_mail' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>E-mail salje:</label><br>
+    <input name="posiljaoc" value="{{ nalog.username }} @raf.rs" readonly="readonly"/><br><br>
+    <textarea rows="4" cols="50" name="tekst"></textarea><br><br>
+    <select multiple name="predmeti" size="4">
+        {% for p in predmeti %}
+            <option value="{{ p.naziv }}">{{ p.naziv }}</option>
+        {% endfor %}
+    </select>
+    <select multiple name="grupe" size="4">
+        {% for t in termini %}
+            {% for g in t.grupe.all %}
+                <option value="{{ g.oznaka_grupe }}">{{ g.oznaka_grupe }}</option>
+            {% endfor %}
+        {% endfor %}
+    </select>
+    <input name="fajl_attachment" type="file" id="fajl_attachment">
+    <input type="submit" value="Posalji">
+</form>
+</body>
+</html>

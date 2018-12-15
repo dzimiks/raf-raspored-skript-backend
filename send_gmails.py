@@ -15,7 +15,7 @@ import email.encoders
 SCOPES = 'https://www.googleapis.com/auth/gmail.send'
 CLIENT_SECRET_FILE = 'credentials.json'
 APPLICATION_NAME = 'RAF Gmail API Python'
-email_address = "vpaunovic16@raf.rs"
+email_address = "mmitic16@raf.rs"
 
 
 def get_credentials():

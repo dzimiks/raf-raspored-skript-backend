@@ -353,3 +353,32 @@ def informacijeOStudentu(request, username):
     }
 
     return render(request, 'studserviceapp/informacije_o_studentu.html', context)
+
+# class mailForm(forms.form):
+#     subject = forms.TextInput(label="Subject")
+#     tekst = forms.Textarea()
+
+def slanjeMaila(request,username):
+    nalog = Nalog.objects.get(username = username)
+
+    if(nalog.uloga == 'nastavnik'):
+        nastavnik = Nastavnik.objects.get(nalog=nalog)
+        predmeti = Predmet.objects.filter(nastavnik=nastavnik)
+        termini = Termin.objects.filter(nastavnik__nalog__username=nalog.username)
+
+        context ={
+            'nastavnik':nastavnik,
+            'predmeti':predmeti,
+            'termini':termini,
+            'nalog':nalog,
+        }
+        return render(request,'studserviceapp/mails.html',context)
+
+
+    # elif nalog.uloga == 'sekretar':
+
+
+def posaljiMail(request):
+    # ako ima file onda create_message_with_attachment
+    # ako nema onda create_message
+    return HttpResponse("<h1>Mail uspesno poslat</h1>")
