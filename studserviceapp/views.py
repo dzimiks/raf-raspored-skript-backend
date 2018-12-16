@@ -420,12 +420,12 @@ def posaljiMail(request):
                     studenti_kojima_se_salje_mail = Student.objects.filter(grupa__oznaka_grupe=g.oznaka_grupe)
                     for s in studenti_kojima_se_salje_mail:
                         mail_studenta = (s.nalog.username + "@raf.rs")
-                        # send_gmails.create_message_and_send("vpaunovic@raf.rs", mail_studenta, subject, tekst,
-                        #                                     r'Hi<br/>Html <b>hello</b><br><br>', None)
                         send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
                                                             subject=subject, message_text_plain=tekst,
                                                             message_text_html=r'Koji je ovo HTML bre!?',
                                                             attached_file=fajl_obavestenje)
+    elif postavio.uloga == 'sekretar' or postavio.uloga == 'administrator':
+        print(postavio.uloga)
 
         # grupe1=[]
         # grupe2=[]

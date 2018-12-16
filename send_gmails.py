@@ -363,7 +363,7 @@ def send_Message_without_attachement(service, user_id, body, message_text_plain)
         # return body
     except errors.HttpError as error:
         # print(f'An error occurred: {error}')
-        print("An error occured" + error)
+        print("An error occured", error)
 
 
 def send_Message_with_attachement(service, user_id, message_with_attachment, message_text_plain, attached_file):
@@ -385,7 +385,7 @@ def send_Message_with_attachement(service, user_id, message_with_attachment, mes
         # return message_sent
     except errors.HttpError as error:
         # print(f'An error occurred: {error}')
-        print("An error occured" + error)
+        print("An error occured", error)
 
 
 def main():
@@ -393,7 +393,7 @@ def main():
     sender = "vpaunovic16@raf.rs"
     subject = "[Skrt jezici] Test Opet"
     message_text_html = r'Hi<br/>Html <b>hello</b><br><br>'
-    message_text_plain = "Duckaj ga papak!!!"
+    message_text_plain = "Text text text!!!"
     attached_file = '/Users/dzimiks/Desktop/projects/raf-raspored-skript/backend/backend/djangouploads/vanja-paunovic.jpg'
     create_message_and_send(sender, to, subject, message_text_plain, message_text_html, attached_file)
 
