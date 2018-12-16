@@ -391,26 +391,26 @@ def posaljiMail(request):
     tekst = request.POST['tekst']
     mail = request.POST['posiljaoc']
     username = mail[:-7]
+    postavio = Nalog.objects.get(username=username)
 
-    # fajl_obavestenje = request.FILES['fajl_attachment']
+    data = request.FILES.get('fajl_attachment', False)
+    path = None
+    fajl_obavestenje = None
 
-    data = request.FILES['fajl_attachment']
-    print(data.__dict__)
+    if data:
+        path = default_storage.save('tmp/' + str(data.name), ContentFile(data.read()))
+        fajl_obavestenje = os.path.join(settings.MEDIA_ROOT, path)
 
-    path = default_storage.save('tmp/slika.png', ContentFile(data.read()))
-    fajl_obavestenje = os.path.join(settings.MEDIA_ROOT, path)
-
-    # print(fajl_obavestenje)
-    print('==========')
+    print('PATH:', path)
     print('SUBJECT:', subject)
     print('MAIL:', mail)
+    print('USERNAME:', username)
     print('TEKST:', tekst)
-    print('Fajl:', fajl_obavestenje)
 
-    postavio = Nalog.objects.get(username=username)
-    if (postavio.uloga == 'nastavnik'):
+    if postavio.uloga == 'nastavnik':
         predmeti = request.POST.getlist('predmeti')
         grupe = request.POST.getlist('grupe')
+
         for p in predmeti:
             termini = Termin.objects.filter(nastavnik__nalog__username=postavio.username, predmet__naziv=p)
             for t in termini:
@@ -426,7 +426,6 @@ def posaljiMail(request):
                                                             subject=subject, message_text_plain=tekst,
                                                             message_text_html=r'Koji je ovo HTML bre!?',
                                                             attached_file=fajl_obavestenje)
-                        # attached_file='/Users/dzimiks/Desktop/projects/raf-raspored-skript/backend/backend/djangouploads/vanja-paunovic.jpg')
 
         # grupe1=[]
         # grupe2=[]

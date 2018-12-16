@@ -224,15 +224,17 @@ def create_message_and_send(sender, to, subject, message_text_plain, message_tex
 
     service = discovery.build('gmail', 'v1', http=http)
 
-    ## without attachment
-    # message_without_attachment = create_message_without_attachment(sender, to, subject, message_text_html,
-    #                                                                message_text_plain)
-    # send_Message_without_attachement(service, "me", message_without_attachment, message_text_plain)
-
-    ## with attachment
-    message_with_attachment = create_Message_with_attachment(sender, to, subject, message_text_plain, message_text_html,
-                                                             attached_file)
-    send_Message_with_attachement(service, "me", message_with_attachment, message_text_plain, attached_file)
+    if attached_file == None:
+        ## without attachment
+        message_without_attachment = create_message_without_attachment(sender, to, subject, message_text_html,
+                                                                       message_text_plain)
+        send_Message_without_attachement(service, "me", message_without_attachment, message_text_plain)
+    else:
+        ## with attachment
+        message_with_attachment = create_Message_with_attachment(sender, to, subject, message_text_plain,
+                                                                 message_text_html,
+                                                                 attached_file)
+        send_Message_with_attachement(service, "me", message_with_attachment, message_text_plain, attached_file)
 
 
 def create_message_without_attachment(sender, to, subject, message_text_html, message_text_plain):
