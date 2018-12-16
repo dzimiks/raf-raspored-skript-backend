@@ -7,6 +7,7 @@ import datetime
 import kol1_parser
 import send_gmails
 
+
 # TODO BUG ovde
 # from parser import import_timetable_from_csv
 
@@ -382,26 +383,36 @@ def posaljiMail(request):
     # ako ima file onda create_message_with_attachment
     # ako nema onda create_message
     # return HttpResponse("<h1>Mail uspesno poslat</h1>")
-    subject =request.POST['subject']
+    subject = request.POST['subject']
     tekst = request.POST['tekst']
     mail = request.POST['posiljaoc']
     username = mail[:-7]
+    # fajl_obavestenje = request.FILES('fajl_attachment')
+
+    print('SUBJECT:', subject)
+    print('MAIL:', mail)
+    print('TEKST:', tekst)
+    # print('Fajl:', fajl_obavestenje)
 
     postavio = Nalog.objects.get(username=username)
-    if(postavio.uloga == 'nastavnik'):
+    if (postavio.uloga == 'nastavnik'):
         predmeti = request.POST.getlist('predmeti')
         grupe = request.POST.getlist('grupe')
         for p in predmeti:
-            termini = Termin.objects.filter(nastavnik__nalog__username=postavio.username,predmet__naziv=p)
+            termini = Termin.objects.filter(nastavnik__nalog__username=postavio.username, predmet__naziv=p)
             for t in termini:
                 grupe1 = t.grupe.all()
                 for g in grupe1:
                     print(g.oznaka_grupe)
                     studenti_kojima_se_salje_mail = Student.objects.filter(grupa__oznaka_grupe=g.oznaka_grupe)
                     for s in studenti_kojima_se_salje_mail:
-                        mail_studenta = (s.nalog.username+"@raf.rs")
-                        send_gmails.create_message_and_send("mmitic16@raf.rs",mail_studenta,subject,tekst,r'Hi<br/>Html <b>hello</b><br><br>',None)
-
+                        mail_studenta = (s.nalog.username + "@raf.rs")
+                        # send_gmails.create_message_and_send("vpaunovic@raf.rs", mail_studenta, subject, tekst,
+                        #                                     r'Hi<br/>Html <b>hello</b><br><br>', None)
+                        send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
+                                                            subject=subject, message_text_plain=tekst,
+                                                            message_text_html=r'Koji je ovo HTML bre!?',
+                                                            attached_file='/Users/dzimiks/Desktop/projects/raf-raspored-skript/backend/backend/djangouploads/vanja-paunovic.jpg')
 
         # grupe1=[]
         # grupe2=[]
@@ -415,8 +426,6 @@ def posaljiMail(request):
         #     print(g2.oznaka_grupe)
         # for g in grupe:
         #     print(g)
-
-    # fajl_obavestenje = request.FILES('fajl_attachment')
 
     print(mail)
     print(tekst)

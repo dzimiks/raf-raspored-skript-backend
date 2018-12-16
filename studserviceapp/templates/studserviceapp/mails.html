@@ -5,7 +5,7 @@
     <title>Slanje e-maila</title>
 </head>
 <body>
-    <form action="{% url 'posalji_mail' %}" method="post" enctype="multipart/form-data">
+<form action="{% url 'posalji_mail' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <label>E-mail salje:</label><br>
     <input name="posiljaoc" value="{{ nalog.username }}@raf.rs" readonly="readonly"/><br><br>
@@ -25,7 +25,7 @@
             {% endfor %}
         {% endfor %}
     </select>
-    <input name="fajl_attachment" type="file" id="fajl_attachment">
+    <input name="fajl_attachment" type="file">
     <input type="submit" value="Posalji">
 </form>
 </body>
