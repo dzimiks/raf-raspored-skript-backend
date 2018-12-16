@@ -6,6 +6,18 @@ django.setup()
 
 from studserviceapp.models import Grupa, Nalog, Semestar, Student
 
+mara = Nalog()
+mara.username = 'marbutina'
+mara.lozinka = 'lozinka'
+mara.uloga = 'sekretar'
+mara.save()
+
+paxy = Nalog()
+paxy.username = 'paxy'
+paxy.lozinka = 'lozinka'
+paxy.uloga = 'administrator'
+paxy.save()
+
 semestar = Semestar()
 semestar.vrsta = "parni"
 semestar.skolska_godina_pocetak = 2018

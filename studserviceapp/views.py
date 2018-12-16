@@ -364,10 +364,26 @@ def informacijeOStudentu(request, username):
 #     subject = forms.TextInput(label="Subject")
 #     tekst = forms.Textarea()
 
+class EmailCombo(forms.Form):
+    semestar = forms.ChoiceField(label='Raspored za semestar', choices=[(s.id, str(s)) for s in Semestar.objects.all()])
+    # students = forms.ChoiceField(label='Svi studenti', choices=[(str(s), str(s)) for s in Student.objects.all()])
+    send = forms.ChoiceField(label='Poslati', choices=(('svi', 'svi'),
+                                                       ('Smer',
+                                                        (('RN', 'RN'), ('RM', 'RM'), ('Strukovne', 'Strukovne'),
+                                                         ('Dizajn', 'Dizajn'))),
+                                                       ('Predmeti', [(str(p), str(p)) for p in Predmet.objects.all()]),
+                                                       ('Grupe', [(str(g.oznaka_grupe), str(g.oznaka_grupe)) for g in
+                                                                  Grupa.objects.all()])))
+
+
 def slanjeMaila(request, username):
     nalog = Nalog.objects.get(username=username)
+    semestar = None
+    nastavnik = None
+    predmeti = None
+    termini = None
 
-    if (nalog.uloga == 'nastavnik'):
+    if nalog.uloga == 'nastavnik':
         nastavnik = Nastavnik.objects.get(nalog=nalog)
         predmeti = Predmet.objects.filter(nastavnik=nastavnik)
         termini = Termin.objects.filter(nastavnik__nalog__username=nalog.username)
@@ -376,8 +392,35 @@ def slanjeMaila(request, username):
             'nastavnik': nastavnik,
             'predmeti': predmeti,
             'termini': termini,
-            'nalog': nalog,
+            'nalog': nalog
         }
+
+        return render(request, 'studserviceapp/mails.html', context)
+    elif nalog.uloga == 'sekretar' or nalog.uloga == 'administrator':
+        if request.method == 'POST':
+            form = EmailCombo(request.POST)
+
+            if form.is_valid():
+                semestar = Semestar.objects.get(id=request.POST['semestar'])
+                # send = request.POST['send']
+
+                # print('SEND SELECTED:', send)
+
+                nastavnik = Nastavnik.objects.all()
+                predmeti = Predmet.objects.all()
+                termini = Termin.objects.all()
+        else:
+            form = EmailCombo()
+
+        context = {
+            'semestar': semestar,
+            'nastavnik': nastavnik,
+            'predmeti': predmeti,
+            'termini': termini,
+            'nalog': nalog,
+            'form': form
+        }
+
         return render(request, 'studserviceapp/mails.html', context)
 
     # elif nalog.uloga == 'sekretar':
@@ -387,10 +430,12 @@ def posaljiMail(request):
     # ako ima file onda create_message_with_attachment
     # ako nema onda create_message
     # return HttpResponse("<h1>Mail uspesno poslat</h1>")
+
     subject = request.POST['subject']
     tekst = request.POST['tekst']
     mail = request.POST['posiljaoc']
-    username = mail[:-7]
+    # username = mail[:-7]
+    username = mail.split('@')[0]
     postavio = Nalog.objects.get(username=username)
 
     data = request.FILES.get('fajl_attachment', False)
@@ -411,19 +456,39 @@ def posaljiMail(request):
         predmeti = request.POST.getlist('predmeti')
         grupe = request.POST.getlist('grupe')
 
-        for p in predmeti:
-            termini = Termin.objects.filter(nastavnik__nalog__username=postavio.username, predmet__naziv=p)
-            for t in termini:
-                grupe1 = t.grupe.all()
-                for g in grupe1:
-                    print(g.oznaka_grupe)
-                    studenti_kojima_se_salje_mail = Student.objects.filter(grupa__oznaka_grupe=g.oznaka_grupe)
-                    for s in studenti_kojima_se_salje_mail:
-                        mail_studenta = (s.nalog.username + "@raf.rs")
-                        send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
-                                                            subject=subject, message_text_plain=tekst,
-                                                            message_text_html=r'Koji je ovo HTML bre!?',
-                                                            attached_file=fajl_obavestenje)
+        print('PREDMETI:', predmeti)
+        print('GRUPE:', grupe)
+
+        if len(predmeti) > 0:
+            for p in predmeti:
+                termini = Termin.objects.filter(nastavnik__nalog__username=postavio.username, predmet__naziv=p)
+                for t in termini:
+                    grupe1 = t.grupe.all()
+                    for g in grupe1:
+                        print(g.oznaka_grupe)
+                        studenti_kojima_se_salje_mail = Student.objects.filter(grupa__oznaka_grupe=g.oznaka_grupe)
+                        mail_studenta = 'vpaunovic16@raf.rs'
+                        # send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
+                        #                                     subject=subject, message_text_plain=tekst,
+                        #                                     message_text_html='',
+                        #                                     attached_file=fajl_obavestenje)
+                        # for s in studenti_kojima_se_salje_mail:
+                        #     mail_studenta = (s.nalog.username + "@raf.rs")
+                        #     send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
+                        #                                         subject=subject, message_text_plain=tekst,
+                        #                                         message_text_html=r'Koji je ovo HTML bre!?',
+                        #                                         attached_file=fajl_obavestenje)
+        elif len(grupe) > 0:
+            for g in grupe:
+                print(g.oznaka_grupe)
+                studenti_kojima_se_salje_mail = Student.objects.filter(grupa__oznaka_grupe=g.oznaka_grupe)
+
+                for s in studenti_kojima_se_salje_mail:
+                    mail_studenta = (s.nalog.username + "@raf.rs")
+                    send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
+                                                        subject=subject, message_text_plain=tekst,
+                                                        message_text_html=r'Koji je ovo HTML bre!?',
+                                                        attached_file=fajl_obavestenje)
     elif postavio.uloga == 'sekretar' or postavio.uloga == 'administrator':
         print(postavio.uloga)
 
@@ -439,8 +504,5 @@ def posaljiMail(request):
         #     print(g2.oznaka_grupe)
         # for g in grupe:
         #     print(g)
-
-    print(mail)
-    print(tekst)
 
     return HttpResponse("<h1>Uspesno sacuvano obavestenje</h1>")

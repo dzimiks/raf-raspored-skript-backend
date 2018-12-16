@@ -13,19 +13,23 @@
     <input name="subject"><br>
     <label>Tekst maila:</label><br>
     <textarea rows="4" cols="50" name="tekst"></textarea><br><br>
-    <select multiple name="predmeti" size="4">
-        {% for p in predmeti %}
-            <option value="{{ p.naziv }}">{{ p.naziv }}</option>
-        {% endfor %}
-    </select>
-    <select multiple name="grupe" size="4">
-        {% for t in termini %}
-            {% for g in t.grupe.all %}
-                <option value="{{ g.oznaka_grupe }}">{{ g.oznaka_grupe }}</option>
+    {% if nalog.uloga == 'sekretar' or nalog.uloga == 'administrator' %}
+        {{ form }}
+    {% else %}
+        <select multiple name="predmeti" size="5">
+            {% for p in predmeti %}
+                <option value="{{ p.naziv }}">{{ p.naziv }}</option>
             {% endfor %}
-        {% endfor %}
-    </select>
-    <input name="fajl_attachment" type="file" id="fajl_attachment">
+        </select>
+        <select multiple name="grupe" size="5">
+            {% for t in termini %}
+                {% for g in t.grupe.all %}
+                    <option value="{{ g.oznaka_grupe }}">{{ g.oznaka_grupe }}</option>
+                {% endfor %}
+            {% endfor %}
+        </select>
+        <input name="fajl_attachment" type="file" id="fajl_attachment">
+    {% endif %}
     <input type="submit" value="Posalji">
 </form>
 </body>
