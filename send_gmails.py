@@ -356,10 +356,12 @@ def send_Message_without_attachement(service, user_id, body, message_text_plain)
         message_sent = (service.users().messages().send(userId=user_id, body=body).execute())
         message_id = message_sent['id']
         # print(attached_file)
-        print(f'Message sent (without attachment) \n\n Message Id: {message_id}\n\n Message:\n\n {message_text_plain}')
+        # print(f'Message sent (without attachment) \n\n Message Id: {message_id}\n\n Message:\n\n {message_text_plain}')
+        print("Message sent without attachment")
         # return body
     except errors.HttpError as error:
-        print(f'An error occurred: {error}')
+        # print(f'An error occurred: {error}')
+        print("An error occured" + error)
 
 
 def send_Message_with_attachement(service, user_id, message_with_attachment, message_text_plain, attached_file):
@@ -380,8 +382,8 @@ def send_Message_with_attachement(service, user_id, message_with_attachment, mes
 
         # return message_sent
     except errors.HttpError as error:
-        print(f'An error occurred: {error}')
-
+        # print(f'An error occurred: {error}')
+        print("An error occured" + error)
 
 def main():
     to = "mmitic16@raf.rs"

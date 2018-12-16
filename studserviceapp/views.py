@@ -5,7 +5,7 @@ from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Pre
     Obavestenje, IzborGrupe, IzbornaGrupa
 import datetime
 import kol1_parser
-
+import send_gmails
 
 # TODO BUG ovde
 # from parser import import_timetable_from_csv
@@ -381,4 +381,44 @@ def slanjeMaila(request, username):
 def posaljiMail(request):
     # ako ima file onda create_message_with_attachment
     # ako nema onda create_message
-    return HttpResponse("<h1>Mail uspesno poslat</h1>")
+    # return HttpResponse("<h1>Mail uspesno poslat</h1>")
+    subject =request.POST['subject']
+    tekst = request.POST['tekst']
+    mail = request.POST['posiljaoc']
+    username = mail[:-7]
+
+    postavio = Nalog.objects.get(username=username)
+    if(postavio.uloga == 'nastavnik'):
+        predmeti = request.POST.getlist('predmeti')
+        grupe = request.POST.getlist('grupe')
+        for p in predmeti:
+            termini = Termin.objects.filter(nastavnik__nalog__username=postavio.username,predmet__naziv=p)
+            for t in termini:
+                grupe1 = t.grupe.all()
+                for g in grupe1:
+                    print(g.oznaka_grupe)
+                    studenti_kojima_se_salje_mail = Student.objects.filter(grupa__oznaka_grupe=g.oznaka_grupe)
+                    for s in studenti_kojima_se_salje_mail:
+                        mail_studenta = (s.nalog.username+"@raf.rs")
+                        send_gmails.create_message_and_send("mmitic16@raf.rs",mail_studenta,subject,tekst,r'Hi<br/>Html <b>hello</b><br><br>',None)
+
+
+        # grupe1=[]
+        # grupe2=[]
+        # for p in predmeti:
+        #     termin = Termin.objects.filter(predmet__naziv=p)
+        #     for t in termin:
+        #         grupe1.append(t.grupe.all())
+        # for g1 in grupe1:
+        #     grupe2.append(g1.all())
+        # for g2 in grupe2:
+        #     print(g2.oznaka_grupe)
+        # for g in grupe:
+        #     print(g)
+
+    # fajl_obavestenje = request.FILES('fajl_attachment')
+
+    print(mail)
+    print(tekst)
+
+    return HttpResponse("<h1>Uspesno sacuvano obavestenje</h1>")

@@ -8,7 +8,10 @@
     <form action="{% url 'posalji_mail' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <label>E-mail salje:</label><br>
-    <input name="posiljaoc" value="{{ nalog.username }} @raf.rs" readonly="readonly"/><br><br>
+    <input name="posiljaoc" value="{{ nalog.username }}@raf.rs" readonly="readonly"/><br><br>
+    <label>Subject:</label><br>
+    <input name="subject"><br>
+    <label>Tekst maila:</label><br>
     <textarea rows="4" cols="50" name="tekst"></textarea><br><br>
     <select multiple name="predmeti" size="4">
         {% for p in predmeti %}
