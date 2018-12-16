@@ -303,7 +303,7 @@ def slika_studenta(request, username):
 
 class UploadRasporedaForm(forms.Form):
     semestar = forms.ChoiceField(label='Raspored za semestar', choices=[(s.id, str(s)) for s in Semestar.objects.all()])
-    kolokvijumska_nedelja = forms.ChoiceField(label = "Kolokvijumska nedelja:",choices=(('1','prva'),('2','druga')))
+    kolokvijumska_nedelja = forms.ChoiceField(label="Kolokvijumska nedelja:", choices=(('1', 'prva'), ('2', 'druga')))
     raspored_nastave = forms.FileField(label='Izaberite fajl')
 
 
@@ -316,7 +316,7 @@ def upload_raspored_nastave(request, username):
             kolokvijumska_nedelja = request.POST['kolokvijumska_nedelja']
             # TODO
             raspored_file = request.FILES['raspored_nastave']
-            kol1_parser.parse(raspored_file,sem,kolokvijumska_nedelja)
+            kol1_parser.parse(raspored_file, sem, kolokvijumska_nedelja)
             # import_timetable_from_csv(raspored_file, sem)
             return HttpResponse('Uspesno ste uneli raspored')
     else:
@@ -354,26 +354,26 @@ def informacijeOStudentu(request, username):
 
     return render(request, 'studserviceapp/informacije_o_studentu.html', context)
 
+
 # class mailForm(forms.form):
 #     subject = forms.TextInput(label="Subject")
 #     tekst = forms.Textarea()
 
-def slanjeMaila(request,username):
-    nalog = Nalog.objects.get(username = username)
+def slanjeMaila(request, username):
+    nalog = Nalog.objects.get(username=username)
 
-    if(nalog.uloga == 'nastavnik'):
+    if (nalog.uloga == 'nastavnik'):
         nastavnik = Nastavnik.objects.get(nalog=nalog)
         predmeti = Predmet.objects.filter(nastavnik=nastavnik)
         termini = Termin.objects.filter(nastavnik__nalog__username=nalog.username)
 
-        context ={
-            'nastavnik':nastavnik,
-            'predmeti':predmeti,
-            'termini':termini,
-            'nalog':nalog,
+        context = {
+            'nastavnik': nastavnik,
+            'predmeti': predmeti,
+            'termini': termini,
+            'nalog': nalog,
         }
-        return render(request,'studserviceapp/mails.html',context)
-
+        return render(request, 'studserviceapp/mails.html', context)
 
     # elif nalog.uloga == 'sekretar':
 
