@@ -6,6 +6,10 @@ from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Pre
 import datetime
 import kol1_parser
 import send_gmails
+import os
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from django.conf import settings
 
 
 # TODO BUG ovde
@@ -387,12 +391,21 @@ def posaljiMail(request):
     tekst = request.POST['tekst']
     mail = request.POST['posiljaoc']
     username = mail[:-7]
-    # fajl_obavestenje = request.FILES('fajl_attachment')
 
+    # fajl_obavestenje = request.FILES['fajl_attachment']
+
+    data = request.FILES['fajl_attachment']
+    print(data.__dict__)
+
+    path = default_storage.save('tmp/slika.png', ContentFile(data.read()))
+    fajl_obavestenje = os.path.join(settings.MEDIA_ROOT, path)
+
+    # print(fajl_obavestenje)
+    print('==========')
     print('SUBJECT:', subject)
     print('MAIL:', mail)
     print('TEKST:', tekst)
-    # print('Fajl:', fajl_obavestenje)
+    print('Fajl:', fajl_obavestenje)
 
     postavio = Nalog.objects.get(username=username)
     if (postavio.uloga == 'nastavnik'):
@@ -412,7 +425,8 @@ def posaljiMail(request):
                         send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
                                                             subject=subject, message_text_plain=tekst,
                                                             message_text_html=r'Koji je ovo HTML bre!?',
-                                                            attached_file='/Users/dzimiks/Desktop/projects/raf-raspored-skript/backend/backend/djangouploads/vanja-paunovic.jpg')
+                                                            attached_file=fajl_obavestenje)
+                        # attached_file='/Users/dzimiks/Desktop/projects/raf-raspored-skript/backend/backend/djangouploads/vanja-paunovic.jpg')
 
         # grupe1=[]
         # grupe2=[]
