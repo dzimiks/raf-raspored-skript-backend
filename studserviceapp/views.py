@@ -467,17 +467,13 @@ def posaljiMail(request):
                     for g in grupe1:
                         print(g.oznaka_grupe)
                         studenti_kojima_se_salje_mail = Student.objects.filter(grupa__oznaka_grupe=g.oznaka_grupe)
-                        mail_studenta = 'vpaunovic16@raf.rs'
-                        # send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
-                        #                                     subject=subject, message_text_plain=tekst,
-                        #                                     message_text_html='',
-                        #                                     attached_file=fajl_obavestenje)
-                        # for s in studenti_kojima_se_salje_mail:
-                        #     mail_studenta = (s.nalog.username + "@raf.rs")
-                        #     send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
-                        #                                         subject=subject, message_text_plain=tekst,
-                        #                                         message_text_html='',
-                        #                                         attached_file=fajl_obavestenje)
+
+                        for s in studenti_kojima_se_salje_mail:
+                            mail_studenta = (s.nalog.username + "@raf.rs")
+                            send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
+                                                                subject=subject, message_text_plain=tekst,
+                                                                message_text_html='',
+                                                                attached_file=fajl_obavestenje)
         elif len(grupe) > 0:
             for g in grupe:
                 print(g.oznaka_grupe)
