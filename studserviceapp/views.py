@@ -11,9 +11,9 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.conf import settings
 
+
 # TODO BUG ovde
 # from parser import import_timetable_from_csv
-from kol1_parser import parse
 
 
 def timetableforuser(request, username):
@@ -307,15 +307,18 @@ def slika_studenta(request, username):
 
 
 class UploadRasporedaForm(forms.Form):
-    semestar = forms.ChoiceField(label='Raspored za semestar', choices=[(s.id, str(s)) for s in Semestar.objects.all()])
+    semestar = forms.ChoiceField(label='Raspored za semestar',
+                                 choices=[(str(s), str(s)) for s in Semestar.objects.all()])
     kolokvijumska_nedelja = forms.ChoiceField(label="Kolokvijumska nedelja:",
-                                              choices=(('1', '1'), ('2', '2'), ('3', '3'), ('4', '4')))
+                                              choices=(('prva', 'prva'), ('druga', 'druga'), ('treca', 'treca'),
+                                                       ('cetvrta', 'cetvrta')))
     raspored_nastave = forms.FileField(label='Izaberite fajl')
 
 
 def upload_raspored_nastave(request, username):
     nalog = Nalog.objects.filter(username=username)
     form = None
+    context = {'form': form}
 
     for n in nalog:
         if n.uloga == 'sekretar' or n.uloga == 'administrator':
@@ -323,20 +326,36 @@ def upload_raspored_nastave(request, username):
                 form = UploadRasporedaForm(request.POST, request.FILES)
 
                 if form.is_valid():
-                    sem = Semestar.objects.get(id=request.POST['semestar'])
+                    semestar = Semestar.objects.get(id=request.POST['semestar'])
                     kolokvijumska_nedelja = request.POST['kolokvijumska_nedelja']
                     raspored_file = request.FILES['raspored_nastave']
-                    kol1_parser.parse(raspored_file, sem, kolokvijumska_nedelja)
-                    parse(raspored_file, sem, kolokvijumska_nedelja)
+
+                    context = {
+                        'semestar': semestar,
+                        'kolokvijumska_nedelja': kolokvijumska_nedelja,
+                        'raspored_file': raspored_file,
+                        'form': form
+                    }
             else:
                 form = UploadRasporedaForm()
+                context = {'form': form}
         else:
             return HttpResponse('<h1>Ne mozete pristupiti ovome!</h1>')
 
-    return render(request, 'studserviceapp/upload_rasporeda.html', {'form': form})
+    return render(request, 'studserviceapp/upload_rasporeda.html', context)
 
 
 def upload_raspored(request):
+    semestar = request.POST['semestar']
+    kolokvijumska_nedelja = request.POST['kolokvijumska_nedelja']
+    raspored_file = request.FILES['raspored_nastave']
+
+    print('>>> SEMESTAR:', semestar)
+    print('>>> KOL NEDELJA:', kolokvijumska_nedelja)
+    print('>>> RASPORED FILE:', raspored_file)
+
+    kol1_parser.parse(raspored_file, semestar, kolokvijumska_nedelja)
+
     return HttpResponse('<h1>Uspesno ste uneli raspored!</h1>')
 
 
@@ -369,10 +388,6 @@ def informacijeOStudentu(request, username):
 
     return render(request, 'studserviceapp/informacije_o_studentu.html', context)
 
-
-# class mailForm(forms.form):
-#     subject = forms.TextInput(label="Subject")
-#     tekst = forms.Textarea()
 
 class EmailCombo(forms.Form):
     semestar = forms.ChoiceField(label='Raspored za semestar', choices=[(s.id, str(s)) for s in Semestar.objects.all()])
@@ -432,8 +447,6 @@ def slanjeMaila(request, username):
         }
 
         return render(request, 'studserviceapp/mails.html', context)
-
-    # elif nalog.uloga == 'sekretar':
 
 
 def posaljiMail(request):
