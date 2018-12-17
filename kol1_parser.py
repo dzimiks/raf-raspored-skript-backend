@@ -102,6 +102,17 @@ def parse(file, semestar, kolokvijumska_nedelja):
         if day not in ('Ponedeljak', 'Utorak', 'Sreda', 'Četvrtak', 'Petak', 'Subota', 'Nedelja'):
             print('>>> ERROR ON LINE ' + str(line_count) + ': Nepoznat dan -> ' + day)
 
+        # TODO
+        if lesson not in (p.naziv for p in svi_predmeti):
+            print('>>> ERROR ON LINE ' + str(line_count) + ': Nepoznat predmet -> ' + lesson)
+
+        # TODO
+        for c in classroom.split(','):
+            if c not in (
+                '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
+                'RG1', 'RG2', 'RG3', 'RG4', 'RG5', 'RG6', 'RG7', 'Atelje'):
+                print('>>> ERROR ON LINE ' + str(line_count) + ': Nepoznata ucionica -> ' + c)
+
         print('Pre:', time.split('-')[0])
         print('Posle:', time.split('-')[1])
         print()
