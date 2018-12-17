@@ -28,6 +28,10 @@ def parse(file, semestar, kolokvijumska_nedelja):
     kol1 = dict()
     all = list()
 
+    svi_predmeti = Predmet.objects.all()
+    svi_nastavnici = Nastavnik.objects.all()
+    line_count = 2
+
     for row in k1_csv:
         row = list(filter(None, row))
         nastavnik = Nastavnik()
@@ -50,36 +54,53 @@ def parse(file, semestar, kolokvijumska_nedelja):
         days.append(day)
         dates.append(date)
 
-        # print('Lesson:', lesson)
+        print('Lesson:', lesson)
         print('Professor:', professor)
-        # print('Classroom:', classroom)
-        # print('Time:', time)
-        # print('Day:', day)
-        # print('Date:', date)
-        # print('Ime:', professor.split(',')[0].split(' ')[0])
+        print('Classroom:', classroom)
+        print('Time:', time)
+        print('Day:', day)
+        print('Date:', date)
+        print('Ime:', professor.split(',')[0].split(' ')[0])
 
         prof = professor.split(',')
-        print('PROF:', prof)
+        profy = professor.lstrip().split(' ')
 
-        if len(prof) == 1:
-            print('LEN IS 1')
+        print('PROF:', prof)
+        print('PROF LEN:', len(prof))
+        print('Profy:', profy)
+        print('Profy LEN:', len(profy))
+
+        if (len(prof) == 1) and (len(profy) == 2):
             nastavnik.ime = prof[0].lstrip().split(' ')[0]
             nastavnik.prezime = prof[0].lstrip().split(' ')[1]
+
             print('>>> NASTAVNIK IME:', nastavnik.ime)
             print('>>> NASTAVNIK PREZIME:', nastavnik.prezime)
 
-            # TODO
-            termin_polaganja.nastavnik = nastavnik
+            if not (nastavnik.ime, nastavnik.prezime) in ((n.ime, n.prezime) for n in svi_nastavnici):
+                print('>>> ERROR ON LINE ' + str(line_count) + ':', nastavnik.ime, nastavnik.prezime,
+                      'ne postoji u bazi!')
+            else:
+                # TODO
+                termin_polaganja.nastavnik = nastavnik
         else:
-            print('LEN IS', len(prof))
-
             for p in prof:
                 nastavnik.ime = p.lstrip().split(' ')[0]
                 nastavnik.prezime = p.lstrip().split(' ')[1]
+
                 print('>>> NASTAVNIK IME:', nastavnik.ime)
                 print('>>> NASTAVNIK PREZIME:', nastavnik.prezime)
-                # TODO
-                termin_polaganja.nastavnik = nastavnik
+
+                if not (nastavnik.ime, nastavnik.prezime) in ((n.ime, n.prezime) for n in svi_nastavnici):
+                    print('>>> ERROR ON LINE ' + str(line_count) + ':', nastavnik.ime, nastavnik.prezime,
+                          'ne postoji u bazi!')
+                else:
+                    # TODO
+                    termin_polaganja.nastavnik = nastavnik
+
+        # TODO
+        if day not in ('Ponedeljak', 'Utorak', 'Sreda', 'Četvrtak', 'Petak', 'Subota', 'Nedelja'):
+            print('>>> ERROR ON LINE ' + str(line_count) + ': Nepoznat dan -> ' + day)
 
         print('Pre:', time.split('-')[0])
         print('Posle:', time.split('-')[1])
@@ -107,6 +128,8 @@ def parse(file, semestar, kolokvijumska_nedelja):
         element[header[5]] = date
 
         all.append(element)
+
+        line_count += 1
 
     kol1['kol1'] = all
     # print(json.dumps(kol1, indent=4))
