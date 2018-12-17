@@ -113,6 +113,14 @@ def parse(file, semestar, kolokvijumska_nedelja):
                 'RG1', 'RG2', 'RG3', 'RG4', 'RG5', 'RG6', 'RG7', 'Atelje'):
                 print('>>> ERROR ON LINE ' + str(line_count) + ': Nepoznata ucionica -> ' + c)
 
+        # TODO
+        if len(time.split('-')) != 2:
+            print('>>> ERROR ON LINE ' + str(line_count) + ': Nepoznata vreme -> ' + time)
+
+        # TODO
+        if len(date.split('.')) != 3:
+            print('>>> ERROR ON LINE ' + str(line_count) + ': Nepoznat datum -> ' + date)
+
         print('Pre:', time.split('-')[0])
         print('Posle:', time.split('-')[1])
         print()
