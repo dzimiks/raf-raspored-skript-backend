@@ -13,9 +13,9 @@ django.setup()
 from studserviceapp.models import RasporedPolaganja, TerminPolaganja, Predmet, Nastavnik
 
 
-def parse(file,sem,kolokvijumska_nedelja):
+def parse(file, sem, kolokvijumska_nedelja):
     # with open(file_path, encoding='utf-8') as file:
-    k1_csv = csv.reader(codecs.iterdecode(file,'utf-8'), delimiter=',')
+    k1_csv = csv.reader(codecs.iterdecode(file, 'utf-8'), delimiter=',')
     header = next(k1_csv)
     header = list(filter(None, header))
     # header = list(filter(lambda a: a != '', header))
@@ -95,7 +95,6 @@ def parse(file,sem,kolokvijumska_nedelja):
         all.append(element)
 
     kol1['kol1'] = all
-        # print(json.dumps(kol1, indent=4))
-
+    # print(json.dumps(kol1, indent=4))
 
 # parse('./testData/kol1.csv')

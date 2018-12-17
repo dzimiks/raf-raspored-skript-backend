@@ -1,0 +1,23 @@
+Korisni linkovi za učenje:
+
+ASCII Table    - https://www.asciitable.com
+Codeforces     - http://codeforces.com/
+CS Academy     - https://csacademy.com/
+GeeksforGeeks  - https://www.geeksforgeeks.org/
+HackerEarth    - https://www.hackerearth.com/practice/
+HackerRank     - https://www.hackerrank.com/
+InterviewBit   - https://www.interviewbit.com/
+LeetCode       - https://leetcode.com/
+Petlja         - https://petlja.org/biblioteka/r/kursevi/uvod-u-programiranje
+Shortcuts      - http://wiki.codeblocks.org/index.php/Keyboard_Shortcuts
+Stack Overflow - https://stackoverflow.com/
+TutorialsPoint - https://www.tutorialspoint.com/cprogramming/index.htm
+
+Vizualizacije:
+
+Bubble Sort - https://www.hackerearth.com/practice/algorithms/sorting/bubble-sort/visualize/
+Selection Sort - https://www.hackerearth.com/practice/algorithms/sorting/selection-sort/visualize/
+Comparison Sorting Algorithms - https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
+
+Pokazivači:
+MyCodeSchool - https://www.youtube.com/watch?v=h-HBipu_1P0&list=PL2_aWCzGMAwLZp6LMUKI3cc7pgGsasm2_

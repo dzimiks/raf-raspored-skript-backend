@@ -402,9 +402,9 @@ def slanjeMaila(request, username):
 
             if form.is_valid():
                 semestar = Semestar.objects.get(id=request.POST['semestar'])
-                # send = request.POST['send']
+                send = request.POST['send']
 
-                # print('SEND SELECTED:', send)
+                print('SEND SELECTED:', send)
 
                 nastavnik = Nastavnik.objects.all()
                 predmeti = Predmet.objects.all()
@@ -476,7 +476,7 @@ def posaljiMail(request):
                         #     mail_studenta = (s.nalog.username + "@raf.rs")
                         #     send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
                         #                                         subject=subject, message_text_plain=tekst,
-                        #                                         message_text_html=r'Koji je ovo HTML bre!?',
+                        #                                         message_text_html='',
                         #                                         attached_file=fajl_obavestenje)
         elif len(grupe) > 0:
             for g in grupe:
@@ -487,22 +487,44 @@ def posaljiMail(request):
                     mail_studenta = (s.nalog.username + "@raf.rs")
                     send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
                                                         subject=subject, message_text_plain=tekst,
-                                                        message_text_html=r'Koji je ovo HTML bre!?',
+                                                        message_text_html='',
                                                         attached_file=fajl_obavestenje)
     elif postavio.uloga == 'sekretar' or postavio.uloga == 'administrator':
-        print(postavio.uloga)
+        req = request.POST['send']
+        students = list()
+        print('>>> REQUEST:', req)
 
-        # grupe1=[]
-        # grupe2=[]
-        # for p in predmeti:
-        #     termin = Termin.objects.filter(predmet__naziv=p)
-        #     for t in termin:
-        #         grupe1.append(t.grupe.all())
-        # for g1 in grupe1:
-        #     grupe2.append(g1.all())
-        # for g2 in grupe2:
-        #     print(g2.oznaka_grupe)
-        # for g in grupe:
-        #     print(g)
+        if req == 'svi':
+            print('REQUEST SVI', req)
+            students = Student.objects.all()
+        elif req in ('RN', 'RM', 'Strukovne', 'Dizajn'):
+            print('REQUEST SMER', req)
+            students = Student.objects.filter(smer=req)
+        elif req in (p.naziv for p in Predmet.objects.all()):
+            print('REQUEST PREDMET', req)
+            termini = Termin.objects.filter(predmet__naziv=req, tip_nastave='vezbe')
 
-    return HttpResponse("<h1>Uspesno sacuvano obavestenje</h1>")
+            for t in termini:
+                grupe2 = t.grupe.all()
+
+                for g in grupe2:
+                    studenti_kojima_se_salje_mail_1 = Student.objects.filter(grupa__oznaka_grupe=g.oznaka_grupe)
+
+                    for s in studenti_kojima_se_salje_mail_1:
+                        mail_studenta = s.nalog.username + "@raf.rs"
+                        send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
+                                                            subject=subject, message_text_plain=tekst,
+                                                            message_text_html='',
+                                                            attached_file=fajl_obavestenje)
+        else:
+            print('REQUEST GRUPA', req)
+            students = Student.objects.filter(grupa__oznaka_grupe=req)
+
+        for s in students:
+            mail_studenta = (s.nalog.username + "@raf.rs")
+            send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
+                                                subject=subject, message_text_plain=tekst,
+                                                message_text_html='',
+                                                attached_file=fajl_obavestenje)
+
+    return HttpResponse("<h1>Uspesno poslat mejl</h1>")
