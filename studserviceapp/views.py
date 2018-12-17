@@ -11,9 +11,9 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.conf import settings
 
-
 # TODO BUG ovde
 # from parser import import_timetable_from_csv
+from kol1_parser import parse
 
 
 def timetableforuser(request, username):
@@ -308,26 +308,36 @@ def slika_studenta(request, username):
 
 class UploadRasporedaForm(forms.Form):
     semestar = forms.ChoiceField(label='Raspored za semestar', choices=[(s.id, str(s)) for s in Semestar.objects.all()])
-    kolokvijumska_nedelja = forms.ChoiceField(label="Kolokvijumska nedelja:", choices=(('1', 'prva'), ('2', 'druga')))
+    kolokvijumska_nedelja = forms.ChoiceField(label="Kolokvijumska nedelja:",
+                                              choices=(('1', '1'), ('2', '2'), ('3', '3'), ('4', '4')))
     raspored_nastave = forms.FileField(label='Izaberite fajl')
 
 
 def upload_raspored_nastave(request, username):
-    if request.method == 'POST':
-        form = UploadRasporedaForm(request.POST, request.FILES)
+    nalog = Nalog.objects.filter(username=username)
+    form = None
 
-        if form.is_valid():
-            sem = Semestar.objects.get(id=request.POST['semestar'])
-            kolokvijumska_nedelja = request.POST['kolokvijumska_nedelja']
-            # TODO
-            raspored_file = request.FILES['raspored_nastave']
-            kol1_parser.parse(raspored_file, sem, kolokvijumska_nedelja)
-            # import_timetable_from_csv(raspored_file, sem)
-            return HttpResponse('Uspesno ste uneli raspored')
-    else:
-        form = UploadRasporedaForm()
+    for n in nalog:
+        if n.uloga == 'sekretar' or n.uloga == 'administrator':
+            if request.method == 'POST':
+                form = UploadRasporedaForm(request.POST, request.FILES)
+
+                if form.is_valid():
+                    sem = Semestar.objects.get(id=request.POST['semestar'])
+                    kolokvijumska_nedelja = request.POST['kolokvijumska_nedelja']
+                    raspored_file = request.FILES['raspored_nastave']
+                    kol1_parser.parse(raspored_file, sem, kolokvijumska_nedelja)
+                    parse(raspored_file, sem, kolokvijumska_nedelja)
+            else:
+                form = UploadRasporedaForm()
+        else:
+            return HttpResponse('<h1>Ne mozete pristupiti ovome!</h1>')
 
     return render(request, 'studserviceapp/upload_rasporeda.html', {'form': form})
+
+
+def upload_raspored(request):
+    return HttpResponse('<h1>Uspesno ste uneli raspored!</h1>')
 
 
 def prikaz_obavestenja(request):

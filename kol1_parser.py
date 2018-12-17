@@ -14,7 +14,8 @@ from studserviceapp.models import RasporedPolaganja, TerminPolaganja, Predmet, N
 
 
 def parse(file, sem, kolokvijumska_nedelja):
-    # with open(file_path, encoding='utf-8') as file:
+    # with open(file, encoding='utf-8') as f:
+    #     k1_csv = csv.reader(f, delimiter=',')
     k1_csv = csv.reader(codecs.iterdecode(file, 'utf-8'), delimiter=',')
     header = next(k1_csv)
     header = list(filter(None, header))
@@ -69,8 +70,7 @@ def parse(file, sem, kolokvijumska_nedelja):
         print('Posle:', time.split('-')[1])
         print()
 
-        raspored_polaganja.ispitni_rok = 'None'
-        raspored_polaganja.kolokvijumska_nedelja = 'Prva'
+        raspored_polaganja.kolokvijumska_nedelja = 1
 
         predmet.naziv = lesson
 
@@ -97,4 +97,4 @@ def parse(file, sem, kolokvijumska_nedelja):
     kol1['kol1'] = all
     # print(json.dumps(kol1, indent=4))
 
-# parse('./testData/kol1.csv')
+# parse('./testData/kol1.csv', '', '')
