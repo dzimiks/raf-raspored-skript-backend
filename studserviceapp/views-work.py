@@ -1,11 +1,15 @@
+############
+# views.py #
+############
+
 from django.shortcuts import render
 from django.http import HttpResponse
-from django import forms
+# from django import forms
 from studserviceapp.models import Grupa, Nastavnik, Termin, RasporedNastave, Predmet, Nalog, Semestar, Student, \
     Obavestenje, IzborGrupe, IzbornaGrupa
 import datetime
-import kol1_parser
-import send_gmails
+# import kol1_parser
+# import send_gmails
 import os
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
@@ -208,6 +212,7 @@ def save_izbor_grupe(request):
     grupa_koju_student_bira = request.POST['grupe']
     username = request.POST['ime'][0].lower() + request.POST['prezime'].lower() + request.POST['godina_upisa'][-2:]
     student = Student.objects.get(nalog__username=username)
+    upisan = False
 
     if (IzborGrupe.objects.filter(student__broj_indeksa=student.broj_indeksa)):
         return HttpResponse("<h1> Student je vec izabrao grupu.</h1>")
@@ -306,244 +311,243 @@ def slika_studenta(request, username):
     return render(request, 'studserviceapp/slika_studenta.html', {'student': student})
 
 
-class UploadRasporedaForm(forms.Form):
-    semestar = forms.ChoiceField(label='Raspored za semestar',
-                                 choices=[(str(s), str(s)) for s in Semestar.objects.all()])
-    kolokvijumska_nedelja = forms.ChoiceField(label="Kolokvijumska nedelja:",
-                                              choices=(('prva', '1'), ('druga', '2'), ('treca', '3'),
-                                                       ('cetvrta', '4')))
-    raspored_nastave = forms.FileField(label='Izaberite fajl')
+# class UploadRasporedaForm(forms.Form):
+#     semestar = forms.ChoiceField(label='Raspored za semestar',
+#                                  choices=[(str(s), str(s)) for s in Semestar.objects.all()])
+#     kolokkolokvijumska_nedelja = forms.ChoiceField(label="Kolokvijumska nedelja:",
+#                                               choices=(('prva', '1'), ('druga', '2'), ('treca', '3'),
+#                                                        ('cetvrta', '4')))
+#     raspored_nastave = forms.FileField(label='Izaberite fajl')
+#
+#
+# def upload_raspored_nastave(request, username):
+#     nalog = Nalog.objects.filter(username=username)
+#     form = None
+#     context = {'form': form}
+#
+#     for n in nalog:
+#         if n.uloga == 'sekretar' or n.uloga == 'administrator':
+#             if request.method == 'POST':
+#                 form = UploadRasporedaForm(request.POST, request.FILES)
+#
+#                 if form.is_valid():
+#                     semestar = Semestar.objects.get(id=request.POST['semestar'])
+#                     kolokvijumska_nedelja = request.POST['kolokvijumska_nedelja']
+#                     raspored_file = request.FILES['raspored_nastave']
+#
+#                     context = {
+#                         'semestar': semestar,
+#                         'kolokvijumska_nedelja': kolokvijumska_nedelja,
+#                         'raspored_file': raspored_file,
+#                         'form': form
+#                     }
+#             else:
+#                 form = UploadRasporedaForm()
+#                 context = {'form': form}
+#         else:
+#             return HttpResponse('<h1>Ne mozete pristupiti ovome!</h1>')
+#
+#     return render(request, 'studserviceapp/upload_rasporeda.html', context)
 
 
-def upload_raspored_nastave(request, username):
-    nalog = Nalog.objects.filter(username=username)
-    form = None
-    context = {'form': form}
-
-    for n in nalog:
-        if n.uloga == 'sekretar' or n.uloga == 'administrator':
-            if request.method == 'POST':
-                form = UploadRasporedaForm(request.POST, request.FILES)
-
-                if form.is_valid():
-                    semestar = Semestar.objects.get(id=request.POST['semestar'])
-                    kolokvijumska_nedelja = request.POST['kolokvijumska_nedelja']
-                    raspored_file = request.FILES['raspored_nastave']
-
-                    context = {
-                        'semestar': semestar,
-                        'kolokvijumska_nedelja': kolokvijumska_nedelja,
-                        'raspored_file': raspored_file,
-                        'form': form
-                    }
-            else:
-                form = UploadRasporedaForm()
-                context = {'form': form}
-        else:
-            return HttpResponse('<h1>Ne mozete pristupiti ovome!</h1>')
-
-    return render(request, 'studserviceapp/upload_rasporeda.html', context)
-
-
-def upload_raspored(request):
-    semestar = request.POST['semestar']
-    kolokvijumska_nedelja = request.POST['kolokvijumska_nedelja']
-    raspored_file = request.FILES['raspored_nastave']
-
-    print('>>> SEMESTAR:', semestar)
-    print('>>> KOL NEDELJA:', kolokvijumska_nedelja)
-    print('>>> RASPORED FILE:', raspored_file)
-
-    kol1_parser.parse(raspored_file, semestar, kolokvijumska_nedelja)
-
-    return HttpResponse('<h1>Uspesno ste uneli raspored!</h1>')
+# def upload_raspored(request):
+#     semestar = request.POST['semestar']
+#     kolokvijumska_nedelja = request.POST['kolokvijumska_nedelja']
+#     raspored_file = request.FILES['raspored_nastave']
+#
+#     print('>>> SEMESTAR:', semestar)
+#     print('>>> KOL NEDELJA:', kolokvijumska_nedelja)
+#     print('>>> RASPORED FILE:', raspored_file)
+#
+#     kol1_parser.parse(raspored_file, semestar, kolokvijumska_nedelja)
+#
+#     return HttpResponse('<h1>Uspesno ste uneli raspored!</h1>')
 
 
 def prikaz_obavestenja(request):
     obavestenja = Obavestenje.objects.all()
     return render(request, 'studserviceapp/prikaz_obavestenja.html', {'obavestenja': obavestenja})
 
-
-class informacijeOStudentuForm(forms.Form):
-    slika = forms.ImageField(label='Izaberite sliku')
-
-
-def informacijeOStudentu(request, username):
-    student = Student.objects.get(nalog__username=username)
-
-    if (request.method == 'POST'):
-        form = informacijeOStudentuForm(request.POST, request.FILES)
-
-        if form.is_valid():
-            student.slika = form.cleaned_data['slika']
-            student.save()
-            return HttpResponse("<h1>Uspesno sacuvana slika</h1>")
-    else:
-        form = informacijeOStudentuForm()
-
-    context = {
-        'student': student,
-        'form': form
-    }
-
-    return render(request, 'studserviceapp/informacije_o_studentu.html', context)
-
-
-class EmailCombo(forms.Form):
-    semestar = forms.ChoiceField(label='Raspored za semestar', choices=[(s.id, str(s)) for s in Semestar.objects.all()])
-    # students = forms.ChoiceField(label='Svi studenti', choices=[(str(s), str(s)) for s in Student.objects.all()])
-    send = forms.ChoiceField(label='Poslati', choices=(('svi', 'svi'),
-                                                       ('Smer',
-                                                        (('RN', 'RN'), ('RM', 'RM'), ('Strukovne', 'Strukovne'),
-                                                         ('Dizajn', 'Dizajn'))),
-                                                       ('Predmeti', [(str(p), str(p)) for p in Predmet.objects.all()]),
-                                                       ('Grupe', [(str(g.oznaka_grupe), str(g.oznaka_grupe)) for g in
-                                                                  Grupa.objects.all()])))
+# class informacijeOStudentuForm(forms.Form):
+#     slika = forms.ImageField(label='Izaberite sliku')
+#
+#
+# def informacijeOStudentu(request, username):
+#     student = Student.objects.get(nalog__username=username)
+#
+#     if (request.method == 'POST'):
+#         form = informacijeOStudentuForm(request.POST, request.FILES)
+#
+#         if form.is_valid():
+#             student.slika = form.cleaned_data['slika']
+#             student.save()
+#             return HttpResponse("<h1>Uspesno sacuvana slika</h1>")
+#     else:
+#         form = informacijeOStudentuForm()
+#
+#     context = {
+#         'student': student,
+#         'form': form
+#     }
+#
+#     return render(request, 'studserviceapp/informacije_o_studentu.html', context)
 
 
-def slanjeMaila(request, username):
-    nalog = Nalog.objects.get(username=username)
-    semestar = None
-    nastavnik = None
-    predmeti = None
-    termini = None
-
-    if nalog.uloga == 'nastavnik':
-        nastavnik = Nastavnik.objects.get(nalog=nalog)
-        predmeti = Predmet.objects.filter(nastavnik=nastavnik)
-        termini = Termin.objects.filter(nastavnik__nalog__username=nalog.username)
-
-        context = {
-            'nastavnik': nastavnik,
-            'predmeti': predmeti,
-            'termini': termini,
-            'nalog': nalog
-        }
-
-        return render(request, 'studserviceapp/mails.html', context)
-    elif nalog.uloga == 'sekretar' or nalog.uloga == 'administrator':
-        if request.method == 'POST':
-            form = EmailCombo(request.POST)
-
-            if form.is_valid():
-                semestar = Semestar.objects.get(id=request.POST['semestar'])
-                send = request.POST['send']
-
-                print('SEND SELECTED:', send)
-
-                nastavnik = Nastavnik.objects.all()
-                predmeti = Predmet.objects.all()
-                termini = Termin.objects.all()
-        else:
-            form = EmailCombo()
-
-        context = {
-            'semestar': semestar,
-            'nastavnik': nastavnik,
-            'predmeti': predmeti,
-            'termini': termini,
-            'nalog': nalog,
-            'form': form
-        }
-
-        return render(request, 'studserviceapp/mails.html', context)
+# class EmailCombo(forms.Form):
+#     semestar = forms.ChoiceField(label='Raspored za semestar', choices=[(s.id, str(s)) for s in Semestar.objects.all()])
+#     # students = forms.ChoiceField(label='Svi studenti', choices=[(str(s), str(s)) for s in Student.objects.all()])
+#     send = forms.ChoiceField(label='Poslati', choices=(('svi', 'svi'),
+#                                                        ('Smer',
+#                                                         (('RN', 'RN'), ('RM', 'RM'), ('Strukovne', 'Strukovne'),
+#                                                          ('Dizajn', 'Dizajn'))),
+#                                                        ('Predmeti', [(str(p), str(p)) for p in Predmet.objects.all()]),
+#                                                        ('Grupe', [(str(g.oznaka_grupe), str(g.oznaka_grupe)) for g in
+#                                                                   Grupa.objects.all()])))
 
 
-def posaljiMail(request):
-    # ako ima file onda create_message_with_attachment
-    # ako nema onda create_message
-    # return HttpResponse("<h1>Mail uspesno poslat</h1>")
-
-    subject = request.POST['subject']
-    tekst = request.POST['tekst']
-    mail = request.POST['posiljaoc']
-    # username = mail[:-7]
-    username = mail.split('@')[0]
-    postavio = Nalog.objects.get(username=username)
-
-    data = request.FILES.get('fajl_attachment', False)
-    path = None
-    fajl_obavestenje = None
-
-    if data:
-        path = default_storage.save('tmp/' + str(data.name), ContentFile(data.read()))
-        fajl_obavestenje = os.path.join(settings.MEDIA_ROOT, path)
-
-    print('PATH:', path)
-    print('SUBJECT:', subject)
-    print('MAIL:', mail)
-    print('USERNAME:', username)
-    print('TEKST:', tekst)
-
-    if postavio.uloga == 'nastavnik':
-        predmeti = request.POST.getlist('predmeti')
-        grupe = request.POST.getlist('grupe')
-
-        print('PREDMETI:', predmeti)
-        print('GRUPE:', grupe)
-
-        if len(predmeti) > 0:
-            for p in predmeti:
-                termini = Termin.objects.filter(nastavnik__nalog__username=postavio.username, predmet__naziv=p)
-                for t in termini:
-                    grupe1 = t.grupe.all()
-                    for g in grupe1:
-                        print(g.oznaka_grupe)
-                        studenti_kojima_se_salje_mail = Student.objects.filter(grupa__oznaka_grupe=g.oznaka_grupe)
-
-                        for s in studenti_kojima_se_salje_mail:
-                            mail_studenta = (s.nalog.username + "@raf.rs")
-                            send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
-                                                                subject=subject, message_text_plain=tekst,
-                                                                message_text_html='',
-                                                                attached_file=fajl_obavestenje)
-        elif len(grupe) > 0:
-            for g in grupe:
-                print(g.oznaka_grupe)
-                studenti_kojima_se_salje_mail = Student.objects.filter(grupa__oznaka_grupe=g.oznaka_grupe)
-
-                for s in studenti_kojima_se_salje_mail:
-                    mail_studenta = (s.nalog.username + "@raf.rs")
-                    send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
-                                                        subject=subject, message_text_plain=tekst,
-                                                        message_text_html='',
-                                                        attached_file=fajl_obavestenje)
-    elif postavio.uloga == 'sekretar' or postavio.uloga == 'administrator':
-        req = request.POST['send']
-        students = list()
-        print('>>> REQUEST:', req)
-
-        if req == 'svi':
-            print('REQUEST SVI', req)
-            students = Student.objects.all()
-        elif req in ('RN', 'RM', 'Strukovne', 'Dizajn'):
-            print('REQUEST SMER', req)
-            students = Student.objects.filter(smer=req)
-        elif req in (p.naziv for p in Predmet.objects.all()):
-            print('REQUEST PREDMET', req)
-            termini = Termin.objects.filter(predmet__naziv=req, tip_nastave='vezbe')
-
-            for t in termini:
-                grupe2 = t.grupe.all()
-
-                for g in grupe2:
-                    studenti_kojima_se_salje_mail_1 = Student.objects.filter(grupa__oznaka_grupe=g.oznaka_grupe)
-
-                    for s in studenti_kojima_se_salje_mail_1:
-                        mail_studenta = s.nalog.username + "@raf.rs"
-                        send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
-                                                            subject=subject, message_text_plain=tekst,
-                                                            message_text_html='',
-                                                            attached_file=fajl_obavestenje)
-        else:
-            print('REQUEST GRUPA', req)
-            students = Student.objects.filter(grupa__oznaka_grupe=req)
-
-        for s in students:
-            mail_studenta = (s.nalog.username + "@raf.rs")
-            send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
-                                                subject=subject, message_text_plain=tekst,
-                                                message_text_html='',
-                                                attached_file=fajl_obavestenje)
-
-    return HttpResponse("<h1>Uspesno poslat mejl</h1>")
+# def slanjeMaila(request, username):
+#     nalog = Nalog.objects.get(username=username)
+#     semestar = None
+#     nastavnik = None
+#     predmeti = None
+#     termini = None
+#
+#     if nalog.uloga == 'nastavnik':
+#         nastavnik = Nastavnik.objects.get(nalog=nalog)
+#         predmeti = Predmet.objects.filter(nastavnik=nastavnik)
+#         termini = Termin.objects.filter(nastavnik__nalog__username=nalog.username)
+#
+#         context = {
+#             'nastavnik': nastavnik,
+#             'predmeti': predmeti,
+#             'termini': termini,
+#             'nalog': nalog
+#         }
+#
+#         return render(request, 'studserviceapp/mails.html', context)
+#     elif nalog.uloga == 'sekretar' or nalog.uloga == 'administrator':
+#         if request.method == 'POST':
+#             form = EmailCombo(request.POST)
+#
+#             if form.is_valid():
+#                 semestar = Semestar.objects.get(id=request.POST['semestar'])
+#                 send = request.POST['send']
+#
+#                 print('SEND SELECTED:', send)
+#
+#                 nastavnik = Nastavnik.objects.all()
+#                 predmeti = Predmet.objects.all()
+#                 termini = Termin.objects.all()
+#         else:
+#             form = EmailCombo()
+#
+#         context = {
+#             'semestar': semestar,
+#             'nastavnik': nastavnik,
+#             'predmeti': predmeti,
+#             'termini': termini,
+#             'nalog': nalog,
+#             'form': form
+#         }
+#
+#         return render(request, 'studserviceapp/mails.html', context)
+#
+#
+# def posaljiMail(request):
+#     # ako ima file onda create_message_with_attachment
+#     # ako nema onda create_message
+#     # return HttpResponse("<h1>Mail uspesno poslat</h1>")
+#
+#     subject = request.POST['subject']
+#     tekst = request.POST['tekst']
+#     mail = request.POST['posiljaoc']
+#     # username = mail[:-7]
+#     username = mail.split('@')[0]
+#     postavio = Nalog.objects.get(username=username)
+#
+#     data = request.FILES.get('fajl_attachment', False)
+#     path = None
+#     fajl_obavestenje = None
+#
+#     if data:
+#         path = default_storage.save('tmp/' + str(data.name), ContentFile(data.read()))
+#         fajl_obavestenje = os.path.join(settings.MEDIA_ROOT, path)
+#
+#     print('PATH:', path)
+#     print('SUBJECT:', subject)
+#     print('MAIL:', mail)
+#     print('USERNAME:', username)
+#     print('TEKST:', tekst)
+#
+#     if postavio.uloga == 'nastavnik':
+#         predmeti = request.POST.getlist('predmeti')
+#         grupe = request.POST.getlist('grupe')
+#
+#         print('PREDMETI:', predmeti)
+#         print('GRUPE:', grupe)
+#
+#         if len(predmeti) > 0:
+#             for p in predmeti:
+#                 termini = Termin.objects.filter(nastavnik__nalog__username=postavio.username, predmet__naziv=p)
+#                 for t in termini:
+#                     grupe1 = t.grupe.all()
+#                     for g in grupe1:
+#                         print(g.oznaka_grupe)
+#                         studenti_kojima_se_salje_mail = Student.objects.filter(grupa__oznaka_grupe=g.oznaka_grupe)
+#
+#                         for s in studenti_kojima_se_salje_mail:
+#                             mail_studenta = (s.nalog.username + "@raf.rs")
+#                             send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
+#                                                                 subject=subject, message_text_plain=tekst,
+#                                                                 message_text_html='',
+#                                                                 attached_file=fajl_obavestenje)
+#         elif len(grupe) > 0:
+#             for g in grupe:
+#                 print(g.oznaka_grupe)
+#                 studenti_kojima_se_salje_mail = Student.objects.filter(grupa__oznaka_grupe=g.oznaka_grupe)
+#
+#                 for s in studenti_kojima_se_salje_mail:
+#                     mail_studenta = (s.nalog.username + "@raf.rs")
+#                     send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
+#                                                         subject=subject, message_text_plain=tekst,
+#                                                         message_text_html='',
+#                                                         attached_file=fajl_obavestenje)
+#     elif postavio.uloga == 'sekretar' or postavio.uloga == 'administrator':
+#         req = request.POST['send']
+#         students = list()
+#         print('>>> REQUEST:', req)
+#
+#         if req == 'svi':
+#             print('REQUEST SVI', req)
+#             students = Student.objects.all()
+#         elif req in ('RN', 'RM', 'Strukovne', 'Dizajn'):
+#             print('REQUEST SMER', req)
+#             students = Student.objects.filter(smer=req)
+#         elif req in (p.naziv for p in Predmet.objects.all()):
+#             print('REQUEST PREDMET', req)
+#             termini = Termin.objects.filter(predmet__naziv=req, tip_nastave='vezbe')
+#
+#             for t in termini:
+#                 grupe2 = t.grupe.all()
+#
+#                 for g in grupe2:
+#                     studenti_kojima_se_salje_mail_1 = Student.objects.filter(grupa__oznaka_grupe=g.oznaka_grupe)
+#
+#                     for s in studenti_kojima_se_salje_mail_1:
+#                         mail_studenta = s.nalog.username + "@raf.rs"
+#                         send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
+#                                                             subject=subject, message_text_plain=tekst,
+#                                                             message_text_html='',
+#                                                             attached_file=fajl_obavestenje)
+#         else:
+#             print('REQUEST GRUPA', req)
+#             students = Student.objects.filter(grupa__oznaka_grupe=req)
+#
+#         for s in students:
+#             mail_studenta = (s.nalog.username + "@raf.rs")
+#             send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
+#                                                 subject=subject, message_text_plain=tekst,
+#                                                 message_text_html='',
+#                                                 attached_file=fajl_obavestenje)
+#
+#     return HttpResponse("<h1>Uspesno poslat mejl</h1>")

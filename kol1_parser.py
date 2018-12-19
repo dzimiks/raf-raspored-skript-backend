@@ -78,12 +78,12 @@ def parse(file, semestar, kolokvijumska_nedelja):
         # TODO predmet
         if lesson not in (p.naziv for p in svi_predmeti):
             print('>>> ERROR ON LINE ' + str(line_count) + ': Nepoznat predmet -> ' + lesson)
-            # predmet.naziv = lesson
-            # predmet.save()
-            # termin_polaganja.predmet = predmet
-        else:
-            predmet = Predmet.objects.filter(naziv=lesson)
+            predmet.naziv = lesson
             predmet.save()
+            termin_polaganja.predmet = predmet
+        else:
+            predmet = Predmet.objects.get(naziv=lesson)
+            # predmet.save()
             print('@@@@@@@@@', predmet)
             # predmet.naziv = lesson
             # nastavnik.predmet = predmet
@@ -148,19 +148,19 @@ def parse(file, semestar, kolokvijumska_nedelja):
             if not (nastavnik.ime, nastavnik.prezime) in ((n.ime, n.prezime) for n in svi_nastavnici):
                 print('>>> ERROR ON LINE ' + str(line_count) + ':', nastavnik.ime, nastavnik.prezime,
                       'ne postoji u bazi!')
-                # nalog = Nalog()
-                # nalog.username = (nastavnik.ime[0]).lower() + nastavnik.prezime.lower()
-                # nalog.save()
-                # nastavnik.nalog = nalog
-                # nastavnik.save()
-                # termin_polaganja.nastavnik = nastavnik
-            else:
-                # TODO
                 nalog = Nalog()
                 nalog.username = (nastavnik.ime[0]).lower() + nastavnik.prezime.lower()
                 nalog.save()
                 nastavnik.nalog = nalog
                 nastavnik.save()
+                termin_polaganja.nastavnik = nastavnik
+            else:
+                # TODO
+                nalog = Nalog()
+                nalog.username = (nastavnik.ime[0]).lower() + nastavnik.prezime.lower()
+                nalog.save()
+                nastavnik = Nastavnik.objects.get(nalog__username=nalog.username)
+                # nastavnik.save()
                 termin_polaganja.nastavnik = nastavnik
         else:
             for p in prof:
@@ -173,19 +173,19 @@ def parse(file, semestar, kolokvijumska_nedelja):
                 if not (nastavnik.ime, nastavnik.prezime) in ((n.ime, n.prezime) for n in svi_nastavnici):
                     print('>>> ERROR ON LINE ' + str(line_count) + ':', nastavnik.ime, nastavnik.prezime,
                           'ne postoji u bazi!')
-                    # nalog = Nalog()
-                    # nalog.username = (nastavnik.ime[0]).lower() + nastavnik.prezime.lower()
-                    # nalog.save()
-                    # nastavnik.nalog = nalog
-                    # nastavnik.save()
-                    # termin_polaganja.nastavnik = nastavnik
-                else:
-                    # TODO
                     nalog = Nalog()
                     nalog.username = (nastavnik.ime[0]).lower() + nastavnik.prezime.lower()
                     nalog.save()
                     nastavnik.nalog = nalog
                     nastavnik.save()
+                    termin_polaganja.nastavnik = nastavnik
+                else:
+                    # TODO
+                    nalog = Nalog()
+                    nalog.username = (nastavnik.ime[0]).lower() + nastavnik.prezime.lower()
+                    nalog.save()
+                    nastavnik = Nastavnik.objects.get(nalog__username=nalog.username)
+                    # nastavnik.save()
                     termin_polaganja.nastavnik = nastavnik
         print()
 

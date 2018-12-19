@@ -23,8 +23,9 @@ def main():
 
     # Call the Admin SDK Directory API
     print('Getting the first 10 users in the domain')
-    results = service.users().list(customer='my_customer', maxResults=10,
-                                   orderBy='email').execute()
+    # results = service.users().list(customer='my_customer', maxResults=10,
+    #                                orderBy='email').execute()
+    results = service.groups()
     users = results.get('users', [])
 
     if not users:
