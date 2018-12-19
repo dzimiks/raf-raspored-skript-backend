@@ -345,6 +345,64 @@ def upload_raspored_nastave(request, username):
     return render(request, 'studserviceapp/upload_rasporeda.html', context)
 
 
+class UploadRasporedaFormRetry(forms.Form):
+    semestar = forms.ChoiceField(label='Raspored za semestar',
+                                 choices=[(str(s), str(s)) for s in Semestar.objects.all()])
+    kolokvijumska_nedelja = forms.ChoiceField(label="Kolokvijumska nedelja:",
+                                              choices=(('prva', '1'), ('druga', '2'), ('treca', '3'),
+                                                       ('cetvrta', '4')))
+    predmeti = forms.ChoiceField(label='Predmet', choices=[(p, str(p.naziv)) for p in Predmet.objects.all()])
+    profesori = forms.ChoiceField(label='Profesor',
+                                  choices=[(p, str(p.ime + ' ' + p.prezime)) for p in Nastavnik.objects.all()])
+    ucionice = forms.ChoiceField(label='Ucionica', choices=[(t, str(t.oznaka_ucionice)) for t in Termin.objects.all()])
+
+
+def upload_raspored_nastave_retry(request, username):
+    nalog = Nalog.objects.filter(username=username)
+    form = None
+    context = {'form': form}
+
+    for n in nalog:
+        if n.uloga == 'sekretar' or n.uloga == 'administrator':
+            if request.method == 'POST':
+                form = UploadRasporedaFormRetry(request.POST)
+
+                if form.is_valid():
+                    semestar = Semestar.objects.get(id=request.POST['semestar'])
+                    kolokvijumska_nedelja = request.POST['kolokvijumska_nedelja']
+                    predmeti = request.POST['predmeti']
+                    profesori = request.POST['profesori']
+                    ucionice = request.POST['ucionice']
+
+                    context = {
+                        'semestar': semestar,
+                        'kolokvijumska_nedelja': kolokvijumska_nedelja,
+                        'predmeti': predmeti,
+                        'profesori': profesori,
+                        'ucionice': ucionice,
+                        'form': form
+                    }
+            else:
+                form = UploadRasporedaFormRetry()
+                context = {'form': form}
+        else:
+            return HttpResponse('<h1>Ne mozete pristupiti ovome!</h1>')
+
+    return render(request, 'studserviceapp/upload_rasporeda_retry.html', context)
+
+
+def upload_raspored_retry(request):
+    semestar = request.POST['semestar']
+    kolokvijumska_nedelja = request.POST['kolokvijumska_nedelja']
+    predmeti = request.POST['predmeti']
+
+    print('>>> SEMESTAR:', semestar)
+    print('>>> KOL NEDELJA:', kolokvijumska_nedelja)
+    print('>>> PREDMETI:', predmeti)
+
+    return HttpResponse('<h1>Uspesno ste uneli raspored!</h1>')
+
+
 def upload_raspored(request):
     semestar = request.POST['semestar']
     kolokvijumska_nedelja = request.POST['kolokvijumska_nedelja']
@@ -354,7 +412,12 @@ def upload_raspored(request):
     print('>>> KOL NEDELJA:', kolokvijumska_nedelja)
     print('>>> RASPORED FILE:', raspored_file)
 
-    kol1_parser.parse(raspored_file, semestar, kolokvijumska_nedelja)
+    try:
+        kol1_parser.parse(raspored_file, semestar, kolokvijumska_nedelja)
+    except Predmet.DoesNotExist as pde:
+        print('>>> ERROR upload_raspored:', pde)
+    except Nastavnik.DoesNotExist as nde:
+        print('>>> ERROR upload_raspored:', nde)
 
     return HttpResponse('<h1>Uspesno ste uneli raspored!</h1>')
 

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload form</title>
+</head>
+<body>
+<form action="{% url 'upload_raspored_retry' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <br>
+    <label>Vreme:</label>
+    <input name="vreme" value="Unesite vreme">
+    <label>Dan:</label>
+    <input name="dan" value="Unesite dan">
+    <label>Datum:</label>
+    <input name="datum" value="Unesite datum"><br>
+    <input type="submit" value="Unesi raspored"/>
+</form>
+</body>
+</html>
