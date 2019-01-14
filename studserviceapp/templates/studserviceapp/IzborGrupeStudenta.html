@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Izbor grupe studenta</title>
+</head>
+<body>
+    {% if student and izborGrupe %}
+        <form method="post"  enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Indeks</td>
+                    <td>
+                        <input name="indeks" value="{{ student.broj_indeksa }}">
+                    </td>
+{#                    <td>#}
+{#                        <input name="broj_indeksa" value="{{ student.broj_indeksa }}">#}
+{#                        <label>/</label>#}
+{#                    </td>#}
+{#                    <td>#}
+{#                        <input name="godina_upisa" value="{{ student.godina_upisa }}">#}
+{#                    </td>#}
+                </tr>
+                <tr>
+                    <td>Ime</td>
+                    <td><input name="ime" value="{{ student.ime }}"></td>
+                </tr>
+                <tr>
+                    <td>Prezime</td>
+                    <td><input name="prezime" value="{{ student.prezime }}"></td>
+                </tr>
+                <tr>
+                    <td>Broj do sada ukupno ostvarenih ESPB</td>
+                    <td><input name="broj_ostvarenih_espb" value="{{ izborGrupe.ostvarenoESPB}}"></td>
+                </tr>
+                <tr>
+                    <td>Skolske {{ semestar.skolska_godina_pocetak }}/{{ semestar.skolska_godina_kraj }} upisiujem ESPB</td>
+                    <td><input name="student_upisuje_bodova" value=" {{ izborGrupe.upisujeESPB }}"></td>
+                </tr>
+                <tr>
+                    <td>Broj do sada polozenih ispita</td>
+                    <td><input name="broj_polozenih_ispit" value="{{ izborGrupe.broj_polozenih_ispita }}"></td>
+                </tr>
+                <tr>
+                    <td>Semestra</td>
+                    <td>
+                        <input name="vrsta_semestra" value="{{ izborGrupe.upisuje_semestar }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Prvi put upisuje semestar</td>
+                    <td>
+                        <input name="upis_semestra" value="{{ izborGrupe.prvi_put_upisuje_semestar }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Grupa koju student bira</td>
+                    <td>
+                        <input name="grupa_koju_student_bira" value="{{ izborGrupe.izabrana_grupa.oznaka_grupe}}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nepolozeni predmeti iz prethodnih godina</td>
+                    <td>
+                        <select name="nepolozeniPredmeti" size="4">
+                            {% for p in izborGrupe.nepolozeni_predmeti %}
+                                <option value="{{ p.naziv }}">{{ p.naziv }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nacin placanja</td>
+                    <td>
+                        <input name="nacin_placanja" value="{{ izborGrupe.nacin_placanja }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Upisan</td>
+                    <td>
+                        <input name="upisan" value="{{ izborGrupe.upisan }}" >
+                    </td>
+                </tr>
+            </table>
+        </form>
+    {% else %}
+        <p>Nema studenta/grupe u bazi</p>
+    {% endif %}
+</body>
+</html>

@@ -201,7 +201,7 @@ def izbor_grupe_form(request, username):
 def save_izbor_grupe(request):
     ostvarenoESPB = request.POST['broj_ostvarenih_espb']
     upisujeESPB = request.POST['student_upisuje_bodova']
-    broj_polizenih_ispita = request.POST['broj_polozenih_ispit']
+    broj_polizenih_ispita = request.POST['broj_polozenih_ispita']
     upisuje_semestar = request.POST['vrsta_semestra']
     prvi_put_upisuje_semestar = request.POST['upis_semestra']
     nacin_placanja = request.POST['nacin_placanja']
@@ -610,3 +610,9 @@ def posaljiMail(request):
                                                 attached_file=fajl_obavestenje)
 
     return HttpResponse("<h1>Uspesno poslat mejl</h1>")
+
+def izborGrupeStudenta(request,username):
+    student = Student.objects.get(nalog__username=username)
+    izbor_grupe = IzborGrupe.objects.get(student__nalog__username=username)
+    return render(request, 'studserviceapp/izborGrupeStudenta.html', {'student': student,'izborGrupe':izbor_grupe})
+
