@@ -68,7 +68,8 @@ def index(request):
 
 
 def home(request, username):
-    termin = Termin.objects.filter(nastavnik__nalog__username=username)
+    # termin = Termin.objects.filter(nastavnik__nalog__username=username)
+    termin = Termin.objects.all()
     professor = Nastavnik.objects.filter(nalog__username=username)
 
     for t in termin:
