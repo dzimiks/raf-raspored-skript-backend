@@ -42,5 +42,5 @@ urlpatterns = [
     path('slika_studenta/<str:username>', views.slika_studenta, name='slika_studenta'),
     path('slanjeMaila/<str:username>', views.slanjeMaila, name='slanje_maila'),
     path('posaljiMail', views.posaljiMail, name='posalji_mail'),
-    path('izborGrupeStudenta/<str:username>', views.izborGrupeStudenta, name='izborGrupeStudenta'),
+    path('IzborGrupeStudenta/<str:username>', views.izborGrupeStudenta, name='izbor_grupe_studenta'),
 ]

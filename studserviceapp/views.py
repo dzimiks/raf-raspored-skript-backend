@@ -229,7 +229,8 @@ def save_izbor_grupe(request):
     grupa_koju_student_bira = request.POST['grupe']
     username = request.POST['ime'][0].lower() + request.POST['prezime'].lower() + request.POST['godina_upisa'][-2:]
     student = Student.objects.get(nalog__username=username)
-
+    izabrana_grupa = IzbornaGrupa.objects.get(oznaka_grupe=grupa_koju_student_bira)
+    print(izabrana_grupa.oznaka_grupe)
     if (IzborGrupe.objects.filter(student__broj_indeksa=student.broj_indeksa)):
         return HttpResponse("<h1> Student je vec izabrao grupu.</h1>")
 
@@ -257,7 +258,7 @@ def save_izbor_grupe(request):
     izborGrupe.upisujeESPB = int(upisujeESPB)
     izborGrupe.broj_polozenih_ispita = int(broj_polizenih_ispita)
     izborGrupe.upisuje_semestar = int(upisuje_semestar)
-
+    izborGrupe.izabrana_grupa = izabrana_grupa
     izborGrupe.prvi_put_upisuje_semestar = prvi_put_upisuje_semestar
     izborGrupe.nacin_placanja = nacin_placanja
     izborGrupe.student = student
@@ -636,4 +637,5 @@ def posaljiMail(request):
 def izborGrupeStudenta(request, username):
     student = Student.objects.get(nalog__username=username)
     izbor_grupe = IzborGrupe.objects.get(student__nalog__username=username)
-    return render(request, 'studserviceapp/izborGrupeStudenta.html', {'student': student, 'izborGrupe': izbor_grupe})
+    nepolozeni_predmeti = izbor_grupe.nepolozeni_predmeti.all()
+    return render(request, 'studserviceapp/IzborGrupeStudenta.html', {'student': student, 'izborGrupe': izbor_grupe, 'nepolozeniPredmeti':nepolozeni_predmeti})
