@@ -5,74 +5,76 @@
     <title>Izmena izborne grupe</title>
 </head>
 <body>
-    {% if predmeti and grupa%}
-        <form action="{% url 'save_izmene_izborne_grupe' %}" method = "post">
-            {% csrf_token %}
-            <table>
-                <tr>
-                    <th>Semestar</th>
-                    <td><input name="skolska_godina_pocetak" value="{{ grupa.za_semestar.skolska_godina_pocetak }}" readonly="readonly"></td>
-                    <td><label>/</label></td>
-                    <td><input name="skolska_godina_kraj" value="{{ grupa.za_semestar.skolska_godina_kraj }}" readonly="readonly"></td>
-                </tr>
-                 <tr>
-                    <th>Vrsta semestra</th>
-                    <td>
-                        <input name="vrsta_semestra" value="{{ grupa.za_semestar.vrsta }}" readonly="readonly">
-                    </td>
-                </tr>
-                <tr>
-                    <th>Oznaka grupe</th>
-                    <td>
-                        <input name = "oznaka_grupe" value="{{ grupa.oznaka_grupe }}" readonly="readonly">
-                    </td>
-                </tr>
-                <tr>
-                    <th >Oznaka semestra</th>
-                    <td><input name = "oznaka_semestra" value="{{ grupa.oznaka_semestra }}" readonly="readonly"></td>
-                </tr>
-                <tr>
-                    <th>Kapacitet</th>
-                    <td><input name = "kapacitet" value="{{ grupa.kapacitet }}"></td>
-                </tr>
-                 <tr>
-                    <th>Smer</th>
-                    <td>
-                        <input name="smer" value="{{ grupa.smer }}" readonly="readonly">
-                    </td>
-                </tr>
-                <tr>
-                    <th>Aktivnost grupe</th>
+{% if predmeti and grupa %}
+    <form action="{% url 'save_izmene_izborne_grupe' %}" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>Semestar</th>
+                <td><input name="skolska_godina_pocetak" value="{{ grupa.za_semestar.skolska_godina_pocetak }}"
+                           readonly="readonly"></td>
+                <td><label>/</label></td>
+                <td><input name="skolska_godina_kraj" value="{{ grupa.za_semestar.skolska_godina_kraj }}"
+                           readonly="readonly"></td>
+            </tr>
+            <tr>
+                <th>Vrsta semestra</th>
+                <td>
+                    <input name="vrsta_semestra" value="{{ grupa.za_semestar.vrsta }}" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th>Oznaka grupe</th>
+                <td>
+                    <input name="oznaka_grupe" value="{{ grupa.oznaka_grupe }}" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th>Oznaka semestra</th>
+                <td><input name="oznaka_semestra" value="{{ grupa.oznaka_semestra }}" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <th>Kapacitet</th>
+                <td><input name="kapacitet" value="{{ grupa.kapacitet }}"></td>
+            </tr>
+            <tr>
+                <th>Smer</th>
+                <td>
+                    <input name="smer" value="{{ grupa.smer }}" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th>Aktivnost grupe</th>
 
-                        {% if grupa.aktivna is True %}
-                            <td>
-                                <input type="radio" name = "aktivnost" value="aktivna" checked="checked">aktivna
-                                <input type="radio" name = "aktivnost" value="neaktivna">neaktivna
-                            </td>
-                        {% else %}
-                            <td>
-                                <input type="radio" name = "aktivnost" value="aktivna" >aktivna
-                                <input type="radio" name = "aktivnost" value="neaktivna" checked="checked">neaktivna
-                            </td>
-                        {% endif %}
-                </tr>
-                <tr>
-                    <th>Predmeti</th>
+                {% if grupa.aktivna is True %}
                     <td>
+                        <input type="radio" name="aktivnost" value="aktivna" checked="checked">aktivna
+                        <input type="radio" name="aktivnost" value="neaktivna">neaktivna
+                    </td>
+                {% else %}
+                    <td>
+                        <input type="radio" name="aktivnost" value="aktivna">aktivna
+                        <input type="radio" name="aktivnost" value="neaktivna" checked="checked">neaktivna
+                    </td>
+                {% endif %}
+            </tr>
+            <tr>
+                <th>Predmeti</th>
+                <td>
                     <select multiple name="predmeti" size="5">
                         {% for p in predmeti %}
-                        <option value ={{ p }}>{{ p.naziv }}</option>
+                            <option value={{ p }}>{{ p.naziv }}</option>
                         {% endfor %}
                     </select>
-                    </td>
-                </tr>
-            </table>
+                </td>
+            </tr>
+        </table>
 
-            <input type="submit" value="Snimi">
-        </form>
-    {% else %}
-        <p>Nema predmeta/grupe u bazi</p>
-    {% endif %}
+        <input type="submit" value="Snimi">
+    </form>
+{% else %}
+    <p>Nema predmeta/grupe u bazi</p>
+{% endif %}
 
 
 </body>
