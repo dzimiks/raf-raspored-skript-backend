@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>RAF Scheduler</title>
-    {% load staticfiles %}
+    {#    {% load staticfiles %}#}
 
     <link rel="shortcut icon" href="../images/favicon.ico" sizes="48x48"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -35,7 +35,7 @@
     <meta name="DC.Creator" content="RAF">
     <meta name="DC.Subject" content="Skript Jezici">
     <meta name="DC.Description" content="RAF Skript Jezici"/>
-    <meta name="DC.Date" content="2018">
+    <meta name="DC.Date" content="2019">
     <meta name="DC.Language" content="EN">
 
     <!-- Fonts -->
@@ -57,7 +57,124 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css">
 
     <!-- Main CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">#}
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Roboto", sans-serif;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        html {
+            font-size: 106.25%;
+        }
+
+        body {
+            min-width: 320px;
+            font-size: 17px;
+            line-height: 1.52947;
+            font-weight: 400;
+            letter-spacing: -0.021em;
+            color: #333;
+            font-style: normal;
+        }
+
+        a {
+            color: #000;
+            -webkit-transition: color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        .row-eq-height {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .row-eq-height > [class*=col-] {
+            display: flex;
+        }
+
+        @media screen and (max-width: 992px) {
+            .row-eq-height {
+                display: block !important;
+            }
+
+            .row-eq-height > [class*=col-] {
+                display: block !important;
+            }
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: inherit;
+            transition: all 0.5s;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 2px;
+            display: inline-block;
+            padding: 20px;
+            position: relative;
+            width: 100%;
+            margin: 10px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .card:hover {
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        }
+
+        .card .card-title {
+            border-bottom: 2px solid #E6E9ED;
+            padding: 1px 5px 6px;
+            margin-bottom: 10px;
+        }
+
+        .card .card-title h2 {
+            margin: 5px 0 6px;
+            float: left;
+            display: block;
+            white-space: nowrap;
+        }
+
+        .card .card-content {
+            position: relative;
+            width: 100%;
+            float: left;
+            clear: both;
+            margin-top: 5px;
+        }
+
+        .dt-buttons {
+            margin-bottom: 20px;
+        }
+
+        .dt-buttons .btn-sm {
+            margin-right: 10px;
+        }
+
+        .navbar {
+            background-color: #f2f2f2;
+            border-bottom: 2px solid #007bff;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -270,6 +387,32 @@
         src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/af-2.3.2/b-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/cr-1.5.0/r-2.2.2/sc-1.5.0/sl-1.2.6/datatables.min.js"></script>
 
 <!-- Main JS -->
-<script src="{% static 'app.js' %}"></script>
+{#<script src="{% static 'app.js' %}"></script>#}
+<script>
+    $(document).ready(function () {
+        $('#schedule').DataTable({
+            dom: "Blfrtip",
+            buttons: [
+                {
+                    extend: "copy",
+                    className: "btn-sm"
+                },
+                {
+                    extend: "csv",
+                    className: "btn-sm"
+                },
+                {
+                    extend: "excel",
+                    className: "btn-sm"
+                },
+                {
+                    extend: "pdfHtml5",
+                    className: "btn-sm"
+                }
+            ],
+            responsive: true
+        });
+    });
+</script>
 </body>
 </html>

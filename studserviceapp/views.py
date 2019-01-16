@@ -63,8 +63,24 @@ def nastavnici_template(request):
     return render(request, 'studserviceapp/nastavnici.html', context)
 
 
-def home(request):
-    return render(request, 'studserviceapp/home.html', {})
+def index(request):
+    return render(request, 'studserviceapp/index.html', {})
+
+
+def home(request, username):
+    termin = Termin.objects.filter(nastavnik__nalog__username=username)
+    professor = Nastavnik.objects.filter(nalog__username=username)
+
+    for t in termin:
+        t.pocetak = t.pocetak.strftime('%H:%M')
+        t.zavrsetak = t.zavrsetak.strftime('%H:%M')
+
+    context = {
+        'professor': professor,
+        'termin': termin
+    }
+
+    return render(request, 'studserviceapp/home.html', context)
 
 
 def unos_obavestenja_form(request, user):
