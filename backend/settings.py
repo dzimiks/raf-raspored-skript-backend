@@ -123,7 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_ROOT = os.path.dirname(os.path.realpath(__file__))
-STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
 
 if "DATABASE_URL" in os.environ:
     del os.environ["DATABASE_URL"]

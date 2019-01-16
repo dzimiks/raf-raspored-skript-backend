@@ -63,6 +63,10 @@ def nastavnici_template(request):
     return render(request, 'studserviceapp/nastavnici.html', context)
 
 
+def home(request):
+    return render(request, 'studserviceapp/home.html', {})
+
+
 def unos_obavestenja_form(request, user):
     try:
         n = Nalog.objects.get(username=user)
@@ -611,8 +615,8 @@ def posaljiMail(request):
 
     return HttpResponse("<h1>Uspesno poslat mejl</h1>")
 
-def izborGrupeStudenta(request,username):
+
+def izborGrupeStudenta(request, username):
     student = Student.objects.get(nalog__username=username)
     izbor_grupe = IzborGrupe.objects.get(student__nalog__username=username)
-    return render(request, 'studserviceapp/izborGrupeStudenta.html', {'student': student,'izborGrupe':izbor_grupe})
-
+    return render(request, 'studserviceapp/izborGrupeStudenta.html', {'student': student, 'izborGrupe': izbor_grupe})
