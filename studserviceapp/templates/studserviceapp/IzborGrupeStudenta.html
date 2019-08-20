@@ -64,7 +64,7 @@
                 <td>Nepolozeni predmeti iz prethodnih godina</td>
                 <td>
                     <select name="nepolozeniPredmeti" size="4">
-                        {% for p in izborGrupe.nepolozeni_predmeti %}
+                        {% for p in nepolozeniPredmeti %}
                             <option value="{{ p.naziv }}">{{ p.naziv }}</option>
                         {% endfor %}
                     </select>
