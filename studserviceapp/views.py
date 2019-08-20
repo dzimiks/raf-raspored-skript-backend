@@ -126,10 +126,10 @@ def save_semestra(request):
     smer = request.POST['smer']
     aktivnost = False
 
-    if (request.POST['aktivnost'] == "aktivna"):
+    if request.POST['aktivnost'] == "aktivna":
         aktivnost = True
     else:
-        if (request.POST['aktivnost'] == "neaktivna"):
+        if request.POST['aktivnost'] == "neaktivna":
             aktivnost = False
 
     # print(skolska_godina_pocetak,skolska_godina_kraj,vrsta_semestra,oznaka_grupe,
@@ -148,7 +148,7 @@ def save_semestra(request):
         semestar.skolska_godina_kraj = skolska_godina_kraj
         semestar.save()
 
-    if (IzbornaGrupa.objects.filter(oznaka_grupe=oznaka_grupe, oznaka_semestra=oznaka_semestra)):
+    if IzbornaGrupa.objects.filter(oznaka_grupe=oznaka_grupe, oznaka_semestra=oznaka_semestra):
         return HttpResponse("<h1>Izborna grupa vec postoji</h1>")
     else:
         izbornaGrupa = IzbornaGrupa()
@@ -244,7 +244,7 @@ def save_izbor_grupe(request):
     else:
         if (request.POST['upisan'] == "ne"):
             upisan = False
-    #
+
     # izbornaGrupa = IzbornaGrupa.objects.get(oznaka_semestra=grupa_koju_student_bira)
     # if(izbornaGrupa.kapacitet==0):
     #     return HttpResponse("<h1>Izborna grupa je popunjena, odaberite drugu grupu.</h1>")
@@ -579,7 +579,7 @@ def posaljiMail(request):
                             mail_studenta = (s.nalog.username + "@raf.rs")
                             send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
                                                                 subject=subject, message_text_plain=tekst,
-                                                                message_text_html='',
+                                                                message_text_html=tekst,
                                                                 attached_file=fajl_obavestenje)
         elif len(grupe) > 0:
             for g in grupe:
@@ -590,7 +590,7 @@ def posaljiMail(request):
                     mail_studenta = (s.nalog.username + "@raf.rs")
                     send_gmails.create_message_and_send(sender="vpaunovic@raf.rs", to=mail_studenta,
                                                         subject=subject, message_text_plain=tekst,
-                                                        message_text_html='',
+                                                        message_text_html=tekst,
                                                         attached_file=fajl_obavestenje)
     elif postavio.uloga == 'sekretar' or postavio.uloga == 'administrator':
         req = request.POST['send']
